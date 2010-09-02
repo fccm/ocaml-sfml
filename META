@@ -1,0 +1,8 @@
+name = "ocaml-sfml"
+description = "bindings to the SFML library"
+license = "zlib/png"
+version = "0.03d"
+requires = "bigarray"
+directory = "+sfml"
+archive(byte) = "SFML.cma"
+archive(native) = "SFML.cmxa"

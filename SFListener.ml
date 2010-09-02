@@ -1,0 +1,6 @@
+external setGlobalVolume: volume:float -> unit = "caml_sfListener_SetGlobalVolume"
+external getGlobalVolume: unit -> float = "caml_sfListener_GetGlobalVolume"
+external setPosition: posX:float -> posY:float -> posZ:float -> unit = "caml_sfListener_SetPosition"
+external getPosition: unit -> float * float * float = "caml_sfListener_GetPosition"
+external setTarget: targetX:float -> targetY:float -> targetZ:float -> unit = "caml_sfListener_SetTarget"
+external getTarget: unit -> float * float * float = "caml_sfListener_GetTarget"
