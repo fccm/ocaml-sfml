@@ -35,6 +35,9 @@ external create: mode:video_mode -> title:string ->
   style:window_style list -> settings:window_settings -> t
   = "caml_sfWindow_Create"
 
+external createFromHandle: handle:int32 -> settings:window_settings -> t
+  = "caml_sfWindow_CreateFromHandle"
+
 let make ?(style = [`resize; `close]) ?(bpp = 32)
     ?(depth = 24) ?(stencil = 8) ?(antialiasing = 0)
     (width, height) title =

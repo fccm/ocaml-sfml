@@ -780,9 +780,21 @@ caml_sfWindow_Create(
     return Val_sfWindow(win);
 }
 
-/* TODO
-sfWindow* sfWindow_CreateFromHandle(sfWindowHandle Handle, sfWindowSettings Params);
-*/
+CAMLprim value
+caml_sfWindow_CreateFromHandle(value ml_handle, value ml_settings)
+{
+    sfWindowSettings settings;
+    sfWindow* win;
+
+    settings.DepthBits         = Long_val(Field(ml_settings, 0));
+    settings.StencilBits       = Long_val(Field(ml_settings, 1));
+    settings.AntialiasingLevel = Long_val(Field(ml_settings, 2));
+
+    win = sfWindow_CreateFromHandle(Int32_val(ml_handle), settings);
+    if (!win) caml_failwith("SFWindow.createFromHandle");
+
+    return Val_sfWindow(win);
+}
 
 CAMLprim value
 caml_sfWindow_IsOpened(value win)
@@ -973,9 +985,21 @@ caml_sfRenderWindow_Create(
     return Val_sfRenderWindow(win);
 }
 
-/*
-sfRenderWindow* sfRenderWindow_CreateFromHandle(sfWindowHandle Handle, sfWindowSettings Params);
-*/
+CAMLprim value
+caml_sfRenderWindow_CreateFromHandle(value ml_handle, value ml_settings)
+{
+    sfWindowSettings settings;
+    sfRenderWindow* win;
+
+    settings.DepthBits         = Long_val(Field(ml_settings, 0));
+    settings.StencilBits       = Long_val(Field(ml_settings, 1));
+    settings.AntialiasingLevel = Long_val(Field(ml_settings, 2));
+
+    win = sfRenderWindow_CreateFromHandle(Int32_val(ml_handle), settings);
+    if (!win) caml_failwith("SFRenderWindow.create");
+
+    return Val_sfRenderWindow(win);
+}
 
 CAMLprim value
 caml_sfRenderWindow_IsOpened(value win)
