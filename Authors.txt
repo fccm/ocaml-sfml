@@ -1,0 +1,6 @@
+Initial bindings by Florent Monnier.
+
+Added caml_(enter|leave)_blocking_section() around functions
+sfWindow_Display() and sfRenderWindow_Display() by Jérémie Dimino.
+
+sfRenderWindow_CreateFromHandle() wrapped by Jérémie Dimino.
