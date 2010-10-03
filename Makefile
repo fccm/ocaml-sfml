@@ -89,7 +89,7 @@ SFML.cmxa: $(NAT_OBJ) $(CMI_INTRF) dllsfml_stubs.so
 install: $(CMI_INTRF) dllsfml_stubs.so
 	install -d -m 0755 $(PREFIX)
 	install -m 0644 *.mli META $(PREFIX)
-	install -m 0644 *.{a,cmi,cma,cmxa} $(PREFIX)
+	install -m 0644 *.a *.cmi *.cma *.cmxa $(PREFIX)
 	install -m 0755 *.so $(DLL_PREFIX)
 
 doc: $(MLI_FILES) $(CMI_INTRF)
