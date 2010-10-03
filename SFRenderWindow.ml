@@ -35,7 +35,7 @@ external create: mode:video_mode -> title:string ->
   style:window_style list -> settings:window_settings -> t
   = "caml_sfRenderWindow_Create"
 
-external createFromHandle: handle:int32 -> settings:window_settings -> t
+external createFromHandle: handle:nativeint -> settings:window_settings -> t
   = "caml_sfRenderWindow_CreateFromHandle"
 
 let make ?(style = [`resize; `close]) ?(bpp = 32)

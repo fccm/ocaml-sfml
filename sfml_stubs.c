@@ -790,7 +790,7 @@ caml_sfWindow_CreateFromHandle(value ml_handle, value ml_settings)
     settings.StencilBits       = Long_val(Field(ml_settings, 1));
     settings.AntialiasingLevel = Long_val(Field(ml_settings, 2));
 
-    win = sfWindow_CreateFromHandle(Int32_val(ml_handle), settings);
+    win = sfWindow_CreateFromHandle(Nativeint_val(ml_handle), settings);
     if (!win) caml_failwith("SFWindow.createFromHandle");
 
     return Val_sfWindow(win);
@@ -995,7 +995,7 @@ caml_sfRenderWindow_CreateFromHandle(value ml_handle, value ml_settings)
     settings.StencilBits       = Long_val(Field(ml_settings, 1));
     settings.AntialiasingLevel = Long_val(Field(ml_settings, 2));
 
-    win = sfRenderWindow_CreateFromHandle(Int32_val(ml_handle), settings);
+    win = sfRenderWindow_CreateFromHandle(Nativeint_val(ml_handle), settings);
     if (!win) caml_failwith("SFRenderWindow.create");
 
     return Val_sfRenderWindow(win);
