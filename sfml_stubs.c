@@ -26,6 +26,8 @@
 #include <SFML/Audio.h>
 #include <SFML/System.h>
 
+#define CAML_NAME_SPACE
+
 #include <caml/mlvalues.h>
 #include <caml/alloc.h>
 #include <caml/memory.h>
@@ -1469,7 +1471,7 @@ caml_sfImage_GetPixelsPtr(value sf_image)
     dims[0] = width;
     dims[1] = height;
     dims[2] = 4;
-    img_ba = alloc_bigarray(BIGARRAY_UINT8 | BIGARRAY_C_LAYOUT, 3, NULL, dims);
+    img_ba = caml_ba_alloc(CAML_BA_UINT8 | CAML_BA_C_LAYOUT, 3, NULL, dims);
     memcpy(Caml_ba_data_val(img_ba), img_data, width * height * 4 * sizeof(char));
     CAMLreturn(img_ba);
 }
