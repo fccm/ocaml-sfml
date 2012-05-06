@@ -1,6 +1,7 @@
 OCAMLC := ocamlc.opt -g
 OCAMLOPT := ocamlopt.opt -g
 OCAMLDOC := ocamldoc.opt
+OCAMLMKLIB := ocamlmklib
 OCAML_DIR := $(shell ocamlc -where)
 BINDING_DIR := sfml
 PREFIX := $(OCAML_DIR)/$(BINDING_DIR)
@@ -41,7 +42,7 @@ sfml_stubs.o: sfml_stubs.c
 	$(OCAMLC) -c -ccopt $(INC_PATH) $<
 
 dllsfml_stubs.so: sfml_stubs.o
-	ocamlmklib -oc sfml_stubs $< $(LD_PATH) $(LIBS)
+	$(OCAMLMKLIB) -oc sfml_stubs $< $(LD_PATH) $(LIBS)
 
 %.mli: %.ml
 	$(OCAMLC) -i $< > $@
@@ -104,7 +105,7 @@ test: SFML.cma
 	@echo "export LD_LIBRARY_PATH=\"$(LIB_SFML_BASEDIR)/lib:$(LIB_SFML_BASEDIR)/CSFML/lib\""
 	ocaml bigarray.cma $< test.ml
 test.opt: SFML.cmxa
-	ocamlopt -g -cclib -L. bigarray.cmxa SFML.cmxa test.ml -o test.opt
+	$(OCAMLOPT) -g -cclib -L. bigarray.cmxa SFML.cmxa test.ml -o test.opt
 test_opt: test.opt
 	./$<
 
