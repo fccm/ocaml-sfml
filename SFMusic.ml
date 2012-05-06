@@ -18,6 +18,9 @@ external getDuration: music:t -> float = "caml_sfMusic_GetDuration"
 external getSampleRate: music:t -> int = "caml_sfMusic_GetSampleRate"
 external getChannelsCount: music:t -> int = "caml_sfMusic_GetChannelsCount"
 external getPlayingOffset: music:t -> float = "caml_sfMusic_GetPlayingOffset"
+external getLoop: music:t -> bool = "caml_sfMusic_GetLoop"
+external getPitch: music:t -> float = "caml_sfMusic_GetPitch"
+external getPosition: music:t -> float * float * float = "caml_sfMusic_GetPosition"
 
 type sound_status =
   | Stopped  (** music is not playing *)

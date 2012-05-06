@@ -2548,10 +2548,35 @@ caml_sfMusic_GetPlayingOffset(value music)
     return caml_copy_double(playingOffset);
 }
 
+CAMLprim value
+caml_sfMusic_GetLoop(value music)
+{
+    sfBool loop = sfMusic_GetLoop(SfMusic_val(music));
+    return Val_bool(loop);
+}
+
+CAMLprim value
+caml_sfMusic_GetPitch(value music)
+{
+    float pitch = sfMusic_GetPitch(SfMusic_val(music));
+    return caml_copy_double(pitch);
+}
+
+CAMLprim value
+caml_sfMusic_GetPosition(value music)
+{
+    CAMLparam1(music);
+    CAMLlocal1(xyz);
+    float x, y, z;
+    sfMusic_GetPosition(SfMusic_val(music), &x, &y, &z);
+    xyz = caml_alloc(3, 0);
+    Store_field(xyz, 0, caml_copy_double(x));
+    Store_field(xyz, 1, caml_copy_double(y));
+    Store_field(xyz, 2, caml_copy_double(z));
+    CAMLreturn(xyz);
+}
+
 /* TODO
-sfBool sfMusic_GetLoop(sfMusic* Music);
-float sfMusic_GetPitch(sfMusic* Music);
-void sfMusic_GetPosition(sfMusic* Music, float* X, float* Y, float* Z);
 sfBool sfMusic_IsRelativeToListener(sfMusic* Music);
 float sfMusic_GetMinDistance(sfMusic* Music);
 float sfMusic_GetAttenuation(sfMusic* Music);
