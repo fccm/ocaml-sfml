@@ -2070,6 +2070,15 @@ caml_sfPausableClock_Reset(value pclock, value paused)
 /* sfFont */
 
 CAMLprim value
+caml_sfFont_GetDefaultFont(value unit)
+{
+    sfFont *font;
+    font = sfFont_GetDefaultFont();
+    if (!font) caml_failwith("SFFont.getDefaultFont");
+    return Val_sfFont(font);
+}
+
+CAMLprim value
 caml_sfFont_CreateFromFile(value ml_charSize, value ml_charset, value filename)
 {
     sfFont* font;
@@ -2091,11 +2100,38 @@ caml_sfFont_CreateFromFile(value ml_charSize, value ml_charset, value filename)
 }
 
 CAMLprim value
+caml_sfFont_CreateFromMemory(value ml_charSize, value ml_charset, value data)
+{
+    sfFont* font;
+    sfUint32* charset_ptr;
+    sfUint32 charset;
+    unsigned int charSize = 30;  /* same default value than in <SFML/Graphics/Font.hpp> */
+
+    if (ml_charset == Val_none) charset_ptr = NULL;
+    else { charset = Int32_val(Some_val(ml_charset)); charset_ptr = &charset; }
+
+    if (ml_charSize != Val_none) {
+        charSize = Long_val(Some_val(ml_charSize));
+    }
+
+    font = sfFont_CreateFromMemory(String_val(data), caml_string_length(data), charSize, charset_ptr);
+    if (!font) caml_failwith("SFFont.createFromMemory");
+
+    return Val_sfFont(font);
+}
+
+CAMLprim value
 caml_sfFont_Destroy(value font)
 {
     sfFont_Destroy(SfFont_val(font));
     return Val_unit;
 }
+
+/*
+sfFont* sfFont_Create();
+unsigned int sfFont_GetCharacterSize(sfFont* Font);
+*/
+
 
 /* sfString */
 
