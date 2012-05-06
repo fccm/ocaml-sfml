@@ -6,6 +6,7 @@ val createFromFile : filename:string -> t
 val createFromColor: width:int -> height:int -> color:SFColor.t -> t
 val createFromMemory: data:string -> t
 val createFromPixels: width:int -> height:int -> data:string -> t
+val createFromPixelsArray: pixels:(int * int * int * int) array array -> t
 
 val getWidth : image:t -> int
 val getHeight : image:t -> int

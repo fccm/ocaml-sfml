@@ -66,3 +66,32 @@ let createFromPixels ~width ~height ~data =
   let t = {u=u; s=" "} in
   Gc.finalise destroy t;
   (t)
+
+let createFromPixelsArray ~pixels =
+  let height = Array.length pixels in
+  if height = 0 then invalid_arg "SFImage.createFromPixelsArray";
+  let width = Array.length pixels.(0) in
+  let data = String.create (width * height * 4) in
+  for y = 0 to pred height do
+    let pixels_y = Array.unsafe_get pixels y in
+    if Array.length pixels_y <> width then
+      invalid_arg "SFImage.createFromPixelsArray";
+    for x = 0 to pred width do
+      let r, g, b, a = Array.unsafe_get pixels_y x in
+      let r, g, b, a =
+        try
+          (char_of_int r,
+           char_of_int g,
+           char_of_int b,
+           char_of_int a)
+        with Invalid_argument "char_of_int" ->
+          invalid_arg "SFImage.createFromPixelsArray"
+      in
+      let ofs = ((y * width) + x) * 4 in
+      String.unsafe_set data (ofs) r;
+      String.unsafe_set data (ofs+1) g;
+      String.unsafe_set data (ofs+2) b;
+      String.unsafe_set data (ofs+3) a;
+    done;
+  done;
+  (createFromPixels ~width ~height ~data)
