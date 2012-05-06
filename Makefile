@@ -35,7 +35,8 @@ NAT_OBJ := $(patsubst %.ml, %.cmx, $(SRC_FILES))
 MLI_FILES := $(patsubst %.ml, %.mli, $(SRC_FILES))
 CMI_INTRF := $(patsubst %.ml, %.cmi, $(SRC_FILES))
 
-all: SFML.cma
+all: byte opt
+byte: SFML.cma
 opt: SFML.cmxa
 
 sfml_stubs.o: sfml_stubs.c
@@ -112,4 +113,4 @@ test_opt: test.opt
 clean:
 	rm -f *.[oa] *.cm[ixoa] *.so *.cmxa *.opt
 
-.PHONY: clean all opt doc test test_opt install
+.PHONY: clean all opt byte doc test test_opt install
