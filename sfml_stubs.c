@@ -691,7 +691,6 @@ Val_sfColor4(sfColor *color)
     CAMLreturn(col);
 }
 
-/*
 static value
 Val_sfColor3(sfColor *color)
 {
@@ -708,7 +707,38 @@ Val_sfColor3(sfColor *color)
     Store_field(col, 0, rgb);
     CAMLreturn(col);
 }
-*/
+
+static value
+Val_RGB(sfColor *color)
+{
+    CAMLparam0();
+    CAMLlocal1(rgb);
+    sfUint8 r = color->r;
+    sfUint8 g = color->g;
+    sfUint8 b = color->b;
+    rgb = caml_alloc(3, 0);
+    Store_field(rgb, 0, Val_long(r));
+    Store_field(rgb, 1, Val_long(g));
+    Store_field(rgb, 2, Val_long(b));
+    CAMLreturn(rgb);
+}
+
+static value
+Val_RGBA(sfColor *color)
+{
+    CAMLparam0();
+    CAMLlocal1(rgba);
+    sfUint8 r = color->r;
+    sfUint8 g = color->g;
+    sfUint8 b = color->b;
+    sfUint8 a = color->a;
+    rgba = caml_alloc(4, 0);
+    Store_field(rgba, 0, Val_long(r));
+    Store_field(rgba, 1, Val_long(g));
+    Store_field(rgba, 2, Val_long(b));
+    Store_field(rgba, 3, Val_long(a));
+    CAMLreturn(rgba);
+}
 
 static value caml_return_sfIntRect(sfIntRect *rect)
 {
@@ -1536,8 +1566,35 @@ caml_sfImage_Bind(value image)
     return Val_unit;
 }
 
+CAMLprim value
+caml_sfImage_GetPixel4(value image, value x, value y)
+{
+    sfColor color = sfImage_GetPixel(SfImage_val(image), Int_val(x), Int_val(y));
+    return Val_sfColor4(&color);
+}
+
+CAMLprim value
+caml_sfImage_GetPixel3(value image, value x, value y)
+{
+    sfColor color = sfImage_GetPixel(SfImage_val(image), Int_val(x), Int_val(y));
+    return Val_sfColor3(&color);
+}
+
+CAMLprim value
+caml_sfImage_GetPixelRGB(value image, value x, value y)
+{
+    sfColor color = sfImage_GetPixel(SfImage_val(image), Int_val(x), Int_val(y));
+    return Val_RGB(&color);
+}
+
+CAMLprim value
+caml_sfImage_GetPixelRGBA(value image, value x, value y)
+{
+    sfColor color = sfImage_GetPixel(SfImage_val(image), Int_val(x), Int_val(y));
+    return Val_RGBA(&color);
+}
+
 /*
-sfColor sfImage_GetPixel(sfImage* Image, unsigned int X, unsigned int Y);
 void sfImage_Copy(sfImage* Image, sfImage* Source, unsigned int DestX, unsigned int DestY, sfIntRect SourceRect);
 */
 

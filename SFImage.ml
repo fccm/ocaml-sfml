@@ -23,6 +23,13 @@ type gl_image =
 
 external getPixelsBA: image:u -> gl_image = "caml_sfImage_GetPixelsPtr"
 
+external getPixel4: image:u -> x:int -> y:int -> SFColor.t = "caml_sfImage_GetPixel4"
+external getPixel3: image:u -> x:int -> y:int -> SFColor.t = "caml_sfImage_GetPixel3"
+
+external getPixelRGB: image:u -> x:int -> y:int -> SFColor.rgb = "caml_sfImage_GetPixelRGB"
+external getPixelRGBA: image:u -> x:int -> y:int -> SFColor.rgba = "caml_sfImage_GetPixelRGBA"
+
+
 external saveToFile: image:u -> filename:string -> unit = "caml_sfImage_SaveToFile"
 external setPixel: image:u -> x:int -> y:int -> color:SFColor.t -> unit = "caml_sfImage_SetPixel"
 external setSmooth: image:u -> smooth:bool -> unit = "caml_sfImage_SetSmooth"

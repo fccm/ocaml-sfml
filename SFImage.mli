@@ -18,6 +18,11 @@ type gl_image =
 
 val getPixelsBA : image:t -> gl_image
 
+val getPixel4: image:t -> x:int -> y:int -> SFColor.t
+val getPixel3: image:t -> x:int -> y:int -> SFColor.t
+val getPixelRGB: image:t -> x:int -> y:int -> SFColor.rgb
+val getPixelRGBA: image:t -> x:int -> y:int -> SFColor.rgba
+
 val saveToFile: image:t -> filename:string -> unit
 val setPixel: image:t -> x:int -> y:int -> color:SFColor.t -> unit
 val setSmooth: image:t -> smooth:bool -> unit
