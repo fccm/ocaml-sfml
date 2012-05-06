@@ -1543,8 +1543,6 @@ void sfImage_Copy(sfImage* Image, sfImage* Source, unsigned int DestX, unsigned 
 
 /*
 sfImage* sfImage_Create();
-sfImage* sfImage_CreateFromPixels(unsigned int Width, unsigned int Height, const sfUint8* Data);
-sfImage* sfImage_CreateFromMemory(const char* Data, size_t SizeInBytes);
 void sfImage_CreateMaskFromColor(sfImage* Image, sfColor ColorKey, sfUint8 Alpha);
 sfBool sfImage_CopyScreen(sfImage* Image, sfRenderWindow* Window, sfIntRect SourceRect);
 */
