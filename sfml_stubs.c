@@ -1426,6 +1426,28 @@ caml_sfImage_CreateFromColor(value width, value height, value ml_color)
 }
 
 CAMLprim value
+caml_sfImage_CreateFromMemory(value data)
+{
+    sfImage *img;
+    img = sfImage_CreateFromMemory(String_val(data), caml_string_length(data));
+    if (!img) caml_failwith("SFImage.createFromMemory");
+    return Val_sfImage(img);
+}
+
+CAMLprim value
+caml_sfImage_CreateFromPixels(value width, value height, value data)
+{
+    sfImage *img;
+    unsigned int Width = Int_val(width);
+    unsigned int Height = Int_val(height);
+    if (caml_string_length(data) != (Width * Height * 4))
+        caml_invalid_argument("SFImage.createFromPixels");
+    img = sfImage_CreateFromPixels(Width, Height, (sfUint8 *) String_val(data));
+    if (!img) caml_failwith("SFImage.createFromPixels");
+    return Val_sfImage(img);
+}
+
+CAMLprim value
 caml_sfImage_Destroy(value img)
 {
     sfImage_Destroy(SfImage_val(img));

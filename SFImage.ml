@@ -7,6 +7,12 @@ external destroy: image:u -> unit = "caml_sfImage_Destroy"
 external createFromColor: width:int -> height:int -> color:SFColor.t -> u
   = "caml_sfImage_CreateFromColor"
 
+external createFromMemory: data:string -> u
+  = "caml_sfImage_CreateFromMemory"
+
+external createFromPixels: width:int -> height:int -> data:string -> u
+  = "caml_sfImage_CreateFromPixels"
+
 external getWidth: image:u -> int = "caml_sfImage_GetWidth"
 external getHeight: image:u -> int = "caml_sfImage_GetHeight"
 external getDims: image:u -> int * int = "caml_sfImage_GetDimensions"
@@ -45,6 +51,18 @@ let createFromFile ~filename =
 
 let createFromColor ~width ~height ~color =
   let u = createFromColor ~width ~height ~color in
+  let t = {u=u; s=" "} in
+  Gc.finalise destroy t;
+  (t)
+
+let createFromMemory ~data =
+  let u = createFromMemory ~data in
+  let t = {u=u; s=" "} in
+  Gc.finalise destroy t;
+  (t)
+
+let createFromPixels ~width ~height ~data =
+  let u = createFromPixels ~width ~height ~data in
   let t = {u=u; s=" "} in
   Gc.finalise destroy t;
   (t)
