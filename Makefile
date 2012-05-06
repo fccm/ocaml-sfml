@@ -35,9 +35,10 @@ NAT_OBJ := $(patsubst %.ml, %.cmx, $(SRC_FILES))
 MLI_FILES := $(patsubst %.ml, %.mli, $(SRC_FILES))
 CMI_INTRF := $(patsubst %.ml, %.cmi, $(SRC_FILES))
 
-all: byte opt
+all: byte opt cmxs
 byte: SFML.cma
 opt: SFML.cmxa
+cmxs: SFML.cmxs
 
 sfml_stubs.o: sfml_stubs.c
 	$(OCAMLC) -c -ccopt $(INC_PATH) $<
@@ -102,10 +103,14 @@ SFML.cmxa: $(NAT_OBJ) $(CMI_INTRF) dllsfml_stubs.so
 	$(OCAMLOPT) -a -o $@ $(NAT_OBJ) -cclib -lsfml_stubs \
 	  -ccopt "$(LD_PATH)" -cclib "$(LIBS)"
 
+SFML.cmxs: SFML.cmxa
+	$(OCAMLOPT) -shared -linkall -o $@ -ccopt -L. $<
+
 install: $(CMI_INTRF) dllsfml_stubs.so
 	install -d -m 0755 $(PREFIX)
 	install -m 0644 *.mli META $(PREFIX)
 	install -m 0644 *.a *.cmi *.cma *.cmxa $(PREFIX)
+	install -m 0755 *.cmxs $(PREFIX)
 	install -m 0755 *.so $(DLL_PREFIX)
 
 doc: $(MLI_FILES) $(CMI_INTRF)
@@ -125,6 +130,6 @@ test_opt: test.opt
 	./$<
 
 clean:
-	rm -f *.[oa] *.cm[ixoa] *.so *.cmxa *.opt
+	rm -f *.[oa] *.cm[ixoa] *.so *.cmxa *.cmxs *.opt
 
-.PHONY: clean clean_mli all opt byte doc test test_opt install
+.PHONY: clean clean_mli all opt byte cmxs doc test test_opt install
