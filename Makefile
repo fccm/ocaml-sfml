@@ -110,6 +110,6 @@ test_opt: test.opt
 	./$<
 
 clean:
-	rm -f *.[oa] *.cm[ixoa] *.{so,cmxa,opt}
+	rm -f *.[oa] *.cm[ixoa] *.so *.cmxa *.opt
 
 .PHONY: clean all opt doc test test_opt install
