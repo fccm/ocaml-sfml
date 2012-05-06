@@ -54,6 +54,8 @@ dllsfml_stubs.so: sfml_stubs.o
 %.cmx: %.ml %.cmi
 	$(OCAMLOPT) -c $<
 
+# non-generated .mli files:
+
 SFString.mli:
 	:
 SFFont.mli:
@@ -66,6 +68,18 @@ SFSound.mli:
 	:
 SFSoundBuffer.mli:
 	:
+
+# clean generated .mli files:
+GENERATED_MLI := \
+      SFClock.mli SFPausableClock.mli \
+      SFRect.mli SFColor.mli SFBlendMode.mli \
+      SFShape.mli \
+      SFMusic.mli SFListener.mli \
+      SFKey.mli SFEvent.mli SFInput.mli \
+      SFView.mli SFWindow.mli SFRenderWindow.mli
+
+clean_mli:
+	rm -f $(GENERATED_MLI)
 
 SFInput.mli: SFInput.ml SFKey.cmi SFEvent.cmi
 SFEvent.mli: SFEvent.ml SFKey.cmi
@@ -113,4 +127,4 @@ test_opt: test.opt
 clean:
 	rm -f *.[oa] *.cm[ixoa] *.so *.cmxa *.opt
 
-.PHONY: clean all opt byte doc test test_opt install
+.PHONY: clean clean_mli all opt byte doc test test_opt install
