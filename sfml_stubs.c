@@ -1028,7 +1028,7 @@ caml_sfRenderWindow_CreateFromHandle(value ml_handle, value ml_settings)
     settings.AntialiasingLevel = Long_val(Field(ml_settings, 2));
 
     win = sfRenderWindow_CreateFromHandle(Nativeint_val(ml_handle), settings);
-    if (!win) caml_failwith("SFRenderWindow.create");
+    if (!win) caml_failwith("SFRenderWindow.createFromHandle");
 
     return Val_sfRenderWindow(win);
 }
