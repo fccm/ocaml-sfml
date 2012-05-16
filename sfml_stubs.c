@@ -1413,9 +1413,9 @@ caml_sfView_GetCenter(value view)
     CAMLlocal1(center);
     float centerX = sfView_GetCenterX(SfView_val(view));
     float centerY = sfView_GetCenterY(SfView_val(view));
-    center = caml_alloc(2 * Double_wosize, Double_array_tag);
-    Store_double_field(center, 0, centerX);
-    Store_double_field(center, 1, centerY);
+    center = caml_alloc(2, 0);
+    Store_field(center, 0, caml_copy_double(center.x));
+    Store_field(center, 1, caml_copy_double(center.y));
     CAMLreturn(center);
 }
 
@@ -1426,9 +1426,9 @@ caml_sfView_GetHalfSize(value view)
     CAMLlocal1(halfSize);
     float halfSizeX = sfView_GetHalfSizeX(SfView_val(view));
     float halfSizeY = sfView_GetHalfSizeY(SfView_val(view));
-    halfSize = caml_alloc(2 * Double_wosize, Double_array_tag);
-    Store_double_field(halfSize, 0, halfSizeX);
-    Store_double_field(halfSize, 1, halfSizeY);
+    halfSize = caml_alloc(2, 0);
+    Store_field(halfSize, 0, caml_copy_double(halfSizeX));
+    Store_field(halfSize, 1, caml_copy_double(halfSizeY));
     CAMLreturn(halfSize);
 }
 
