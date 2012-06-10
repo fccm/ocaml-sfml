@@ -2892,6 +2892,16 @@ caml_sfListener_SetPosition(value posX, value posY, value posZ)
 }
 
 CAMLprim value
+caml_sfListener_SetPosition3(value pos)
+{
+    sfListener_SetPosition(
+            Double_val(Field(pos,0)),
+            Double_val(Field(pos,1)),
+            Double_val(Field(pos,2)));
+    return Val_unit;
+}
+
+CAMLprim value
 caml_sfListener_GetPosition(value unit)
 {
     CAMLparam0();
@@ -2911,6 +2921,16 @@ CAMLprim value
 caml_sfListener_SetTarget(value targetX, value targetY, value targetZ)
 {
     sfListener_SetTarget(Double_val(targetX), Double_val(targetY), Double_val(targetZ));
+    return Val_unit;
+}
+
+CAMLprim value
+caml_sfListener_SetTarget3(value target)
+{
+    sfListener_SetTarget(
+            Double_val(Field(target,0)),
+            Double_val(Field(target,1)),
+            Double_val(Field(target,2)));
     return Val_unit;
 }
 
