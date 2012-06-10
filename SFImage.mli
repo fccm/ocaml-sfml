@@ -17,6 +17,7 @@ type gl_image =
 (** the same type defined in glMLite *)
 
 val getPixelsBA : image:t -> gl_image
+val getPixelsStr: image:t -> string
 
 val getPixel4: image:t -> x:int -> y:int -> SFColor.t
 val getPixel3: image:t -> x:int -> y:int -> SFColor.t

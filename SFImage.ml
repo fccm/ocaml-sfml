@@ -21,7 +21,8 @@ external getDims: image:u -> int * int = "caml_sfImage_GetDimensions"
 type gl_image =
   (int, Bigarray.int8_unsigned_elt, Bigarray.c_layout) Bigarray.Genarray.t
 
-external getPixelsBA: image:u -> gl_image = "caml_sfImage_GetPixelsPtr"
+external getPixelsBA: image:u -> gl_image = "caml_sfImage_GetPixelsBA"
+external getPixelsStr: image:u -> string = "caml_sfImage_GetPixelsStr"
 
 external getPixel4: image:u -> x:int -> y:int -> SFColor.t = "caml_sfImage_GetPixel4"
 external getPixel3: image:u -> x:int -> y:int -> SFColor.t = "caml_sfImage_GetPixel3"
@@ -41,6 +42,7 @@ let getWidth ~image     = getWidth ~image:image.u
 let getHeight ~image    = getHeight ~image:image.u
 let getDims ~image      = getDims ~image:image.u
 let getPixelsBA ~image  = getPixelsBA ~image:image.u
+let getPixelsStr ~image = getPixelsStr ~image:image.u
 let saveToFile ~image   = saveToFile ~image:image.u
 let setPixel ~image     = setPixel ~image:image.u
 let setSmooth ~image    = setSmooth ~image:image.u

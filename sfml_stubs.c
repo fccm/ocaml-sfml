@@ -1512,7 +1512,7 @@ caml_sfImage_GetDimensions(value image)
 }
 
 CAMLprim value
-caml_sfImage_GetPixelsPtr(value sf_image)
+caml_sfImage_GetPixelsBA(value sf_image)
 {
     CAMLparam1(sf_image);
     CAMLlocal1(img_ba);
@@ -1526,6 +1526,19 @@ caml_sfImage_GetPixelsPtr(value sf_image)
     img_ba = caml_ba_alloc(CAML_BA_UINT8 | CAML_BA_C_LAYOUT, 3, NULL, dims);
     memcpy(Caml_ba_data_val(img_ba), img_data, width * height * 4 * sizeof(char));
     CAMLreturn(img_ba);
+}
+
+CAMLprim value
+caml_sfImage_GetPixelsStr(value sf_image)
+{
+    CAMLparam1(sf_image);
+    CAMLlocal1(img_str);
+    unsigned int width = sfImage_GetWidth(SfImage_val(sf_image));
+    unsigned int height = sfImage_GetHeight(SfImage_val(sf_image));
+    const sfUint8 *img_data = sfImage_GetPixelsPtr(SfImage_val(sf_image));
+    img_str = caml_alloc_string(width * height * 4);
+    memcpy(String_val(img_str), img_data, width * height * 4);
+    CAMLreturn(img_str);
 }
 
 CAMLprim value
