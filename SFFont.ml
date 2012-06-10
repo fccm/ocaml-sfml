@@ -12,8 +12,11 @@ external createFromMemory:
   = "caml_sfFont_CreateFromMemory"
 
 external destroy: font:u -> unit = "caml_sfFont_Destroy"
+external getCharacterSize: font:u -> int = "caml_sfFont_GetCharacterSize"
 
 (* ================ *)
+
+let getCharacterSize ~font = getCharacterSize font.u
 
 let destroy font =
   if not (font.is_default)

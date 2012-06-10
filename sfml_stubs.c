@@ -2182,9 +2182,15 @@ caml_sfFont_Destroy(value font)
     return Val_unit;
 }
 
+CAMLprim value
+caml_sfFont_GetCharacterSize(value font)
+{
+    unsigned int size = sfFont_GetCharacterSize(SfFont_val(font));
+    return Val_int(size);
+}
+
 /*
 sfFont* sfFont_Create();
-unsigned int sfFont_GetCharacterSize(sfFont* Font);
 */
 
 
