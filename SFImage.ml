@@ -46,6 +46,10 @@ let setPixel ~image    = setPixel ~image:image.u
 let setSmooth ~image   = setSmooth ~image:image.u
 let isSmooth  ~image   = isSmooth ~image:image.u
 let bind      ~image   = bind ~image:image.u
+let getPixel4    ~image = getPixel4    ~image:image.u
+let getPixel3    ~image = getPixel3    ~image:image.u
+let getPixelRGB  ~image = getPixelRGB  ~image:image.u
+let getPixelRGBA ~image = getPixelRGBA ~image:image.u
 
 
 let destroy img = destroy img.u
