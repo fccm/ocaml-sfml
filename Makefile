@@ -8,8 +8,8 @@ PREFIX := $(OCAML_DIR)/$(BINDING_DIR)
 #DLL_PREFIX := $(OCAML_DIR)/stublibs
 DLL_PREFIX := $(PREFIX)
 
-CXXLIBS := -lsfml-graphics -lsfml-system -lsfml-window -lsfml-audio
-CLIBS := -lcsfml-graphics -lcsfml-system -lcsfml-window -lcsfml-audio
+CXXLIBS := -lsfml-graphics -lsfml-system -lsfml-window -lsfml-audio -lsfml-network
+CLIBS := -lcsfml-graphics -lcsfml-system -lcsfml-window -lcsfml-audio -lcsfml-network
 LIBS := $(CXXLIBS) $(CLIBS)
 
 LIB_SFML_BASEDIR := ../SFML-1.6
@@ -28,7 +28,10 @@ SRC_FILES := \
       SFMusic.ml SFListener.ml \
       SFSoundBuffer.ml SFSound.ml \
       SFKey.ml SFEvent.ml SFInput.ml \
-      SFView.ml SFWindow.ml SFRenderWindow.ml
+      SFView.ml SFWindow.ml SFRenderWindow.ml \
+      SFIPAddress.ml SFPacket.ml \
+      SFSocketTCP.ml SFSocketUDP.ml \
+      SFSelector.ml
 
 BYTE_OBJ := $(patsubst %.ml, %.cmo, $(SRC_FILES))
 NAT_OBJ := $(patsubst %.ml, %.cmx, $(SRC_FILES))
@@ -39,12 +42,6 @@ all: byte opt cmxs
 byte: SFML.cma
 opt: SFML.cmxa
 cmxs: SFML.cmxs
-
-sfml_stubs.o: sfml_stubs.c
-	$(OCAMLC) -c -ccopt $(INC_PATH) $<
-
-dllsfml_stubs.so: sfml_stubs.o
-	$(OCAMLMKLIB) -oc sfml_stubs $< $(LD_PATH) $(LIBS)
 
 %.mli: %.ml
 	$(OCAMLC) -i $< > $@
@@ -69,6 +66,8 @@ SFSound.mli:
 	:
 SFSoundBuffer.mli:
 	:
+SFPacket.mli:
+	:
 
 # clean generated .mli files:
 GENERATED_MLI := \
@@ -77,7 +76,10 @@ GENERATED_MLI := \
       SFShape.mli \
       SFMusic.mli SFListener.mli \
       SFKey.mli SFEvent.mli SFInput.mli \
-      SFView.mli SFWindow.mli SFRenderWindow.mli
+      SFView.mli SFWindow.mli SFRenderWindow.mli \
+      SFIPAddress.mli \
+      SFSocketTCP.mli SFSocketUDP.mli \
+      SFSelector.mli
 
 clean_mli:
 	rm -f $(GENERATED_MLI)
@@ -94,6 +96,30 @@ SFWindow.mli: SFWindow.ml \
 SFRenderWindow.mli: SFRenderWindow.ml \
   SFView.cmi SFKey.cmi SFEvent.cmi SFInput.cmi SFColor.cmi \
   SFShape.cmi SFSprite.cmi SFString.cmi
+
+SFSocketTCP.mli: SFPacket.cmi
+SFSocketUDP.mli: SFPacket.cmi
+
+SFSelector.mli: SFSocketTCP.cmi SFSocketUDP.cmi
+
+
+sfml_stubs.o: sfml_stubs.c
+	$(OCAMLC) -c -ccopt $(INC_PATH) $<
+
+sfSocketTCP_stubs.o: sfSocketTCP_stubs.c sfSocket_stubs.h sfPacket_stubs.h
+	$(OCAMLC) -c -ccopt $(INC_PATH) $<
+sfSocketUDP_stubs.o: sfSocketUDP_stubs.c sfSocket_stubs.h sfPacket_stubs.h
+	$(OCAMLC) -c -ccopt $(INC_PATH) $<
+sfIPAddress_stubs.o: sfIPAddress_stubs.c sfSocket_stubs.h
+	$(OCAMLC) -c -ccopt $(INC_PATH) $<
+sfSelector_stubs.o: sfSelector_stubs.c sfSocket_stubs.h
+	$(OCAMLC) -c -ccopt $(INC_PATH) $<
+sfPacket_stubs.o: sfPacket_stubs.c sfPacket_stubs.h
+	$(OCAMLC) -c -ccopt $(INC_PATH) $<
+
+dllsfml_stubs.so: sfml_stubs.o sfSocketUDP_stubs.o sfSocketTCP_stubs.o sfIPAddress_stubs.o sfSelector_stubs.o sfPacket_stubs.o
+	$(OCAMLMKLIB) -oc sfml_stubs $^ $(LD_PATH) $(LIBS)
+
 
 SFML.cma: $(BYTE_OBJ) $(CMI_INTRF) dllsfml_stubs.so
 	$(OCAMLC) -a -o $@ $(BYTE_OBJ) -dllib -lsfml_stubs -cclib -lsfml_stubs \
