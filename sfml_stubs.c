@@ -1414,8 +1414,8 @@ caml_sfView_GetCenter(value view)
     float centerX = sfView_GetCenterX(SfView_val(view));
     float centerY = sfView_GetCenterY(SfView_val(view));
     center = caml_alloc(2, 0);
-    Store_field(center, 0, caml_copy_double(center.x));
-    Store_field(center, 1, caml_copy_double(center.y));
+    Store_field(center, 0, caml_copy_double(centerX));
+    Store_field(center, 1, caml_copy_double(centerY));
     CAMLreturn(center);
 }
 
