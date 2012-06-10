@@ -26,7 +26,7 @@ SRC_FILES := \
       SFImage.ml SFSprite.ml SFShape.ml \
       SFFont.ml SFString.ml \
       SFMusic.ml SFListener.ml \
-      SFSound.ml SFSoundBuffer.ml \
+      SFSoundBuffer.ml SFSound.ml \
       SFKey.ml SFEvent.ml SFInput.ml \
       SFView.ml SFWindow.ml SFRenderWindow.ml
 
