@@ -37,15 +37,15 @@ external isSmooth: image:u -> bool = "caml_sfImage_IsSmooth"
 external bind: image:u -> unit = "caml_sfImage_Bind"
 
 
-let getWidth ~image    = getWidth ~image:image.u
-let getHeight ~image   = getHeight ~image:image.u
-let getDims ~image     = getDims ~image:image.u
-let getPixelsBA ~image = getPixelsBA ~image:image.u
-let saveToFile ~image  = saveToFile ~image:image.u
-let setPixel ~image    = setPixel ~image:image.u
-let setSmooth ~image   = setSmooth ~image:image.u
-let isSmooth  ~image   = isSmooth ~image:image.u
-let bind      ~image   = bind ~image:image.u
+let getWidth ~image     = getWidth ~image:image.u
+let getHeight ~image    = getHeight ~image:image.u
+let getDims ~image      = getDims ~image:image.u
+let getPixelsBA ~image  = getPixelsBA ~image:image.u
+let saveToFile ~image   = saveToFile ~image:image.u
+let setPixel ~image     = setPixel ~image:image.u
+let setSmooth ~image    = setSmooth ~image:image.u
+let isSmooth  ~image    = isSmooth ~image:image.u
+let bind      ~image    = bind ~image:image.u
 let getPixel4    ~image = getPixel4    ~image:image.u
 let getPixel3    ~image = getPixel3    ~image:image.u
 let getPixelRGB  ~image = getPixelRGB  ~image:image.u
