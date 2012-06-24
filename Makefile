@@ -38,10 +38,15 @@ NAT_OBJ := $(patsubst %.ml, %.cmx, $(SRC_FILES))
 MLI_FILES := $(patsubst %.ml, %.mli, $(SRC_FILES))
 CMI_INTRF := $(patsubst %.ml, %.cmi, $(SRC_FILES))
 
-all: byte opt cmxs
+all: byte opt cmxs all_oo
 byte: SFML.cma
 opt: SFML.cmxa
 cmxs: SFML.cmxs
+
+all_oo: oo_byte oo_opt oo_cmxs
+oo_byte: SFML_oo.cma
+oo_opt: SFML_oo.cmxa
+oo_cmxs: SFML_oo.cmxs
 
 %.mli: %.ml
 	$(OCAMLC) -i $< > $@
@@ -102,6 +107,7 @@ SFSocketUDP.mli: SFPacket.cmi
 
 SFSelector.mli: SFSocketTCP.cmi SFSocketUDP.cmi
 
+SFML_oo.mli: $(CMI_INTRF)
 
 sfml_stubs.o: sfml_stubs.c
 	$(OCAMLC) -c -ccopt $(INC_PATH) $<
@@ -132,6 +138,16 @@ SFML.cmxa: $(NAT_OBJ) $(CMI_INTRF) dllsfml_stubs.so
 SFML.cmxs: SFML.cmxa
 	$(OCAMLOPT) -shared -linkall -o $@ -ccopt -L. $<
 
+SFML_oo.cmxs: SFML_oo.cmxa
+	$(OCAMLOPT) -shared -linkall -o $@ -ccopt -L. $<
+
+SFML_oo.cma: SFML_oo.ml SFML_oo.cmi SFML.cma
+	$(OCAMLC) -a -o $@ $<
+
+SFML_oo.cmxa: SFML_oo.ml SFML_oo.cmi SFML.cmxa
+	$(OCAMLOPT) -a -o $@ $<
+
+
 install: $(CMI_INTRF) dllsfml_stubs.so
 	install -d -m 0755 $(PREFIX)
 	install -m 0644 *.mli META $(PREFIX)
@@ -139,9 +155,9 @@ install: $(CMI_INTRF) dllsfml_stubs.so
 	install -m 0755 *.cmxs $(PREFIX)
 	install -m 0755 *.so $(DLL_PREFIX)
 
-doc: $(MLI_FILES) $(CMI_INTRF)
+doc: $(MLI_FILES) $(CMI_INTRF) SFML_oo.mli SFML_oo.cmi
 	mkdir -p $(DOC_DIR)
-	$(OCAMLDOC) $(MLI_FILES) \
+	$(OCAMLDOC) $(MLI_FILES) SFML_oo.mli \
 	    -colorize-code -html \
 	    -d $(DOC_DIR)
 
@@ -159,3 +175,4 @@ clean:
 	rm -f *.[oa] *.cm[ixoa] *.so *.cmxa *.cmxs *.opt
 
 .PHONY: clean clean_mli all opt byte cmxs doc test test_opt install
+.PHONY: all_oo oo_byte oo_opt oo_cmxs

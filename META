@@ -7,3 +7,11 @@ directory = "+sfml"
 archive(byte) = "SFML.cma"
 archive(native) = "SFML.cmxa"
 archive(plugin,native) = "SFML.cmxs"
+
+package "oo" (
+  description = "OO style interface to the SFML library"
+  requires = "sfml bigarray"
+  archive(byte) = "SFML_oo.cma"
+  archive(native) = "SFML_oo.cmxa"
+  archive(plugin,native) = "SFML_oo.cmxs"
+)
