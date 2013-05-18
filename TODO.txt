@@ -1,0 +1,25 @@
+- Glyph.mli ?
+
+- window_style
+
+- SFPacket.readString: segfault in bytecode
+
+- Shapes ...
+    RectangleShape
+    CircleShape
+    ConvexShape
+
+- FTP
+
+- Val_sfJoystickAxis() is in SFJoystick_stub. and in SFEvent_stub.
+
+- caml_sfTransform_destroy to free/delete
+  finaliser
+
+- sfTransform_Identity is it modifiable ? Yes, it is !
+
+
+- in macro check_sfSocketStatus()
+  in file "cxx_stubs/SFSocket_stub.hpp"
+  cache the call to caml_named_value()
+

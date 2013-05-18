@@ -1,12 +1,17 @@
-Informations about relationships between objects of the SFML lib.
-
 When object A uses object B, does B have to stay arround or may it be deleted?
-(we need these informations to handle correctly garbage collected values)
 
-- Sound  should keep a reference to its SoundBuffer
-- String should keep a reference to its Font
-- Sprite should keep a reference to its Image
-- PostFx should keep references to all its Images given with SetTexture
+=== Should's ===
+
+- Sound should keep a reference to its SoundBuffer
+- Text should keep a reference to its Font
+- Sprite should keep a reference to its Texture
+- Shape should keep a reference to its Texture
 - Window should keep a reference to its Input
-- RenderWindow should keep a reference to its Input
 - RenderWindow should keep a reference to its CurrentView and its DefaultView
+- Shader should keep a reference to its textures
+
+=== Dont's ===
+
+- Texture don't have to keep a reference to its Image
+- SocketSelector don't have to keep a reference to its Socket
+- Socket don't have to keep a reference to its SocketSelector

@@ -1,0 +1,58 @@
+name = "csfml"
+description = "bindings to the SFML library"
+license = "zlib/png"
+version = "@VERSION@"
+directory = "+csfml"
+
+package "system" (
+  description = "system module"
+  requires = "csfml"
+  archive(byte) = "csfml_system.cma"
+  archive(native) = "csfml_system.cmxa"
+  archive(plugin,native) = "csfml_system.cmxs"
+)
+
+package "window" (
+  description = "window module"
+  requires = "csfml.system"
+  archive(byte) = "csfml_window.cma"
+  archive(native) = "csfml_window.cmxa"
+  archive(plugin,native) = "csfml_window.cmxs"
+)
+
+package "graphics" (
+  description = "graphics module"
+  requires = "bigarray csfml.window"
+  archive(byte) = "csfml_graphics.cma"
+  archive(native) = "csfml_graphics.cmxa"
+  archive(plugin,native) = "csfml_graphics.cmxs"
+)
+
+package "audio" (
+  description = "audio module"
+  requires = "csfml.system"
+  archive(byte) = "csfml_audio.cma"
+  archive(native) = "csfml_audio.cmxa"
+  archive(plugin,native) = "csfml_audio.cmxs"
+)
+
+package "network" (
+  description = "network module"
+  requires = "csfml.system"
+  archive(byte) = "csfml_network.cma"
+  archive(native) = "csfml_network.cmxa"
+  archive(plugin,native) = "csfml_network.cmxs"
+)
+
+package "all" (
+  description = "all SFML modules"
+  requires = "csfml.system csfml.window csfml.graphics csfml.audio csfml.network"
+)
+
+package "oo" (
+  description = "OO style interface to the SFML library"
+  requires = "csfml.all"
+  archive(byte) = "csfml_oo.cma"
+  archive(native) = "csfml_oo.cmxa"
+  archive(plugin,native) = "csfml_oo.cmxs"
+)

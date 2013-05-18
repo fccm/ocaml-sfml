@@ -1,0 +1,17 @@
+(** sfeMovie *)
+
+(**
+{{:http://lucas.soltic.perso.luminy.univmed.fr/sfeMovie/}
+  Home-page of sfeMovie}
+*)
+
+(**
+{{:https://github.com/Yalir/sfeMovie}
+  Project page on Github}
+*)
+
+(**
+{{:https://github.com/LaurentGomila/SFML/wiki/ProjectSfeMovie}
+  sfeMovie on SFML's wiki}
+*)
+

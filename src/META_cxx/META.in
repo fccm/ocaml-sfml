@@ -1,0 +1,58 @@
+name = "sfml"
+description = "bindings to the SFML library"
+license = "zlib/png"
+version = "@VERSION@"
+directory = "+sfml"
+
+package "system" (
+  description = "system module"
+  requires = "sfml"
+  archive(byte) = "sfml_system.cma"
+  archive(native) = "sfml_system.cmxa"
+  archive(plugin,native) = "sfml_system.cmxs"
+)
+
+package "window" (
+  description = "window module"
+  requires = "sfml.system"
+  archive(byte) = "sfml_window.cma"
+  archive(native) = "sfml_window.cmxa"
+  archive(plugin,native) = "sfml_window.cmxs"
+)
+
+package "graphics" (
+  description = "graphics module"
+  requires = "bigarray sfml.window"
+  archive(byte) = "sfml_graphics.cma"
+  archive(native) = "sfml_graphics.cmxa"
+  archive(plugin,native) = "sfml_graphics.cmxs"
+)
+
+package "audio" (
+  description = "audio module"
+  requires = "sfml.system"
+  archive(byte) = "sfml_audio.cma"
+  archive(native) = "sfml_audio.cmxa"
+  archive(plugin,native) = "sfml_audio.cmxs"
+)
+
+package "network" (
+  description = "network module"
+  requires = "sfml.system"
+  archive(byte) = "sfml_network.cma"
+  archive(native) = "sfml_network.cmxa"
+  archive(plugin,native) = "sfml_network.cmxs"
+)
+
+package "all" (
+  description = "all SFML modules"
+  requires = "sfml.system sfml.window sfml.graphics sfml.audio sfml.network"
+)
+
+package "oo" (
+  description = "OO style interface to the SFML library"
+  requires = "sfml.all"
+  archive(byte) = "sfml_oo.cma"
+  archive(native) = "sfml_oo.cmxa"
+  archive(plugin,native) = "sfml_oo.cmxs"
+)
