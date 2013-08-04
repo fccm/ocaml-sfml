@@ -39,6 +39,8 @@ You can browse the source code of ocaml-sfml at:
   http://forge.ocamlcore.org/scm/browser.php?group_id=176
 or get the last version of the sources with the command:
   svn checkout svn://scm.ocamlcore.org/svn/ocaml-sfml/trunk ocaml-sfml
+Currently migrating from svn to git:
+  https://github.com/blue-prawn/ocaml-sfml
 
 
 === Authors ===
