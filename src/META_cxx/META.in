@@ -6,7 +6,6 @@ directory = "+sfml"
 
 package "system" (
   description = "system module"
-  requires = "sfml"
   archive(byte) = "sfml_system.cma"
   archive(native) = "sfml_system.cmxa"
   archive(plugin,native) = "sfml_system.cmxs"
@@ -15,6 +14,7 @@ package "system" (
 package "window" (
   description = "window module"
   requires = "sfml.system"
+  exists_if = "sfml_window.cma"
   archive(byte) = "sfml_window.cma"
   archive(native) = "sfml_window.cmxa"
   archive(plugin,native) = "sfml_window.cmxs"
@@ -23,6 +23,7 @@ package "window" (
 package "graphics" (
   description = "graphics module"
   requires = "bigarray sfml.window"
+  exists_if = "sfml_graphics.cma"
   archive(byte) = "sfml_graphics.cma"
   archive(native) = "sfml_graphics.cmxa"
   archive(plugin,native) = "sfml_graphics.cmxs"
@@ -31,6 +32,7 @@ package "graphics" (
 package "audio" (
   description = "audio module"
   requires = "sfml.system"
+  exists_if = "sfml_audio.cma"
   archive(byte) = "sfml_audio.cma"
   archive(native) = "sfml_audio.cmxa"
   archive(plugin,native) = "sfml_audio.cmxs"
@@ -39,6 +41,7 @@ package "audio" (
 package "network" (
   description = "network module"
   requires = "sfml.system"
+  exists_if = "sfml_network.cma"
   archive(byte) = "sfml_network.cma"
   archive(native) = "sfml_network.cmxa"
   archive(plugin,native) = "sfml_network.cmxs"
@@ -49,10 +52,54 @@ package "all" (
   requires = "sfml.system sfml.window sfml.graphics sfml.audio sfml.network"
 )
 
-package "oo" (
-  description = "OO style interface to the SFML library"
-  requires = "sfml.all"
-  archive(byte) = "sfml_oo.cma"
-  archive(native) = "sfml_oo.cmxa"
-  archive(plugin,native) = "sfml_oo.cmxs"
+
+package "system_oo" (
+  description = "OO style interface to the system module"
+  requires = "sfml.system"
+  exists_if = "sfml_system_oo.cma"
+  archive(byte) = "sfml_system_oo.cma"
+  archive(native) = "sfml_system_oo.cmxa"
+  archive(plugin,native) = "sfml_system_oo.cmxs"
 )
+
+package "window_oo" (
+  description = "OO style interface to the window module"
+  requires = "sfml.window sfml.system_oo"
+  exists_if = "sfml_window_oo.cma"
+  archive(byte) = "sfml_window_oo.cma"
+  archive(native) = "sfml_window_oo.cmxa"
+  archive(plugin,native) = "sfml_window_oo.cmxs"
+)
+
+package "graphics_oo" (
+  description = "OO style interface to the graphics module"
+  requires = "bigarray sfml.graphics sfml.window_oo"
+  exists_if = "sfml_graphics_oo.cma"
+  archive(byte) = "sfml_graphics_oo.cma"
+  archive(native) = "sfml_graphics_oo.cmxa"
+  archive(plugin,native) = "sfml_graphics_oo.cmxs"
+)
+
+package "audio_oo" (
+  description = "OO style interface to the audio module"
+  requires = "sfml.audio sfml.system_oo"
+  exists_if = "sfml_audio_oo.cma"
+  archive(byte) = "sfml_audio_oo.cma"
+  archive(native) = "sfml_audio_oo.cmxa"
+  archive(plugin,native) = "sfml_audio_oo.cmxs"
+)
+
+package "network_oo" (
+  description = "OO style interface to the network module"
+  requires = "sfml.network sfml.system_oo"
+  exists_if = "sfml_network_oo.cma"
+  archive(byte) = "sfml_network_oo.cma"
+  archive(native) = "sfml_network_oo.cmxa"
+  archive(plugin,native) = "sfml_network_oo.cmxs"
+)
+
+package "all_oo" (
+  description = "All OO style interfaces to all SFML modules"
+  requires = "sfml.system_oo sfml.window_oo sfml.graphics_oo sfml.audio_oo sfml.network_oo"
+)
+
