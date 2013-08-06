@@ -14,6 +14,10 @@ external mul: float -> u -> u = "caml_sfTime_mul"
 external mult: u -> float -> u = "caml_sfTime_mult"
 external div: u -> float -> u = "caml_sfTime_div"
 
+external eq: u -> u -> bool = "caml_sfTime_eq"
+external gt: u -> u -> bool = "caml_sfTime_gt"
+external lt: u -> u -> bool = "caml_sfTime_lt"
+
 external destroy: u -> unit = "caml_sfTime_destroy"
 
 external sleep: duration:u -> unit = "caml_sfSleep"
@@ -83,5 +87,15 @@ let div a b =
   Gc.finalise destroy t;
   (t)
 
+let eq a b =
+  (eq a.u b.u)
+
+let gt a b =
+  (gt a.u b.u)
+
+let lt a b =
+  (lt a.u b.u)
+
 let sleep ~duration:t =
   sleep ~duration:t.u
+
