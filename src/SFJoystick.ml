@@ -30,3 +30,25 @@ external hasAxis: joystick:int -> axis:axis -> bool
 
 external getAxisPosition: joystick:int -> axis:axis -> float
   = "caml_sfJoystick_getAxisPosition"
+
+let string_of_axis = function
+  | X     -> "X"
+  | Y     -> "Y"
+  | Z     -> "Z"
+  | R     -> "R"
+  | U     -> "U"
+  | V     -> "V"
+  | PovX  -> "PovX"
+  | PovY  -> "PovY"
+
+let axis_of_string s =
+  match String.lowercase s with
+  | "x"     -> X
+  | "y"     -> Y
+  | "z"     -> Z
+  | "r"     -> R
+  | "u"     -> U
+  | "v"     -> V
+  | "povx"  -> PovX
+  | "povy"  -> PovY
+  | _ -> invalid_arg "axis_of_string"

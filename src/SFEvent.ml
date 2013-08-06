@@ -1,13 +1,3 @@
-type joystick_axis =
-  | JoystickX
-  | JoystickY
-  | JoystickZ
-  | JoystickR
-  | JoystickU
-  | JoystickV
-  | JoystickPovX
-  | JoystickPovY
-
 type t =
   | Closed
   | MouseMoved of int * int  (** x, y *)
@@ -22,7 +12,7 @@ type t =
   | MouseLeft
   | LostFocus
   | GainedFocus
-  | JoystickMoved of int * joystick_axis * float  (** joystickId, axis, position *)
+  | JoystickMoved of int * SFJoystick.axis * float  (** joystickId, axis, position *)
   | JoystickButtonPressed of int * int  (** joystickId, button *)
   | JoystickButtonReleased of int * int  (** joystickId, button *)
   | JoystickConnected of int  (** joystickId *)
