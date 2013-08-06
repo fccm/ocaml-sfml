@@ -120,11 +120,11 @@ class shape :
     val shape : SFShape.t
     method draw : SFRenderWindow.t -> ?states:render_states -> unit -> unit
     method draw_item : draw_type
-    method move : offset_x:float -> offset_y:float -> unit
-    method move2 : offset:float * float -> unit
+    method move : offset:float * float -> unit
+    method move2 : offset_x:float -> offset_y:float -> unit
     method rotate : angle:float -> unit
-    method scale : factor_x:float -> factor_y:float -> unit
-    method scale2 : factors:float * float -> unit
+    method scale : factors:float * float -> unit
+    method scale2 : factor_x:float -> factor_y:float -> unit
     method t : SFShape.t
   end
 class circle_shape :
@@ -183,9 +183,10 @@ class view :
     val view : SFView.t
     method center : float * float
     method destroy : unit -> unit
-    method move : offset_x:float -> offset_y:float -> unit
-    method move2 : offset:float * float -> unit
-    method set_center : x:float -> y:float -> unit
+    method move : offset:float * float -> unit
+    method move2 : offset_x:float -> offset_y:float -> unit
+    method set_center : center:float * float -> unit
+    method set_center2 : x:float -> y:float -> unit
     method t : SFView.t
     method zoom : factor:float -> unit
   end
@@ -225,10 +226,10 @@ class render_window :
     method set_key_repeat_enabled : enabled:bool -> unit
     method set_mouse_cursor_invisible : unit -> unit
     method set_mouse_cursor_visible : unit -> unit
-    method set_position : left:int -> top:int -> unit
-    method set_position2 : pos:int * int -> unit
-    method set_size : width:int -> height:int -> unit
-    method set_size2 : size:int * int -> unit
+    method set_position : pos:int * int -> unit
+    method set_position2 : left:int -> top:int -> unit
+    method set_size : size:int * int -> unit
+    method set_size2 : width:int -> height:int -> unit
     method set_title : title:string -> unit
     method set_vertical_sync_enabled : enabled:bool -> unit
     method set_view : view:view -> unit

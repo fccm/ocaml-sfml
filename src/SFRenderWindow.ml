@@ -80,11 +80,11 @@ external getSize: t -> int * int = "caml_sfRenderWindow_getSize"
 external getWidth: t -> int = "caml_sfRenderWindow_getWidth"
 external getHeight: t -> int = "caml_sfRenderWindow_getHeight"
 
-external setSize: t -> width:int -> height:int -> unit
-  = "caml_sfRenderWindow_setSize"
-
-external setSize2: t -> size:int * int -> unit
+external setSize: t -> size:int * int -> unit
   = "caml_sfRenderWindow_setSize2"
+
+external setSize2: t -> width:int -> height:int -> unit
+  = "caml_sfRenderWindow_setSize"
 
 external setMouseCursorVisible: t -> show:bool -> unit = "caml_sfRenderWindow_setMouseCursorVisible"
 external setVisible: t -> visible:bool -> unit = "caml_sfRenderWindow_setVisible"
@@ -102,11 +102,11 @@ external drawCircleShape: t -> circle:SFCircleShape.t ->
   ?states:SFRenderStates.t -> unit -> unit
   = "caml_sfRenderWindow_drawCircleShape"
 
-external setPosition: t -> left:int -> top:int -> unit
-  = "caml_sfRenderWindow_setPosition"
-
-external setPosition2: t -> pos:int * int -> unit
+external setPosition: t -> pos:int * int -> unit
   = "caml_sfRenderWindow_setPosition2"
+
+external setPosition2: t -> left:int -> top:int -> unit
+  = "caml_sfRenderWindow_setPosition"
 
 external setFramerateLimit: t -> limit:int -> unit
   = "caml_sfRenderWindow_setFramerateLimit"

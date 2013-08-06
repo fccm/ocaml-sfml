@@ -3,15 +3,25 @@
   Online documentation for the SoundBuffer class} *)
 
 type t
+type samples =
+  (int, Bigarray.int16_signed_elt, Bigarray.c_layout) Bigarray.Array1.t
+
 val loadFromFile : filename:string -> t
 val loadFromMemory : data:string -> t
 val loadFromSamples :
-  samples:
-    (int, Bigarray.int16_signed_elt, Bigarray.c_layout) Bigarray.Array1.t ->
+  samples:samples ->
   channelCount:int -> sampleRate:int -> t
 
-val getSampleCount : soundBuffer:t -> int
-val getSampleRate : soundBuffer:t -> int
-val getChannelCount : soundBuffer:t -> int
-val getDuration : soundBuffer:t -> SFTime.t
-val saveToFile : soundBuffer:t -> filename:string -> unit
+type input = [
+  | `File of string
+  | `Memory of string
+  | `Samples of (samples * int * int)
+  ]
+
+val load : input -> t
+
+val getSampleCount : t -> int
+val getSampleRate : t -> int
+val getChannelCount : t -> int
+val getDuration : t -> SFTime.t
+val saveToFile : t -> filename:string -> unit

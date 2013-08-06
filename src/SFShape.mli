@@ -4,18 +4,26 @@
 
 type t
 val create : (float * float) array -> t
-val move : shape:t -> offsetX:float -> offsetY:float -> unit
-val move2 : shape:t -> offset:float * float -> unit
+
+val move : shape:t -> offset:float * float -> unit
+val move2 : shape:t -> offsetX:float -> offsetY:float -> unit
+
 val rotate : shape:t -> angle:float -> unit
-val scale : shape:t -> factorX:float -> factorY:float -> unit
-val scale2 : shape:t -> factors:float * float -> unit
-val setPosition : shape:t -> posX:float -> posY:float -> unit
-val setPosition2 : shape:t -> pos:float * float -> unit
+
+val scale : shape:t -> factors:float * float -> unit
+val scale2 : shape:t -> factorX:float -> factorY:float -> unit
+
+val setPosition : shape:t -> pos:float * float -> unit
+val setPosition2 : shape:t -> posX:float -> posY:float -> unit
+
 val setRotation : shape:t -> angle:float -> unit
-val setScale : shape:t -> scaleX:float -> scaleY:float -> unit
-val setScale2 : shape:t -> scale:float * float -> unit
-val setOrigin : shape:t -> originX:float -> originY:float -> unit
-val setOrigin2 : shape:t -> origin:float * float -> unit
+
+val setScale : shape:t -> scale:float * float -> unit
+val setScale2 : shape:t -> scaleX:float -> scaleY:float -> unit
+
+val setOrigin : shape:t -> origin:float * float -> unit
+val setOrigin2 : shape:t -> originX:float -> originY:float -> unit
+
 val setFillColor : shape:t -> color:SFColor.t -> unit
 val setOutlineColor : shape:t -> color:SFColor.t -> unit
 val setOutlineThickness : shape:t -> thickness:float -> unit

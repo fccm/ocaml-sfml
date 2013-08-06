@@ -20,8 +20,8 @@ val getLoop : sound:t -> bool
 val getStatus : sound:t -> sound_status
 val setPitch : sound:t -> pitch:float -> unit
 val setVolume : sound:t -> volume:float -> unit
-val setPosition : sound:t -> x:float -> y:float -> z:float -> unit
-val setPosition3 : sound:t -> pos:float * float * float -> unit
+val setPosition : sound:t -> pos:float * float * float -> unit
+val setPosition3 : sound:t -> x:float -> y:float -> z:float -> unit
 val setRelativeToListener : sound:t -> relative:bool -> unit
 val setMinDistance : sound:t -> minDistance:float -> unit
 val setAttenuation : sound:t -> attenuation:float -> unit

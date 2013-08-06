@@ -13,3 +13,8 @@ external getFullscreenModes: unit -> contents array
 
 external getDesktopMode: unit -> contents
   = "caml_sfVideoMode_getDesktopMode"
+
+let make ?(bpp = 32) (width, height) = {
+  width; height;
+  bitsPerPixel = bpp;
+}

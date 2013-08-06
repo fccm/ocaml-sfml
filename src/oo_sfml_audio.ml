@@ -27,8 +27,8 @@ class music (src : music_src) =
     method set_pitch ~pitch   = SFMusic.setPitch ~music ~pitch
     method set_min_distance ~minDistance = SFMusic.setMinDistance ~music ~minDistance
     method set_attenuation ~attenuation  = SFMusic.setAttenuation ~music ~attenuation
-    method set_position ~x ~y ~z         = SFMusic.setPosition ~music ~x ~y ~z
-    method set_position3 ~pos            = SFMusic.setPosition3 ~music ~pos
+    method set_position ~pos             = SFMusic.setPosition ~music ~pos
+    method set_position3 ~x ~y ~z        = SFMusic.setPosition3 ~music ~x ~y ~z
     method set_relative_to_listener ~relative = SFMusic.setRelativeToListener ~music ~relative
     method volume             = SFMusic.getVolume ~music
     method duration           = SFMusic.getDuration ~music
@@ -69,11 +69,11 @@ class sound_buffer (src : sound_buffer_src) =
       | `FromSamples (samples, channelCount, sampleRate) ->
           SFSoundBuffer.loadFromSamples ~samples ~channelCount ~sampleRate
       
-    method save_to_file ~filename = SFSoundBuffer.saveToFile ~soundBuffer ~filename
-    method sample_count  = SFSoundBuffer.getSampleCount ~soundBuffer
-    method sample_rate   = SFSoundBuffer.getSampleRate ~soundBuffer
-    method channel_count = SFSoundBuffer.getChannelCount ~soundBuffer
-    method duration      = SFSoundBuffer.getDuration ~soundBuffer
+    method save_to_file ~filename = SFSoundBuffer.saveToFile soundBuffer ~filename
+    method sample_count  = SFSoundBuffer.getSampleCount soundBuffer
+    method sample_rate   = SFSoundBuffer.getSampleRate soundBuffer
+    method channel_count = SFSoundBuffer.getChannelCount soundBuffer
+    method duration      = SFSoundBuffer.getDuration soundBuffer
     method t = soundBuffer
   end
 
@@ -99,8 +99,8 @@ class sound =
                                            
     method set_pitch ~pitch      = SFSound.setPitch ~sound ~pitch
     method set_volume ~volume    = SFSound.setVolume ~sound ~volume
-    method set_position ~x ~y ~z = SFSound.setPosition ~sound ~x ~y ~z
-    method set_position3 ~pos    = SFSound.setPosition3 ~sound ~pos
+    method set_position3 ~x ~y ~z = SFSound.setPosition3 ~sound ~x ~y ~z
+    method set_position ~pos     = SFSound.setPosition ~sound ~pos
     method set_relative_to_listener ~relative = SFSound.setRelativeToListener ~sound ~relative
     method set_mindistance ~minDistance     = SFSound.setMinDistance ~sound ~minDistance
     method set_attenuation ~attenuation     = SFSound.setAttenuation ~sound ~attenuation

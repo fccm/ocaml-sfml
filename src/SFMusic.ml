@@ -45,6 +45,6 @@ external getMinDistance: music:t -> float = "caml_sfMusic_getMinDistance"
 external setAttenuation: music:t -> attenuation:float -> unit = "caml_sfMusic_setAttenuation"
 external getAttenuation: music:t -> float = "caml_sfMusic_getAttenuation"
 
-external setPosition: music:t -> x:float -> y:float -> z:float -> unit = "caml_sfMusic_setPosition"
-external setPosition3: music:t -> pos:float * float * float -> unit = "caml_sfMusic_setPosition3"
+external setPosition: music:t -> pos:float * float * float -> unit = "caml_sfMusic_setPosition3"
+external setPosition3: music:t -> x:float -> y:float -> z:float -> unit = "caml_sfMusic_setPosition"
 external getPosition: music:t -> float * float * float = "caml_sfMusic_getPosition"

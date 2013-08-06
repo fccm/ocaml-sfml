@@ -21,8 +21,8 @@ class music :
     method set_loop : loop:bool -> unit
     method set_min_distance : minDistance:float -> unit
     method set_pitch : pitch:float -> unit
-    method set_position : x:float -> y:float -> z:float -> unit
-    method set_position3 : pos:float * float * float -> unit
+    method set_position : pos:float * float * float -> unit
+    method set_position3 : x:float -> y:float -> z:float -> unit
     method set_relative_to_listener : relative:bool -> unit
     method set_volume : volume:float -> unit
     method status : SFMusic.sound_status
@@ -74,8 +74,8 @@ class sound :
     method set_mindistance : minDistance:float -> unit
     method set_pitch : pitch:float -> unit
     method set_playing_offset : timeOffset:SFTime.t -> unit
-    method set_position : x:float -> y:float -> z:float -> unit
-    method set_position3 : pos:float * float * float -> unit
+    method set_position : pos:float * float * float -> unit
+    method set_position3 : x:float -> y:float -> z:float -> unit
     method set_relative_to_listener : relative:bool -> unit
     method set_volume : volume:float -> unit
     method stop : unit -> unit

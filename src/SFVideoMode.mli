@@ -9,3 +9,4 @@ external getFullscreenModes : unit -> contents array
   = "caml_sfVideoMode_getFullscreenModes"
 external getDesktopMode : unit -> contents
   = "caml_sfVideoMode_getDesktopMode"
+val make : ?bpp:uint -> uint * uint -> contents

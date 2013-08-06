@@ -214,11 +214,11 @@ class shape points =
 
     val shape = SFShape.create points
 
-    method move ~offset_x:ox ~offset_y:oy = SFShape.move ~shape ~offsetX:ox ~offsetY:oy
-    method move2 ~offset = SFShape.move2 ~shape ~offset
+    method move ~offset = SFShape.move ~shape ~offset
+    method move2 ~offset_x:ox ~offset_y:oy = SFShape.move2 ~shape ~offsetX:ox ~offsetY:oy
     method rotate ~angle = SFShape.rotate ~shape ~angle
-    method scale ~factor_x:fx ~factor_y:fy = SFShape.scale ~shape ~factorX:fx ~factorY:fy
-    method scale2 ~factors = SFShape.scale2 ~shape ~factors
+    method scale ~factors = SFShape.scale ~shape ~factors
+    method scale2 ~factor_x:fx ~factor_y:fy = SFShape.scale2 ~shape ~factorX:fx ~factorY:fy
 
     method t = shape
     method draw_item = Shape shape
@@ -318,9 +318,10 @@ class view ?rect () =
       | Some rect -> SFView.createFromRect ~rect
 
     method destroy () = SFView.destroy ~view
-    method set_center ~x ~y = SFView.setCenter ~view ~x ~y
-    method move ~offset_x ~offset_y = SFView.move ~view ~offsetX:offset_x ~offsetY:offset_y
-    method move2 ~offset = SFView.move2 ~view ~offset
+    method set_center ~center = SFView.setCenter ~view ~center
+    method set_center2 ~x ~y = SFView.setCenter2 ~view ~x ~y
+    method move ~offset = SFView.move ~view ~offset
+    method move2 ~offset_x ~offset_y = SFView.move2 ~view ~offsetX:offset_x ~offsetY:offset_y
     method zoom ~factor = SFView.zoom ~view ~factor
     method center = SFView.getCenter ~view
     method t = view
@@ -350,8 +351,8 @@ class render_window
     method width = SFRenderWindow.getWidth this
     method height = SFRenderWindow.getHeight this
 
-    method set_size ~width ~height = SFRenderWindow.setSize this ~width ~height
-    method set_size2 ~size = SFRenderWindow.setSize2 this ~size
+    method set_size ~size = SFRenderWindow.setSize this ~size
+    method set_size2 ~width ~height = SFRenderWindow.setSize2 this ~width ~height
 
     method set_mouse_cursor_visible () = SFRenderWindow.setMouseCursorVisible this ~show:true
     method set_mouse_cursor_invisible () = SFRenderWindow.setMouseCursorVisible this ~show:false
@@ -370,8 +371,8 @@ class render_window
         fun item ?states () ->
           item#draw this ?states ()
 
-    method set_position ~left ~top = SFRenderWindow.setPosition this ~left ~top
-    method set_position2 ~pos = SFRenderWindow.setPosition2 this ~pos
+    method set_position ~pos = SFRenderWindow.setPosition this ~pos
+    method set_position2 ~left ~top = SFRenderWindow.setPosition2 this ~left ~top
     method set_framerate_limit ~limit = SFRenderWindow.setFramerateLimit this ~limit
 
     method set_view ~view:(v : view) = SFRenderWindow.setView this ~view:v#t
