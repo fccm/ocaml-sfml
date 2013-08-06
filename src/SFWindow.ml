@@ -42,8 +42,13 @@ external create: mode:video_mode -> title:string ->
   style:window_style list -> settings:context_settings -> t
   = "caml_sfWindow_create"
 
-external createFromHandle: handle:nativeint -> settings:context_settings -> t
+type window_handle = nativeint
+
+external createFromHandle: handle:window_handle -> settings:context_settings -> t
   = "caml_sfWindow_createFromHandle"
+
+external getSystemHandle: t -> window_handle
+  = "caml_sfWindow_getSystemHandle"
 
 
 let make ?(style = [`titlebar; `resize; `close]) ?(bpp = 32)

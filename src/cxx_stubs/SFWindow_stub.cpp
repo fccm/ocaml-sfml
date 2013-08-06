@@ -274,13 +274,18 @@ caml_sfWindow_setMousePosition(value relativeTo, value position)
     return Val_unit;
 }
 
+CAMLextern_C value
+caml_sfWindow_getSystemHandle(value win)
+{
+    sf::WindowHandle handle = SfWindow_val(win)->getSystemHandle();
+    return caml_copy_nativeint(handle);
+}
+
 /* TODO
 void sfWindow_setSize(sfWindow* window, sfVector2u size);
 
 void sfWindow_setIcon(sfWindow* window,
         unsigned int width, unsigned int height, const sfUint8* pixels);
-
-sfWindowHandle sfWindow_getSystemHandle(const sfWindow* window);
 */
 
 // vim: sw=4 sts=4 ts=4 et
