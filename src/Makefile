@@ -13,6 +13,7 @@ OCAMLOPT := ocamlopt $(OCAMLOPT_PARAMS)
 OCAMLDOC := ocamldoc
 OCAMLMKLIB := ocamlmklib
 OCAMLDEP := ocamldep
+OCAMLFIND := ocamlfind
 OCAML_DIR := $(shell ocamlc -where)
 CXX := g++ -g $(CC_PARAMS) -fPIC
 BINDING_DIR := sfml
@@ -819,6 +820,18 @@ install_c: $(CMI_INTRF) $(CSFML_STUBS) META_c/META
 	if [ "`ls csfml_*.cmxs 2> /dev/null`" != "" ]; then\
 	 $(INSTALL_EXE) csfml_*.cmxs $(PREFIX); fi
 	$(INSTALL_EXE) dllcsfml_*_stubs.so $(DLL_PREFIX)
+
+
+
+# ==== find-install ==== #
+
+.PHONY: findinstall findinstall_c findinstall_cxx
+findinstall: findinstall_cxx
+findinstall_cxx: META_cxx/META
+	$(OCAMLFIND) install sfml $< *.cma *.cmxa *.cmxs *.cmi *.mli *.so *.a
+
+findinstall_c: META_c/META
+	$(OCAMLFIND) install sfml $< *.cma *.cmxa *.cmxs *.cmi *.mli *.so *.a
 
 
 
