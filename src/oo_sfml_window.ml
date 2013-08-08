@@ -26,9 +26,15 @@ class window
     method size = SFWindow.getSize this
     method width = SFWindow.getWidth this
     method height = SFWindow.getHeight this
+    method position = SFWindow.getPosition this
 
     method set_size ~size = SFWindow.setSize this ~size
     method set_size2 ~width ~height = SFWindow.setSize2 this ~width ~height
+
+    method set_position ~pos = SFWindow.setPosition this ~pos
+    method set_position2 ~left ~top = SFWindow.setPosition2 this ~left ~top
+
+    method set_title ~title = SFWindow.setTitle this ~title
 
     method set_visible ~visible = SFWindow.setVisible this ~visible
     method set_key_repeat_enabled ~enabled = SFWindow.setKeyRepeatEnabled this ~enabled
@@ -36,8 +42,10 @@ class window
     method set_mouse_cursor_visible ~visible = SFWindow.setMouseCursorVisible this ~visible
 
     method set_vertical_sync_enabled ~enabled = SFWindow.setVerticalSyncEnabled this ~enabled
-    method set_position ~pos = SFWindow.setPosition this ~pos
-    method set_position2 ~left ~top = SFWindow.setPosition2 this ~left ~top
     method set_framerate_limit ~limit = SFWindow.setFramerateLimit this ~limit
     method set_joystick_threshold ~threshold = SFWindow.setJoystickThreshold this ~threshold
+
+    method set_mouse_position pos = SFWindow.setMousePosition ~relativeTo:this pos
+    method get_mouse_position () = SFWindow.getMousePosition ~relativeTo:this
   end
+
