@@ -234,6 +234,12 @@ class shape points =
     method scale ~factors = SFShape.scale ~shape ~factors
     method scale2 ~factor_x:fx ~factor_y:fy = SFShape.scale2 ~shape ~factorX:fx ~factorY:fy
 
+    method set_fill_color ~color = SFShape.setFillColor ~shape ~color
+    method set_outline_color ~color = SFShape.setOutlineColor ~shape ~color
+    method set_outline_thickness ~thickness = SFShape.setOutlineThickness ~shape ~thickness
+    method update () = SFShape.update ~shape
+    method get_point_count () = SFShape.getPointCount ~shape
+
     method t = shape
     method draw_item = Shape shape
 

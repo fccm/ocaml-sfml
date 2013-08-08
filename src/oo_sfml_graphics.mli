@@ -125,12 +125,17 @@ class shape :
     val shape : SFShape.t
     method draw : SFRenderWindow.t -> ?states:render_states -> unit -> unit
     method draw_item : draw_type
+    method get_point_count : unit -> int
     method move : offset:float * float -> unit
     method move2 : offset_x:float -> offset_y:float -> unit
     method rotate : angle:float -> unit
     method scale : factors:float * float -> unit
     method scale2 : factor_x:float -> factor_y:float -> unit
+    method set_fill_color : color:SFColor.t -> unit
+    method set_outline_color : color:SFColor.t -> unit
+    method set_outline_thickness : thickness:float -> unit
     method t : SFShape.t
+    method update : unit -> unit
   end
 class circle_shape :
   ?radius:float ->
