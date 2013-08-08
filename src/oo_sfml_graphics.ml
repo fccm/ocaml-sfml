@@ -318,8 +318,18 @@ class text ?(font : font option)
     method rotate ~angle             = SFText.rotate ~text ~angle
     method scale ~factors            = SFText.scale ~text ~factors
     method scale2 ~factor_x ~factor_y = SFText.scale2 ~text ~factorX:factor_x ~factorY:factor_y
-    method local_bounds = SFText.getLocalBounds ~text
-    method global_bounds = SFText.getGlobalBounds ~text
+
+    method local_bounds =
+      let { SFRect.left; top; width; height } =
+        SFText.getLocalBounds ~text
+      in
+      new float_rect ((left, top), (width, height))
+
+    method global_bounds =
+      let { SFRect.left; top; width; height } =
+        SFText.getGlobalBounds ~text
+      in
+      new float_rect ((left, top), (width, height))
 
     method t = text
     method draw_item = Text text

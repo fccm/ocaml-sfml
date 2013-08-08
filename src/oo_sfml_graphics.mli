@@ -167,8 +167,8 @@ class text :
     val text : SFText.t
     method draw : SFRenderWindow.t -> ?states:render_states -> unit -> unit
     method draw_item : draw_type
-    method global_bounds : float SFRect.t
-    method local_bounds : float SFRect.t
+    method global_bounds : float_rect
+    method local_bounds : float_rect
     method move : offset:float * float -> unit
     method move2 : offset_x:float -> offset_y:float -> unit
     method rotate : angle:float -> unit
