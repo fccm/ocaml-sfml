@@ -136,53 +136,53 @@ class response :
   object
     val resp : SFFtp.response
     method destroy : unit -> unit
-    method getMessage : unit -> string
-    method getStatus : unit -> SFFtp.status
-    method isOk : unit -> bool
+    method get_message : unit -> string
+    method get_status : unit -> SFFtp.status
+    method is_ok : unit -> bool
   end
 class directory_response :
   SFFtp.directoryResponse ->
   object
     val dir_resp : SFFtp.directoryResponse
     method destroy : unit -> unit
-    method getDirectory : unit -> string
-    method getMessage : unit -> string
-    method getStatus : unit -> SFFtp.status
-    method isOk : unit -> bool
+    method get_directory : unit -> string
+    method get_message : unit -> string
+    method get_status : unit -> SFFtp.status
+    method is_ok : unit -> bool
   end
 class listing_response :
   'a ->
   object
     val lst_resp : 'a
     method destroy : unit -> SFFtp.listingResponse -> unit
-    method getListing : unit -> SFFtp.listingResponse -> string array
-    method getMessage : unit -> SFFtp.listingResponse -> string
-    method getStatus : unit -> SFFtp.listingResponse -> SFFtp.status
-    method isOk : unit -> SFFtp.listingResponse -> bool
+    method get_listing : unit -> SFFtp.listingResponse -> string array
+    method get_message : unit -> SFFtp.listingResponse -> string
+    method get_status : unit -> SFFtp.listingResponse -> SFFtp.status
+    method is_ok : unit -> SFFtp.listingResponse -> bool
   end
 class ftp :
   object
     val ftp : SFFtp.ftp
-    method changeDirectory : directory:string -> response
+    method change_directory : directory:string -> response
     method connect :
       server:ip_address ->
       ?port:int -> ?timeout:Oo_sfml_system.time -> unit -> response
-    method createDirectory : name:string -> response
-    method deleteDirectory : name:string -> response
-    method deleteFile : name:string -> response
+    method create_directory : name:string -> response
+    method delete_directory : name:string -> response
+    method delete_file : name:string -> response
     method destroy : unit -> unit
     method disconnect : unit -> response
     method download :
       distantFile:string ->
       destPath:string -> mode:SFFtp.transferMode -> response
-    method getDirectoryListing : directory:string -> listing_response
-    method getWorkingDirectory : unit -> directory_response
-    method keepAlive : unit -> response
+    method get_directory_listing : directory:string -> listing_response
+    method get_working_directory : unit -> directory_response
+    method keep_alive : unit -> response
     method login :
       SFFtp.ftp -> userName:string -> password:string -> response
-    method loginAnonymous : unit -> response
-    method parentDirectory : unit -> response
-    method renameFile : file:string -> newName:string -> response
+    method login_anonymous : unit -> response
+    method parent_directory : unit -> response
+    method rename_file : file:string -> newName:string -> response
     method upload :
       localFile:string ->
       destPath:string -> mode:SFFtp.transferMode -> response

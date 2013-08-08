@@ -70,7 +70,7 @@ class packet =
     method append ~data  = SFPacket.append ~packet ~data
     method clear ()      = SFPacket.clear ~packet
     method get_data ()    = SFPacket.getData ~packet
-    method end_of_packet   = SFPacket.endOfPacket ~packet
+    method end_of_packet  = SFPacket.endOfPacket ~packet
     method can_read       = SFPacket.canRead ~packet
 
     method write_bool v   = SFPacket.writeBool ~packet ~v
@@ -134,7 +134,7 @@ class tcp_socket =
     method t = socket
 
     method destroy ()                      = SFTcpSocket.destroy ~socket
-    method set_blocking ~blocking           = SFTcpSocket.setBlocking ~socket ~blocking
+    method set_blocking ~blocking          = SFTcpSocket.setBlocking ~socket ~blocking
     method connect ~port ~address ~timeout = SFTcpSocket.connect ~socket ~port ~address ~timeout
     method send ~data                      = SFTcpSocket.send ~socket ~data
     method send_sub ~data ~ofs ~len        = SFTcpSocket.send_sub ~socket ~data ~ofs ~len
@@ -154,7 +154,7 @@ class udp_socket =
     method t = socket
 
     method destroy ()                = SFUdpSocket.destroy ~socket
-    method set_blocking ~blocking     = SFUdpSocket.setBlocking ~socket ~blocking
+    method set_blocking ~blocking    = SFUdpSocket.setBlocking ~socket ~blocking
     method bind ~port                = SFUdpSocket.bind ~socket ~port
     method unbind ()                 = SFUdpSocket.unbind ~socket
     method send ~data ~address ~port = SFUdpSocket.send ~socket ~data ~address ~port
@@ -214,31 +214,31 @@ class response resp =
   object
     val resp = resp
     method destroy    () = SFFtp.Response.destroy resp
-    method isOk       () = SFFtp.Response.isOk resp
-    method getStatus  () = SFFtp.Response.getStatus resp
-    method getMessage () = SFFtp.Response.getMessage resp
+    method is_ok      () = SFFtp.Response.isOk resp
+    method get_status () = SFFtp.Response.getStatus resp
+    method get_message () = SFFtp.Response.getMessage resp
   end
 
 
 class directory_response dir_resp =
   object
     val dir_resp = dir_resp
-    method destroy      () = SFFtp.DirectoryResponse.destroy dir_resp
-    method isOk         () = SFFtp.DirectoryResponse.isOk dir_resp
-    method getStatus    () = SFFtp.DirectoryResponse.getStatus dir_resp
-    method getMessage   () = SFFtp.DirectoryResponse.getMessage dir_resp
-    method getDirectory () = SFFtp.DirectoryResponse.getDirectory dir_resp
+    method destroy       () = SFFtp.DirectoryResponse.destroy dir_resp
+    method is_ok         () = SFFtp.DirectoryResponse.isOk dir_resp
+    method get_status    () = SFFtp.DirectoryResponse.getStatus dir_resp
+    method get_message   () = SFFtp.DirectoryResponse.getMessage dir_resp
+    method get_directory () = SFFtp.DirectoryResponse.getDirectory dir_resp
   end
 
 
 class listing_response lst_resp =
   object
     val lst_resp = lst_resp
-    method destroy      () = SFFtp.ListingResponse.destroy
-    method isOk         () = SFFtp.ListingResponse.isOk
-    method getStatus    () = SFFtp.ListingResponse.getStatus
-    method getMessage   () = SFFtp.ListingResponse.getMessage
-    method getListing   () = SFFtp.ListingResponse.getListing
+    method destroy     () = SFFtp.ListingResponse.destroy
+    method is_ok       () = SFFtp.ListingResponse.isOk
+    method get_status  () = SFFtp.ListingResponse.getStatus
+    method get_message () = SFFtp.ListingResponse.getMessage
+    method get_listing () = SFFtp.ListingResponse.getListing
   end
 
 
@@ -258,7 +258,7 @@ class ftp =
       let resp = SFFtp.connect ftp ~server:s#t ?port ?timeout () in
       (new response resp)
 
-    method loginAnonymous () =
+    method login_anonymous () =
       let resp = SFFtp.loginAnonymous ftp in
       (new response resp)
 
@@ -270,31 +270,31 @@ class ftp =
       let resp = SFFtp.disconnect ftp in
       (new response resp)
 
-    method keepAlive () =
+    method keep_alive () =
       let resp = SFFtp.keepAlive ftp in
       (new response resp)
 
-    method changeDirectory ~directory =
+    method change_directory ~directory =
       let resp = SFFtp.changeDirectory ftp ~directory in
       (new response resp)
 
-    method parentDirectory () =
+    method parent_directory () =
       let resp = SFFtp.parentDirectory ftp in
       (new response resp)
 
-    method createDirectory ~name =
+    method create_directory ~name =
       let resp = SFFtp.createDirectory ftp ~name in
       (new response resp)
 
-    method deleteDirectory ~name =
+    method delete_directory ~name =
       let resp = SFFtp.deleteDirectory ftp ~name in
       (new response resp)
 
-    method renameFile ~file ~newName =
+    method rename_file ~file ~newName =
       let resp = SFFtp.renameFile ftp ~file ~newName in
       (new response resp)
 
-    method deleteFile ~name =
+    method delete_file ~name =
       let resp = SFFtp.deleteFile ftp ~name in
       (new response resp)
 
@@ -306,11 +306,11 @@ class ftp =
       let resp = SFFtp.download ftp ~distantFile ~destPath ~mode in
       (new response resp)
 
-    method getDirectoryListing ~directory =
+    method get_directory_listing ~directory =
       let lst_resp = SFFtp.getDirectoryListing ftp ~directory in
       (new listing_response lst_resp)
 
-    method getWorkingDirectory () =
+    method get_working_directory () =
       let dir_resp = SFFtp.getWorkingDirectory ftp in
       (new directory_response dir_resp)
   end
