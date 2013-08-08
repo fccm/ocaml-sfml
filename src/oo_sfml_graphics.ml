@@ -77,6 +77,11 @@ type image_src = [
   | `FromSFImage of SFImage.t
   ]
 
+type flip_direction = [
+  | `horizontally
+  | `vertically
+  ]
+
 class image (src : image_src) =
   object
     val image =
@@ -102,6 +107,14 @@ class image (src : image_src) =
 
     method save_to_file ~filename = SFImage.saveToFile ~image ~filename
     method set_pixel ~x ~y ~color = SFImage.setPixel ~image ~x ~y ~color
+
+    method flip_horizontally () = SFImage.flipHorizontally ~image
+    method flip_vertically () = SFImage.flipVertically ~image
+
+    method flip (dir:flip_direction) =
+      match dir with
+      | `horizontally -> SFImage.flipHorizontally ~image
+      | `vertically -> SFImage.flipVertically ~image
 
     method t = image
   end

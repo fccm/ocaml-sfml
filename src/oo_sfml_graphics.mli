@@ -35,10 +35,14 @@ type image_src =
     | `FromPixels of int * int * string
     | `FromPixelsArray of (int * int * int * int) array array
     | `FromSFImage of SFImage.t ]
+type flip_direction = [ `horizontally | `vertically ]
 class image :
   image_src ->
   object
     val image : SFImage.t
+    method flip : flip_direction -> unit
+    method flip_horizontally : unit -> unit
+    method flip_vertically : unit -> unit
     method get_pixel3 : x:int -> y:int -> SFColor.t
     method get_pixel4 : x:int -> y:int -> SFColor.t
     method get_pixel_rgb : x:int -> y:int -> SFColor.rgb
