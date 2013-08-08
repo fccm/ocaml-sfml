@@ -47,8 +47,10 @@ class listener =
     method set_global_volume ~volume = SFListener.setGlobalVolume ~volume
     method set_position ~pos = SFListener.setPosition ~pos
     method set_position3 ~posX ~posY ~posZ = SFListener.setPosition3 ~posX ~posY ~posZ
+    method set_direction ~orientation = SFListener.setDirection ~orientation
     method global_volume = SFListener.getGlobalVolume ()
     method position = SFListener.getPosition ()
+    method direction = SFListener.getDirection ()
   end
 
 

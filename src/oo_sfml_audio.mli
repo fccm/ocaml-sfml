@@ -31,8 +31,10 @@ class music :
   end
 class listener :
   object
+    method direction : float * float * float
     method global_volume : float
     method position : float * float * float
+    method set_direction : orientation:float * float * float -> unit
     method set_global_volume : volume:float -> unit
     method set_position : pos:float * float * float -> unit
     method set_position3 : posX:float -> posY:float -> posZ:float -> unit
