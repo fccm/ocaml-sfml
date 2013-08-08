@@ -203,6 +203,7 @@ class sprite =
     method set_scale2 ~scale_x:sx ~scale_y:sy = SFSprite.setScale2 ~sprite ~scaleX:sx ~scaleY:sy
     method set_rotation ~rotation = SFSprite.setRotation ~sprite ~rotation
     method set_color ~color = SFSprite.setColor ~sprite ~color
+    method set_origin ~origin = SFSprite.setOrigin ~sprite ~origin
 
     method set_texture ~texture:(tex : texture) ~resetRect =
       SFSprite.setTexture ~sprite ~texture:tex#t ~resetRect

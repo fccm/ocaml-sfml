@@ -110,6 +110,7 @@ class sprite :
     method scale : factors:float * float -> unit
     method scale2 : factor_x:float -> factor_y:float -> unit
     method set_color : color:SFColor.t -> unit
+    method set_origin : origin:float * float -> unit
     method set_position : pos:float * float -> unit
     method set_position2 : x:float -> y:float -> unit
     method set_rotation : rotation:float -> unit
