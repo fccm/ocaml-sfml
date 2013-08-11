@@ -24,10 +24,11 @@
 #include <SFML/Window/VideoMode.hpp>
 
 #include "sf_caml_incs.hpp"
+#include "SFVideoMode_stub.hpp"
 
 /* sf::VideoMode */
 
-static inline value
+value
 copy_sfVideoMode_contents(const sf::VideoMode& mode)
 {
     CAMLparam0();
@@ -38,11 +39,6 @@ copy_sfVideoMode_contents(const sf::VideoMode& mode)
     Store_field(v, 2, Val_long(mode.bitsPerPixel));
     CAMLreturn(v);
 }
-
-#define c2ml_sfVideoMode_contents(v) \
-    unsigned int width = Long_val(Field(v, 0)); \
-    unsigned int height = Long_val(Field(v, 1)); \
-    unsigned int bitsPerPixel = Long_val(Field(v, 2));
 
 CAMLextern_C value
 caml_sfVideoMode_getDesktopMode(value unit)
@@ -77,12 +73,13 @@ caml_sfVideoMode_getFullscreenModes(value unit)
     CAMLreturn(ml_modes);
 }
 
-/* TODO
 CAMLextern_C value
-caml_sfVideoMode_isValid(value ml_mode)
+caml_sfVideoMode_isValid(value _mode)
 {
-    sfVideoMode_isValid(mode);
+    sf::VideoMode mode;
+    SfVideoMode_val(&mode, _mode);
+    bool v = mode.isValid();
+    return Val_bool(v);
 }
-*/
 
 // vim: sw=4 sts=4 ts=4 et

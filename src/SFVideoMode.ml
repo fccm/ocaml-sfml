@@ -1,20 +1,21 @@
-type t
 
-type uint = int
-
-type contents = {
-  width: uint;
-  height: uint;
-  bitsPerPixel: uint;
+type t = {
+  width: int;
+  height: int;
+  bitsPerPixel: int;
 }
 
-external getFullscreenModes: unit -> contents array
+external getFullscreenModes: unit -> t array
   = "caml_sfVideoMode_getFullscreenModes"
 
-external getDesktopMode: unit -> contents
+external getDesktopMode: unit -> t
   = "caml_sfVideoMode_getDesktopMode"
+
+external isValid: t -> bool
+  = "caml_sfVideoMode_isValid"
 
 let make ?(bpp = 32) (width, height) = {
   width; height;
   bitsPerPixel = bpp;
 }
+

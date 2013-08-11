@@ -31,6 +31,7 @@
 
 #include "SFWindow_stub.hpp"
 #include "SFEvent_stub.hpp"
+#include "SFVideoMode_stub.hpp"
 
 #define Val_sfWindow(win) ((value)(win))
 #define SfWindow_val(win) ((sf::Window *)(win))
@@ -47,10 +48,7 @@ caml_sfWindow_create(
     SfContextSettings_val(&settings, ml_settings);
 
     sf::VideoMode mode;
-
-    mode.width        = Long_val(Field(ml_mode, 0));
-    mode.height       = Long_val(Field(ml_mode, 1));
-    mode.bitsPerPixel = Long_val(Field(ml_mode, 2));
+    SfVideoMode_val(&mode, ml_mode);
 
     sf::Uint32 style = sf::Style::None;
     while (ml_style != Val_emptylist)

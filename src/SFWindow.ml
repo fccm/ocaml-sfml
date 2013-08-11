@@ -8,12 +8,6 @@ type window_style =
   | `default_style
   ]
 
-type video_mode =
-  { width : int;
-    height : int;
-    bitsPerPixel : int;
-  }
-
 type context_settings =
   { depthBits : int;          (** bits of the depth buffer *)
     stencilBits : int;        (** bits of the stencil buffer *)
@@ -23,7 +17,8 @@ type context_settings =
   }
 
 let mode ~width ~height ?(bpp = 32) () =
-  { width = width;
+  { SFVideoMode.
+    width = width;
     height = height;
     bitsPerPixel = bpp;
   }
@@ -38,7 +33,7 @@ let settings ?(depth = 0) ?(stencil = 0) ?(antialiasing = 0)
     minorVersion;
   }
 
-external create: mode:video_mode -> title:string ->
+external create: mode:SFVideoMode.t -> title:string ->
   style:window_style list -> settings:context_settings -> t
   = "caml_sfWindow_create"
 
@@ -57,7 +52,8 @@ let make ?(style = [`titlebar; `resize; `close]) ?(bpp = 32)
     (width, height) title =
   let majorVersion, minorVersion = version in
   let mode =
-    { width = width;
+    { SFVideoMode.
+      width = width;
       height = height;
       bitsPerPixel = bpp;
     }

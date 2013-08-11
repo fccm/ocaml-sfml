@@ -32,6 +32,7 @@
 #include "SFRenderWindow_stub.hpp"
 #include "SFRenderStates_stub.hpp"
 #include "SFWindow_stub.hpp"
+#include "SFVideoMode_stub.hpp"
 #include "SFView_stub.hpp"
 #include "SFEvent_stub.hpp"
 #include "SFColor_stub.hpp"
@@ -57,10 +58,7 @@ caml_sfRenderWindow_create(
     settings.minorVersion      = Long_val(Field(ml_settings, 4));
 
     sf::VideoMode mode;
-
-    mode.width        = Long_val(Field(ml_mode, 0));
-    mode.height       = Long_val(Field(ml_mode, 1)); 
-    mode.bitsPerPixel = Long_val(Field(ml_mode, 2));
+    SfVideoMode_val(&mode, ml_mode);
 
     sf::Uint32 style = sf::Style::None;
     while (ml_style != Val_emptylist)
