@@ -13,8 +13,8 @@ development.
 These bindings are released under the zlib/png license.
 This is the same license than the SFML library, this is
 why this license was chosen.
-But for any reason if you prefer the MIT, the BSD, the GPL
-or the LGPL license, or even CC0, just switch to it!
+But for any reason if you prefer the MIT, the BSD, the ISC,
+the GPL or the LGPL license (or even CC0), just switch to it!
 
 
 === Home-Page ===
