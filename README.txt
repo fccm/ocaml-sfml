@@ -52,7 +52,7 @@ by email: <monnier.florent()gmail.com>).
 Jérémie Dimino also contributed to ocaml-sfml (email: <jeremie()dimino.org>).
 
 You can get more details about the contributions in the file "Authors.txt",
-or browsing the history of the SVN.
+or browsing the history of the SCM.
 
 Laurent Gomila also helped for ocaml-sfml by answering several questions.
 
