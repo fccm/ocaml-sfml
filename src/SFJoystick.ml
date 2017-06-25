@@ -42,7 +42,7 @@ let string_of_axis = function
   | PovY  -> "PovY"
 
 let axis_of_string s =
-  match String.lowercase s with
+  match String.lowercase_ascii s with
   | "x"     -> X
   | "y"     -> Y
   | "z"     -> Z

@@ -33,7 +33,7 @@ external send_sub: socket:t -> data:string -> ofs:int -> len:int -> unit
 external receive: socket:t -> data:string -> int = "caml_sfTcpSocket_receive"
 
 let receive_str =
-  let rec_buf = String.create (800 * 1024) in
+  let rec_buf = Bytes.create (800 * 1024) in
   fun ~socket ->
     let n = receive ~socket ~data:rec_buf in
     (String.sub rec_buf 0 n)

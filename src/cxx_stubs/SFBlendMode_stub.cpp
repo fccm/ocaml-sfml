@@ -29,31 +29,30 @@
 sf::BlendMode
 SfBlendMode_val(value ml_blendMode)
 {
-    switch (Int_val(ml_blendMode))
-    {
-        case 0: return sf::BlendAlpha;
-        case 1: return sf::BlendAdd;
-        case 2: return sf::BlendMultiply;
-        case 3: return sf::BlendNone;
-        default: caml_failwith("SFBlendMode.t");
-    }
-    caml_failwith("SFBlendMode.t");
-    return sf::BlendNone;
+    return sf::BlendMode(
+        static_cast<sf::BlendMode::Factor>(Int_val(Field(ml_blendMode, 0))),
+        static_cast<sf::BlendMode::Factor>(Int_val(Field(ml_blendMode, 1))),
+        static_cast<sf::BlendMode::Equation>(Int_val(Field(ml_blendMode, 2))),
+        static_cast<sf::BlendMode::Factor>(Int_val(Field(ml_blendMode, 3))),
+        static_cast<sf::BlendMode::Factor>(Int_val(Field(ml_blendMode, 4))),
+        static_cast<sf::BlendMode::Equation>(Int_val(Field(ml_blendMode, 5))));
 }
 
 value
 Val_sfBlendMode(sf::BlendMode blendMode)
 {
-    switch (blendMode)
-    {
-        case sf::BlendAlpha:    return Val_int(0);
-        case sf::BlendAdd:      return Val_int(1);
-        case sf::BlendMultiply: return Val_int(2);
-        case sf::BlendNone:     return Val_int(3);
-        default: caml_failwith("SFBlendMode.t");
-    }
-    caml_failwith("SFBlendMode.t");
-    return Val_int(3);  /* sf::BlendNone */
+    CAMLparam0();
+
+    CAMLlocal1(ml_blendMode);
+    ml_blendMode = caml_alloc_tuple(6);
+    Store_field(ml_blendMode, 0, Val_int(blendMode.colorSrcFactor));
+    Store_field(ml_blendMode, 1, Val_int(blendMode.colorDstFactor));
+    Store_field(ml_blendMode, 2, Val_int(blendMode.colorEquation));
+    Store_field(ml_blendMode, 3, Val_int(blendMode.alphaSrcFactor));
+    Store_field(ml_blendMode, 4, Val_int(blendMode.alphaDstFactor));
+    Store_field(ml_blendMode, 5, Val_int(blendMode.alphaEquation));
+
+    CAMLreturn(ml_blendMode);
 }
 
 // vim: sw=4 sts=4 ts=4 et

@@ -10,11 +10,11 @@ val createFromMemory: data:string -> t
 val copy: t -> t
 
 type glyph = {
-    advance: int;
-    bounds: int SFRect.t;
+    advance: float;
+    bounds: float SFRect.t;
     textureRect: int SFRect.t;
   }
 
 val getGlyph: t -> codePoint:int32 -> characterSize:int -> bold:bool -> glyph
-val getKerning: t -> first:int32 -> second:int32 -> characterSize:int -> int
-val getLineSpacing: t -> characterSize:int -> int
+val getKerning: t -> first:int32 -> second:int32 -> characterSize:int -> float
+val getLineSpacing: t -> characterSize:int -> float

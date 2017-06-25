@@ -7,18 +7,18 @@ external copy: u -> u = "caml_sfFont_copy"
 external destroy: u -> unit = "caml_sfFont_destroy"
 
 type glyph = {
-    advance: int;
-    bounds: int SFRect.t;
+    advance: float;
+    bounds: float SFRect.t;
     textureRect: int SFRect.t;
   }
 
 external getGlyph: u -> codePoint:int32 -> characterSize:int -> bold:bool -> glyph
   = "caml_sfFont_getGlyph"
 
-external getKerning: u -> first:int32 -> second:int32 -> characterSize:int -> int
+external getKerning: u -> first:int32 -> second:int32 -> characterSize:int -> float
   = "caml_sfFont_getKerning"
 
-external getLineSpacing: u -> characterSize:int -> int
+external getLineSpacing: u -> characterSize:int -> float
   = "caml_sfFont_getLineSpacing"
 
 (* ================ *)

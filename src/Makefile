@@ -7,7 +7,7 @@
 
 OCAML := ocaml
 OCAMLC := ocamlc -g
-CC_PARAMS := -Wall -Werror
+CC_PARAMS := -Wall -Werror -Wno-deprecated-declarations
 OCAMLOPT_PARAMS := -g -w A -warn-error A -ccopt "$(CC_PARAMS)"
 OCAMLOPT := ocamlopt $(OCAMLOPT_PARAMS)
 OCAMLDOC := ocamldoc
@@ -187,6 +187,8 @@ c_oo_cmxs: \
 
 SFTime.mli:
 	:
+SFBlendMode.mli:
+	:
 SFText.mli:
 	:
 SFFont.mli:
@@ -215,7 +217,7 @@ SFRenderStates.mli:
 GENERATED_MLI := \
       SFConfig.mli \
       SFClock.mli SFPausableClock.mli \
-      SFRect.mli SFColor.mli SFBlendMode.mli \
+      SFRect.mli SFColor.mli \
       SFMusic.mli SFListener.mli SFSoundRecorder.mli \
       SFKey.mli SFMouse.mli SFKeyboard.mli SFJoystick.mli \
       SFEvent.mli SFView.mli SFWindow.mli \

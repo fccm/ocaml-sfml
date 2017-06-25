@@ -77,25 +77,24 @@ caml_sfFont_getGlyph(value font, value codePoint, value characterSize, value bol
     sf::Glyph glyph = SfFont_val(font)->getGlyph(
         Int32_val(codePoint), Long_val(characterSize), Bool_val(bold));
     ret = caml_alloc(3, 0);
-    Store_field(ret, 0, Val_long(glyph.advance));
-    Store_field(ret, 1, caml_copy_sfIntRect(glyph.bounds));
+    Store_field(ret, 0, caml_copy_double(glyph.advance));
+    Store_field(ret, 1, caml_copy_sfFloatRect(glyph.bounds));
     Store_field(ret, 2, caml_copy_sfIntRect(glyph.textureRect));
     CAMLreturn(ret);
 }
 
-CAMLextern_C value
+CAMLextern_C double
 caml_sfFont_getKerning(value font, value first, value second, value characterSize)
 {
-    int k = SfFont_val(font)->getKerning(
-        Int32_val(first), Int32_val(second), Long_val(characterSize));
-    return Val_int(k);
+    CAMLparam4(font, first, second, characterSize);
+    CAMLreturn(caml_copy_double(SfFont_val(font)->getKerning(Int32_val(first), Int32_val(second), Long_val(characterSize))));
 }
 
-CAMLextern_C value
+CAMLextern_C double
 caml_sfFont_getLineSpacing(value font, value characterSize)
 {
-    int s = SfFont_val(font)->getLineSpacing(Long_val(characterSize));
-    return Val_int(s);
+    CAMLparam2(font, characterSize);
+    CAMLreturn(caml_copy_double(SfFont_val(font)->getLineSpacing(Long_val(characterSize))));
 }
 
 /* TODO

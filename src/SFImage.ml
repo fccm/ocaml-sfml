@@ -103,7 +103,7 @@ let createFromPixelsArray ~pixels =
   let height = Array.length pixels in
   if height = 0 then invalid_arg "SFImage.createFromPixelsArray";
   let width = Array.length pixels.(0) in
-  let data = String.create (width * height * 4) in
+  let data = Bytes.create (width * height * 4) in
   for y = 0 to pred height do
     let pixels_y = Array.unsafe_get pixels y in
     if Array.length pixels_y <> width then
@@ -116,14 +116,14 @@ let createFromPixelsArray ~pixels =
            char_of_int g,
            char_of_int b,
            char_of_int a)
-        with Invalid_argument "char_of_int" ->
+        with Invalid_argument _ ->
           invalid_arg "SFImage.createFromPixelsArray"
       in
       let ofs = ((y * width) + x) * 4 in
-      String.unsafe_set data (ofs) r;
-      String.unsafe_set data (ofs+1) g;
-      String.unsafe_set data (ofs+2) b;
-      String.unsafe_set data (ofs+3) a;
+      Bytes.unsafe_set data (ofs) r;
+      Bytes.unsafe_set data (ofs+1) g;
+      Bytes.unsafe_set data (ofs+2) b;
+      Bytes.unsafe_set data (ofs+3) a;
     done;
   done;
   (createFromPixels ~width ~height ~data)

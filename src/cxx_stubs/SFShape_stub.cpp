@@ -36,13 +36,13 @@ public:
     {
     }
 
-    virtual unsigned int getPointCount() const
+    virtual std::size_t getPointCount() const
     {
         unsigned int len = Wosize_val(points);
         return (len);
     }
 
-    virtual sf::Vector2f getPoint(unsigned int index) const
+    virtual sf::Vector2f getPoint(std::size_t index) const
     {
         value point = Field(points, index);
         return sf::Vector2f(

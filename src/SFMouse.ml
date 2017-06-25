@@ -21,7 +21,7 @@ let string_of_button = function
   | ButtonX2      -> "ButtonX2"
 
 let button_of_string s =
-  match String.lowercase s with
+  match String.lowercase_ascii s with
   | "buttonleft"    -> ButtonLeft
   | "buttonright"   -> ButtonRight
   | "buttonmiddle"  -> ButtonMiddle
