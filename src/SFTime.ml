@@ -13,6 +13,8 @@ external sub: u -> u -> u = "caml_sfTime_sub"
 external mul: float -> u -> u = "caml_sfTime_mul"
 external mult: u -> float -> u = "caml_sfTime_mult"
 external div: u -> float -> u = "caml_sfTime_div"
+external ratio: u -> u -> float = "caml_sfTime_ratio"
+external rem: u -> u -> u = "caml_sfTime_rem"
 
 external eq: u -> u -> bool = "caml_sfTime_eq"
 external gt: u -> u -> bool = "caml_sfTime_gt"
@@ -83,6 +85,15 @@ let mult a b =
 
 let div a b =
   let u = div a.u b in
+  let t = {u=u; s=" "} in
+  Gc.finalise destroy t;
+  (t)
+
+let ratio a b =
+  (ratio a.u b.u)
+
+let rem a b =
+  let u = rem a.u b.u in
   let t = {u=u; s=" "} in
   Gc.finalise destroy t;
   (t)

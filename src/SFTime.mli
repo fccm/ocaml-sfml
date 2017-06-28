@@ -14,6 +14,8 @@ val sub : t -> t -> t
 val mul : float -> t -> t
 val mult : t -> float -> t
 val div : t -> float -> t
+val ratio : t -> t -> float
+val rem : t -> t -> t
 val eq : t -> t -> bool
 val gt : t -> t -> bool
 val lt : t -> t -> bool

@@ -153,6 +153,19 @@ caml_sfTime_div(value a, value b)
 }
 
 CAMLextern_C value
+caml_sfTime_ratio(value a, value b)
+{
+    return caml_copy_double(SfTime_val_p(a) / SfTime_val_p(b));
+}
+
+CAMLextern_C value
+caml_sfTime_rem(value a, value b)
+{
+    sf::Time res = SfTime_val_p(a) % SfTime_val_p(b);
+    return Val_sfTime(res);
+}
+
+CAMLextern_C value
 caml_sfTime_eq(value a, value b)
 {
     bool res = SfTime_val_p(a) == SfTime_val_p(b);
