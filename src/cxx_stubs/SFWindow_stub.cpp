@@ -217,6 +217,19 @@ caml_sfWindow_setVisible(value win, value visible)
 }
 
 CAMLextern_C value
+caml_sfWindow_requestFocus(value win)
+{
+    SfWindow_val(win)->requestFocus();
+    return Val_unit;
+}
+
+CAMLextern_C value
+caml_sfWindow_hasFocus(value win)
+{
+    return Val_bool(SfWindow_val(win)->hasFocus());
+}
+
+CAMLextern_C value
 caml_sfWindow_setMouseCursorVisible(value win, value visible)
 {
     SfWindow_val(win)->setMouseCursorVisible(Bool_val(visible));

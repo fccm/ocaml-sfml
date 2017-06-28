@@ -104,6 +104,10 @@ external setActive: t -> active:bool -> bool = "caml_sfWindow_setActive"
 
 external setVisible: t -> visible:bool -> unit = "caml_sfWindow_setVisible"
 
+external requestFocus: t -> unit = "caml_sfWindow_requestFocus"
+                                               
+external hasFocus: t -> bool = "caml_sfWindow_hasFocus"
+                                               
 external setMouseCursorVisible: t -> visible:bool -> unit
   = "caml_sfWindow_setMouseCursorVisible"
 
