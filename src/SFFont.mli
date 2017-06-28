@@ -18,3 +18,9 @@ type glyph = {
 val getGlyph: t -> codePoint:int32 -> characterSize:int -> bold:bool -> glyph
 val getKerning: t -> first:int32 -> second:int32 -> characterSize:int -> float
 val getLineSpacing: t -> characterSize:int -> float
+val getUnderlinePosition: t -> characterSize:int -> float
+val getUnderlineThickness: t -> characterSize:int -> float
+
+type info = { family: string }
+
+val getInfo: t -> info

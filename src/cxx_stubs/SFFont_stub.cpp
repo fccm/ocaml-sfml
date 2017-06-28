@@ -83,18 +83,41 @@ caml_sfFont_getGlyph(value font, value codePoint, value characterSize, value bol
     CAMLreturn(ret);
 }
 
-CAMLextern_C double
+CAMLextern_C value
 caml_sfFont_getKerning(value font, value first, value second, value characterSize)
 {
-    CAMLparam4(font, first, second, characterSize);
-    CAMLreturn(caml_copy_double(SfFont_val(font)->getKerning(Int32_val(first), Int32_val(second), Long_val(characterSize))));
+    return caml_copy_double(SfFont_val(font)->getKerning(Int32_val(first), Int32_val(second), Long_val(characterSize)));
 }
 
-CAMLextern_C double
+CAMLextern_C value
 caml_sfFont_getLineSpacing(value font, value characterSize)
 {
-    CAMLparam2(font, characterSize);
-    CAMLreturn(caml_copy_double(SfFont_val(font)->getLineSpacing(Long_val(characterSize))));
+    return caml_copy_double(SfFont_val(font)->getLineSpacing(Long_val(characterSize)));
+}
+
+CAMLextern_C value
+caml_sfFont_getUnderlinePosition(value font, value characterSize)
+{
+    return caml_copy_double(SfFont_val(font)->getUnderlinePosition(Long_val(characterSize)));
+}
+
+CAMLextern_C value
+caml_sfFont_getUnderlineThickness(value font, value characterSize)
+{
+    return caml_copy_double(SfFont_val(font)->getUnderlineThickness(Long_val(characterSize)));
+}
+
+CAMLextern_C value
+caml_sfFont_getInfo(value font)
+{
+    CAMLparam0();
+
+    const sf::Font::Info& sf_info = SfFont_val(font)->getInfo();
+    CAMLlocal1(info);
+    info = caml_alloc_tuple(1);
+    Store_field(info, 0, caml_copy_string(sf_info.family.c_str()));
+
+    CAMLreturn(info);
 }
 
 /* TODO

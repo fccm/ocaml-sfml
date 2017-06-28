@@ -21,6 +21,16 @@ external getKerning: u -> first:int32 -> second:int32 -> characterSize:int -> fl
 external getLineSpacing: u -> characterSize:int -> float
   = "caml_sfFont_getLineSpacing"
 
+external getUnderlinePosition: u -> characterSize:int -> float
+  = "caml_sfFont_getUnderlinePosition"
+
+external getUnderlineThickness: u -> characterSize:int -> float
+  = "caml_sfFont_getUnderlineThickness"
+
+type info = { family: string }
+
+external getInfo: u -> info = "caml_sfFont_getInfo"
+
 (* ================ *)
 
 type t = { u:u; s:string }
@@ -50,3 +60,7 @@ let copy font =
 let getGlyph font = getGlyph font.u
 let getKerning font = getKerning font.u
 let getLineSpacing font = getLineSpacing font.u
+let getUnderlinePosition font = getUnderlinePosition font.u
+let getUnderlineThickness font = getUnderlineThickness font.u
+
+let getInfo font = getInfo font.u
