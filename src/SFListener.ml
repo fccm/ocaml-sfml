@@ -6,3 +6,6 @@ external getPosition: unit -> float * float * float = "caml_sfListener_getPositi
 external setDirection: orientation:float * float * float -> unit = "caml_sfListener_setDirection"
 external setDirection3: dirX:float -> dirY:float -> dirZ:float -> unit = "caml_sfListener_setDirection3"
 external getDirection: unit -> float * float * float = "caml_sfListener_getDirection"
+external setUpVector: vector:float * float * float -> unit = "caml_sfListener_setUpVector"
+external setUpVector3: vecX:float -> vecY:float -> vecZ:float -> unit = "caml_sfListener_setUpVector3"
+external getUpVector: unit -> float * float * float = "caml_sfListener_getUpVector"

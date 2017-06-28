@@ -71,10 +71,38 @@ caml_sfListener_setDirection(value orientation)
 }
 
 CAMLextern_C value
+caml_sfListener_setDirection3(value dirX, value dirY, value dirZ)
+{
+    sf::Listener::setDirection(SfVector3f_val3(dirX, dirY, dirZ));
+    return Val_unit;
+}
+
+CAMLextern_C value
 caml_sfListener_getDirection(value unit)
 {
     sf::Vector3f dir = sf::Listener::getDirection();
     return Val_sfVector3f(dir);
+}
+
+CAMLextern_C value
+caml_sfListener_setUpVector(value vector)
+{
+    sf::Listener::setUpVector(SfVector3f_val(vector));
+    return Val_unit;
+}
+
+CAMLextern_C value
+caml_sfListener_setUpVector3(value vecX, value vecY, value vecZ)
+{
+    sf::Listener::setUpVector(SfVector3f_val3(vecX, vecY, vecZ));
+    return Val_unit;
+}
+
+CAMLextern_C value
+caml_sfListener_getUpVector(value unit)
+{
+    sf::Vector3f vec = sf::Listener::getUpVector();
+    return Val_sfVector3f(vec);
 }
 
 // vim: sw=4 sts=4 ts=4 et
