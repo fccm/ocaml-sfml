@@ -52,3 +52,12 @@ let axis_of_string s =
   | "povx"  -> PovX
   | "povy"  -> PovY
   | _ -> invalid_arg "axis_of_string"
+
+type identification = {
+    name: string;
+    vendor_id: nativeint;
+    product_id: nativeint
+  }
+
+external get_identification: joystick:int -> identification
+  = "caml_sfJoystick_getIdentification"

@@ -135,6 +135,20 @@ caml_sfJoystick_getAxisPosition(value ml_joystick, value axis)
     return caml_copy_double(pos);
 }
 
+CAMLextern_C value
+caml_sfJoystick_getIdentification(value ml_joystick)
+{
+    CAMLparam0();
+
+    sf::Joystick::Identification sf_ident = sf::Joystick::getIdentification(Unsigned_int_val(ml_joystick));
+    CAMLlocal1(ident);
+    ident = caml_alloc_tuple(3);
+    Store_field(ident, 0, caml_copy_string(sf_ident.name.toAnsiString().c_str()));
+    Store_field(ident, 1, caml_copy_nativeint(sf_ident.vendorId));
+    Store_field(ident, 2, caml_copy_nativeint(sf_ident.productId));
+
+    CAMLreturn(ident);
+}
 
 #include <cmath>
 
