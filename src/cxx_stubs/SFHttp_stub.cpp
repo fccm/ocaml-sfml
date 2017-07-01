@@ -32,6 +32,8 @@ static const sf::Http::Request::Method table_sfHttpMethod[] = {
     sf::Http::Request::Get,
     sf::Http::Request::Post,
     sf::Http::Request::Head,
+    sf::Http::Request::Put,
+    sf::Http::Request::Delete
 };
 
 #define SfHttpMethod_val(m) \

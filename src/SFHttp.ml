@@ -2,6 +2,8 @@ type http_method =
   | Get
   | Post
   | Head
+  | Put
+  | Delete
 
 type status =
   | Ok
