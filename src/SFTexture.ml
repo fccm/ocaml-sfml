@@ -20,6 +20,8 @@ type coordinateType =
 
 external bind: t -> unit = "caml_sfTexture_bind"
 
+external generateMipmap: t -> bool = "caml_sfTexture_generateMipmap"
+
 external getSize: t -> int * int = "caml_sfTexture_getSize"
 external setSmooth: t -> smooth:bool -> unit = "caml_sfTexture_setSmooth"
 external isSmooth: t -> bool = "caml_sfTexture_isSmooth"

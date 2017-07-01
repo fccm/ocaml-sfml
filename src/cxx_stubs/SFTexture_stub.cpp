@@ -159,6 +159,12 @@ caml_sfTexture_bind(value texture)
 }
 
 CAMLextern_C value
+caml_sfTexture_generateMipmap(value texture)
+{
+    return Val_bool(SfTexture_val(texture)->generateMipmap());
+}
+
+CAMLextern_C value
 caml_sfTexture_setSmooth(value texture, value smooth)
 {
     SfTexture_val(texture)->setSmooth(Bool_val(smooth));
