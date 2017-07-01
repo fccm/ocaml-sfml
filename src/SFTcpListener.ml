@@ -18,7 +18,7 @@ external setBlocking: listener:t -> blocking:bool -> unit
   = "caml_sfTcpListener_setBlocking"
 external isBlocking: listener:t -> bool = "caml_sfTcpListener_isBlocking"
 external getLocalPort: listener:t -> int = "caml_sfTcpListener_getLocalPort"
-external listen: listener:t -> port:int -> unit = "caml_sfTcpListener_listen"
+external listen: listener:t -> ?address:SFIpAddress.t -> port:int -> unit = "caml_sfTcpListener_listen"
 external accept: listener:t -> SFTcpSocket.t = "caml_sfTcpListener_accept"
 
 let link_me = ()

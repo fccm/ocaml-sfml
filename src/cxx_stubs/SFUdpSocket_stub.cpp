@@ -24,6 +24,7 @@
 #include <SFML/Network/UdpSocket.hpp>
 
 #include "sf_caml_incs.hpp"
+#include "sf_caml_conv.hpp"
 #include "SFUdpSocket_stub.hpp"
 #include "SFSocket_stub.hpp"
 #include "SFIpAddress_stub.hpp"
@@ -52,9 +53,10 @@ caml_sfUdpSocket_setBlocking(value sock, value blocking)
 }
 
 CAMLextern_C value
-caml_sfUdpSocket_bind(value sock, value port)
+caml_sfUdpSocket_bind(value sock, value address, value port)
 {
-    sf::Socket::Status st = SfUdpSocket_val(sock)->bind(Long_val(port));
+    sf::Socket::Status st =
+        SfUdpSocket_val(sock)->bind(Long_val(port), Option_val(address, SfIpAddress_val, sf::IpAddress::Any));
     check_sfSocketStatus(st, "SFUdpSocket")
     return Val_unit;
 }

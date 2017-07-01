@@ -18,7 +18,7 @@ external create: unit -> t = "caml_sfUdpSocket_create"
 external destroy: socket:t -> unit = "caml_sfUdpSocket_destroy"
 external setBlocking: socket:t -> blocking:bool -> unit
   = "caml_sfUdpSocket_setBlocking"
-external bind: socket:t -> port:int -> unit = "caml_sfUdpSocket_bind"
+external bind: socket:t -> ?address:SFIpAddress.t -> port:int -> unit = "caml_sfUdpSocket_bind"
 external unbind: socket:t -> unit = "caml_sfUdpSocket_unbind"
 external send: socket:t -> data:string -> address:SFIpAddress.t -> port:int -> unit
   = "caml_sfUdpSocket_send"

@@ -24,6 +24,8 @@
 #include <SFML/Network/TcpListener.hpp>
 
 #include "sf_caml_incs.hpp"
+#include "sf_caml_conv.hpp"
+#include "SFIpAddress_stub.hpp"
 #include "SFTcpListener_stub.hpp"
 #include "SFTcpSocket_stub.hpp"
 #include "SFSocket_stub.hpp"
@@ -65,9 +67,10 @@ caml_sfTcpListener_getLocalPort(value listener)
 }
 
 CAMLextern_C value
-caml_sfTcpListener_listen(value listener, value port)
+caml_sfTcpListener_listen(value listener, value address, value port)
 {
-    sf::Socket::Status st = SfTcpListener_val(listener)->listen(Int_val(port));
+    sf::Socket::Status st =
+        SfTcpListener_val(listener)->listen(Int_val(port), Option_val(address, SfIpAddress_val, sf::IpAddress::Any));
     check_sfSocketStatus(st, "SFTcpListener")
     return Val_unit;
 }
