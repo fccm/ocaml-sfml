@@ -5,6 +5,8 @@ type mouse_button =
   | ButtonX1
   | ButtonX2
 
+type mouse_wheel = VerticalWheel | HorizentalWheel
+
 external getButtonCount: unit -> int = "caml_sfMouseButtonCount"
 external isButtonPressed: button:mouse_button -> bool
   = "caml_sfMouse_isButtonPressed"

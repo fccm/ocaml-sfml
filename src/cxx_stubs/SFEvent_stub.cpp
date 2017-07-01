@@ -42,14 +42,15 @@
 #define Tag_sfEvtMouseButtonPressed       2
 #define Tag_sfEvtMouseButtonReleased      3
 #define Tag_sfEvtMouseWheelMoved          4
-#define Tag_sfEvtKeyPressed               5
-#define Tag_sfEvtKeyReleased              6
-#define Tag_sfEvtTextEntered              7
-#define Tag_sfEvtJoystickMoved            8
-#define Tag_sfEvtJoystickButtonPressed    9
-#define Tag_sfEvtJoystickButtonReleased  10
-#define Tag_sfEvtJoystickConnected       11
-#define Tag_sfEvtJoystickDisconnected    12
+#define Tag_sfEvtMouseWheelScrolled       5
+#define Tag_sfEvtKeyPressed               6
+#define Tag_sfEvtKeyReleased              7
+#define Tag_sfEvtTextEntered              8
+#define Tag_sfEvtJoystickMoved            9
+#define Tag_sfEvtJoystickButtonPressed   10
+#define Tag_sfEvtJoystickButtonReleased  11
+#define Tag_sfEvtJoystickConnected       12
+#define Tag_sfEvtJoystickDisconnected    13
 
 
 static value
@@ -97,6 +98,18 @@ Val_sfEvtMouseWheelMoved(int delta, int x, int y) {
     Store_field(var, 0, Val_long(delta));
     Store_field(var, 1, Val_long(x));
     Store_field(var, 2, Val_long(y));
+    CAMLreturn(var);
+}
+
+static value
+Val_sfEvtMouseWheelScrolled(sf::Mouse::Wheel wheel, float delta, int x, int y) {
+    CAMLparam0();
+    CAMLlocal1(var);
+    var = caml_alloc(4, Tag_sfEvtMouseWheelScrolled);
+    Store_field(var, 0, Val_int(wheel));
+    Store_field(var, 1, caml_copy_double(delta));
+    Store_field(var, 2, Val_long(x));
+    Store_field(var, 3, Val_long(y));
     CAMLreturn(var);
 }
 
@@ -213,9 +226,16 @@ value Val_sfEvent(const sf::Event& event, char const *fail_msg)
 
         case sf::Event::MouseWheelMoved:
             return Val_sfEvtMouseWheelMoved(
+                            event.mouseWheel.delta,
                             event.mouseWheel.x,
-                            event.mouseWheel.y,
-                            event.mouseWheel.delta);
+                            event.mouseWheel.y);
+
+        case sf::Event::MouseWheelScrolled:
+            return Val_sfEvtMouseWheelScrolled(
+                            event.mouseWheelScroll.wheel,
+                            event.mouseWheelScroll.delta,
+                            event.mouseWheelScroll.x,
+                            event.mouseWheelScroll.y);
 
         case sf::Event::KeyPressed:
             return Val_sfEvtKeyPressed(
