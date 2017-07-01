@@ -125,3 +125,5 @@ module DirectoryResponse = struct
     = "caml_sfFtpDirectoryResponse_getDirectory"
 end
 
+external sendCommand: ftp -> command:string -> parameter:string -> response
+  = "caml_sfFtp_sendCommand"

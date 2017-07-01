@@ -484,4 +484,12 @@ caml_sfFtpResponse_getMessage(value ftpResponse)
     return caml_copy_string(msg.c_str());
 }
 
+CAMLextern_C value
+caml_sfFtp_sendCommand(value ftp, value command, value parameter)
+{
+    sf::Ftp::Response *resp = new sf::Ftp::Response;
+    *resp = SfFtp_val(ftp)->sendCommand(String_val(command), String_val(parameter));
+    return Val_sfFtpResponse(resp);
+}
+
 // vim: sw=4 sts=4 ts=4 et
