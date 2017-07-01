@@ -100,6 +100,27 @@ caml_sfText_setColor(value text, value color)
 }
 
 CAMLextern_C value
+caml_sfText_setOutlineThickness(value text, value thickness)
+{
+    SfText_val(text)->setOutlineThickness(Double_val(thickness));
+    return Val_unit;
+}
+
+CAMLextern_C value
+caml_sfText_setOutlineColor(value text, value color)
+{
+    SfText_val(text)->setOutlineColor(SfColor_val(color));
+    return Val_unit;
+}
+
+CAMLextern_C value
+caml_sfText_setFillColor(value text, value color)
+{
+    SfText_val(text)->setFillColor(SfColor_val(color));
+    return Val_unit;
+}
+
+CAMLextern_C value
 caml_sfText_setRotation(value text, value rotation)
 {
     SfText_val(text)->setRotation(Double_val(rotation));

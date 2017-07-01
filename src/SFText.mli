@@ -17,7 +17,10 @@ val setString : text:t -> str:string -> unit
 val setFont : text:t -> font:SFFont.t -> unit
 val setPosition : text:t -> pos:float * float -> unit
 val setPosition2 : text:t -> left:float -> top:float -> unit
-val setColor : text:t -> color:SFColor.t -> unit
+val setColor : text:t -> color:SFColor.t -> unit [@deprecated "use set{Outline,Fill}Color instead"]
+val setOutlineThickness : text:t -> thickness:float -> unit
+val setOutlineColor : text:t -> color:SFColor.t -> unit
+val setFillColor : text:t -> color:SFColor.t -> unit
 val setCharacterSize : text:t -> size:int -> unit
 val setOrigin : text:t -> origin:float * float -> unit
 val setRotation : text:t -> rotation:float -> unit
