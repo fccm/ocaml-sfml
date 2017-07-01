@@ -13,6 +13,8 @@ type context_settings =
     antialiasingLevel : int;  (** level of antialiasing *)
     majorVersion : int;       (** major number of the context version to create *)
     minorVersion : int;       (** minor number of the context version to create *)
+    (* TODO: attributeFlags *)
+    sRgbCapable : bool        (** sRGB capable framebuffer *)
   }
 
 let mode ~width ~height ~bitsPerPixel =
@@ -22,13 +24,14 @@ let mode ~width ~height ~bitsPerPixel =
     bitsPerPixel = bitsPerPixel;
   }
 
-let settings ~depthBits ~stencilBits ~antialiasingLevel ~version =
+let settings ~depthBits ~stencilBits ~antialiasingLevel ~version ~sRgbCapable =
   let majorVersion, minorVersion = version in
   { depthBits = depthBits;
     stencilBits = stencilBits;
     antialiasingLevel = antialiasingLevel;
     majorVersion = majorVersion;
     minorVersion = minorVersion;
+    sRgbCapable = sRgbCapable
   }
 
 external create: mode:SFVideoMode.t -> title:string ->
@@ -40,7 +43,7 @@ external createFromHandle: handle:nativeint -> settings:context_settings -> t
 
 let make ?(style = [`titlebar; `resize; `close]) ?(bpp = 32)
     ?(depth = 24) ?(stencil = 8) ?(antialiasing = 0)
-    ?(version = (0, 0))
+    ?(version = (0, 0)) ?(sRgbCapable = false)
     (width, height) title =
   let majorVersion, minorVersion = version in
   let mode =
@@ -55,6 +58,7 @@ let make ?(style = [`titlebar; `resize; `close]) ?(bpp = 32)
       antialiasingLevel = antialiasing;
       majorVersion = majorVersion;
       minorVersion = minorVersion;
+      sRgbCapable = sRgbCapable
     }
   in
   (create ~mode ~title ~style ~settings)
@@ -83,6 +87,7 @@ external setSize2: t -> width:int -> height:int -> unit
   = "caml_sfRenderWindow_setSize"
 
 external setMouseCursorVisible: t -> show:bool -> unit = "caml_sfRenderWindow_setMouseCursorVisible"
+external setMouseCursorGrabbed: t -> grabbed:bool -> unit = "caml_sfRenderWindow_setMouseCursorGrabbed"
 external setVisible: t -> visible:bool -> unit = "caml_sfRenderWindow_setVisible"
 external setKeyRepeatEnabled: t -> enabled:bool -> unit = "caml_sfRenderWindow_setKeyRepeatEnabled"
 external setActive: t -> active:bool -> unit = "caml_sfRenderWindow_setActive"

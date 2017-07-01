@@ -273,6 +273,13 @@ caml_sfRenderWindow_setMouseCursorVisible(value win, value show)
 }
 
 CAMLextern_C value
+caml_sfRenderWindow_setMouseCursorGrabbed(value win, value grabbed)
+{
+    SfRenderWindow_val(win)->setMouseCursorGrabbed(Bool_val(grabbed));
+    return Val_unit;
+}
+
+CAMLextern_C value
 caml_sfRenderWindow_setVisible(value win, value visible)
 {
     SfRenderWindow_val(win)->setVisible(Bool_val(visible));

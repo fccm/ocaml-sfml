@@ -14,6 +14,8 @@ type context_settings =
     antialiasingLevel : int;  (** level of antialiasing *)
     majorVersion : int;       (** major number of the context version to create *)
     minorVersion : int;       (** minor number of the context version to create *)
+    (* TODO: attributeFlags *)
+    sRgbCapable : bool        (** sRGB capable framebuffer *)
   }
 
 let mode ~width ~height ?(bpp = 32) () =
@@ -24,13 +26,14 @@ let mode ~width ~height ?(bpp = 32) () =
   }
 
 let settings ?(depth = 0) ?(stencil = 0) ?(antialiasing = 0)
-    ?(version = (2,0)) () =
+    ?(version = (2,0)) ?(sRgbCapable = false) () =
   let majorVersion, minorVersion = version in
   { depthBits = depth;
     stencilBits = stencil;
     antialiasingLevel = antialiasing;
     majorVersion;
     minorVersion;
+    sRgbCapable
   }
 
 external create: mode:SFVideoMode.t -> title:string ->
@@ -48,7 +51,7 @@ external getSystemHandle: t -> window_handle
 
 let make ?(style = [`titlebar; `resize; `close]) ?(bpp = 32)
     ?(depth = 0) ?(stencil = 8) ?(antialiasing = 0)
-    ?(version = (2, 0))
+    ?(version = (2, 0)) ?(sRgbCapable = false)
     (width, height) title =
   let majorVersion, minorVersion = version in
   let mode =
@@ -63,6 +66,7 @@ let make ?(style = [`titlebar; `resize; `close]) ?(bpp = 32)
       antialiasingLevel = antialiasing;
       majorVersion = majorVersion;
       minorVersion = minorVersion;
+      sRgbCapable = sRgbCapable
     }
   in
   (create ~mode ~title ~style ~settings)
@@ -110,6 +114,9 @@ external hasFocus: t -> bool = "caml_sfWindow_hasFocus"
                                                
 external setMouseCursorVisible: t -> visible:bool -> unit
   = "caml_sfWindow_setMouseCursorVisible"
+
+external setMouseCursorGrabbed: t -> grabbed:bool -> unit
+  = "caml_sfWindow_setMouseCursorGrabbed"
 
 external setKeyRepeatEnabled: t -> enabled:bool -> unit
   = "caml_sfWindow_setKeyRepeatEnabled"

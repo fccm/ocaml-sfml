@@ -34,6 +34,7 @@ SfContextSettings_val(sf::ContextSettings *settings, value ml_settings)
     settings->antialiasingLevel = Long_val(Field(ml_settings, 2));
     settings->majorVersion      = Long_val(Field(ml_settings, 3));
     settings->minorVersion      = Long_val(Field(ml_settings, 4));
+    settings->sRgbCapable       = Bool_val(Field(ml_settings, 5));
 }
 
 value
@@ -41,12 +42,13 @@ Val_sfContextSettings(sf::ContextSettings *settings)
 {
     CAMLparam0();
     CAMLlocal1(ret);
-    ret = caml_alloc(5, 0);
+    ret = caml_alloc(6, 0);
     Store_field(ret, 0, Val_long(settings->depthBits));
     Store_field(ret, 1, Val_long(settings->stencilBits));
     Store_field(ret, 2, Val_long(settings->antialiasingLevel));
     Store_field(ret, 3, Val_long(settings->majorVersion));
     Store_field(ret, 4, Val_long(settings->minorVersion));
+    Store_field(ret, 5, Val_bool(settings->sRgbCapable));
     CAMLreturn(ret);
 }
 

@@ -237,6 +237,13 @@ caml_sfWindow_setMouseCursorVisible(value win, value visible)
 }
 
 CAMLextern_C value
+caml_sfWindow_setMouseCursorGrabbed(value win, value grabbed)
+{
+    SfWindow_val(win)->setMouseCursorGrabbed(Bool_val(grabbed));
+    return Val_unit;
+}
+
+CAMLextern_C value
 caml_sfWindow_setKeyRepeatEnabled(value win, value enabled)
 {
     SfWindow_val(win)->setKeyRepeatEnabled(Bool_val(enabled));
