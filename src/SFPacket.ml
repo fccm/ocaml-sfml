@@ -44,6 +44,7 @@ external writeInt16 : packet:u -> int -> unit = "caml_sfPacket_writeInt16"
 external writeUint16: packet:u -> int -> unit = "caml_sfPacket_writeUint16"
 external writeInt31 : packet:u -> int -> unit = "caml_sfPacket_writeInt32"
 external writeInt32 : packet:u -> int32 -> unit = "caml_sfPacket_writeInt32_l"
+external writeInt64 : packet:u -> int64 -> unit = "caml_sfPacket_writeInt64"
 
 
 external readBool  : packet:u -> bool = "caml_sfPacket_readBool"
@@ -57,6 +58,7 @@ external readInt16 : packet:u -> int = "caml_sfPacket_readInt16"
 external readUint16: packet:u -> int = "caml_sfPacket_readUint16"
 external readInt31 : packet:u -> int = "caml_sfPacket_readInt31"
 external readInt32 : packet:u -> int32 = "caml_sfPacket_readInt32_l"
+external readInt64 : packet:u -> int64 = "caml_sfPacket_readInt64"
 
 let writeBool   ~packet:p ~v = writeBool   ~packet:p.u v
 let writeFloat  ~packet:p ~v = writeFloat  ~packet:p.u v
@@ -95,6 +97,7 @@ let writeInt16  ~packet:p ~v = range p_int16  v; writeInt16  ~packet:p.u v
 let writeUint16 ~packet:p ~v = range p_uint16 v; writeUint16 ~packet:p.u v
 let writeInt31  ~packet:p ~v = range p_int31  v; writeInt31  ~packet:p.u v
 let writeInt32  ~packet:p ~v = writeInt32 ~packet:p.u v
+let writeInt64  ~packet:p ~v = writeInt64 ~packet:p.u v
 
 let readInt8   ~packet:p = readInt8   ~packet:p.u
 let readUint8  ~packet:p = readUint8  ~packet:p.u
@@ -102,3 +105,4 @@ let readInt16  ~packet:p = readInt16  ~packet:p.u
 let readUint16 ~packet:p = readUint16 ~packet:p.u
 let readInt31  ~packet:p = readInt31  ~packet:p.u
 let readInt32  ~packet:p = readInt32  ~packet:p.u
+let readInt64  ~packet:p = readInt64  ~packet:p.u

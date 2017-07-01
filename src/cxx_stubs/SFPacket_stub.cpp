@@ -112,6 +112,7 @@ caml_sfPacket_write(sfPacket_writeInt16,, sf::Int16, Long_val)
 caml_sfPacket_write(sfPacket_writeUint16,, sf::Uint16, Long_val)
 caml_sfPacket_write(sfPacket_writeInt32,, sf::Int32, Long_val)
 caml_sfPacket_write(sfPacket_writeInt32,_l, sf::Int32, Int32_val)
+caml_sfPacket_write(sfPacket_writeInt64,, sf::Int64, Int64_val)
 
 #define caml_sfPacket_read(f,s,t,conv) \
   CAMLextern_C value caml_##f##s(value packet) { \
@@ -128,6 +129,7 @@ caml_sfPacket_read(sfPacket_readUint8,, sf::Uint8, Val_long)
 caml_sfPacket_read(sfPacket_readInt16,, sf::Int16, Val_long)
 caml_sfPacket_read(sfPacket_readUint16,, sf::Uint16, Val_long)
 caml_sfPacket_read(sfPacket_readInt32,_l, sf::Int32, caml_copy_int32)
+caml_sfPacket_read(sfPacket_readInt32,, sf::Int64, caml_copy_int64)
 
 #define CAML_INT31_MIN (-1073741824)
 #define CAML_INT31_MAX (1073741823)

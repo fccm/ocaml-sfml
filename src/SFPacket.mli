@@ -38,6 +38,7 @@ val writeInt16 : packet:t -> v:int -> unit
 val writeUint16: packet:t -> v:int -> unit
 val writeInt31 : packet:t -> v:int -> unit
 val writeInt32 : packet:t -> v:int32 -> unit
+val writeInt64 : packet:t -> v:int64 -> unit
 
 (** Functions to extract data from a packet *)
 
@@ -52,3 +53,4 @@ val readInt16 : packet:t -> int
 val readUint16: packet:t -> int
 val readInt31 : packet:t -> int
 val readInt32 : packet:t -> int32
+val readInt64 : packet:t -> int64
