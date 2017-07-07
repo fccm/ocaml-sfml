@@ -220,7 +220,7 @@ GENERATED_MLI := \
       SFRect.mli SFColor.mli \
       SFMusic.mli SFListener.mli SFSoundRecorder.mli \
       SFKey.mli SFMouse.mli SFKeyboard.mli SFJoystick.mli \
-      SFEvent.mli SFView.mli SFWindow.mli SFVideoMode.mli \
+      SFEvent.mli SFView.mli SFWindow.mli SFVideoMode.mli SFStyle.mli \
       SFTexture.mli SFShader.mli SFTransform.mli \
       SFRenderWindow.mli SFContext.mli \
       SFIpAddress.mli \
@@ -253,11 +253,11 @@ SFSprite.cmi: SFTexture.cmi SFColor.cmi SFRect.cmi
 SFText.cmi: SFFont.cmi SFColor.cmi SFRect.cmi
 SFFont.cmi: SFRect.cmi
 SFWindow.mli: SFWindow.ml \
-  SFView.cmi SFKey.cmi SFEvent.cmi SFColor.cmi
+  SFView.cmi SFKey.cmi SFEvent.cmi SFColor.cmi SFStyle.cmi
 SFRenderStates.cmi: SFRenderStates.mli \
   SFBlendMode.cmi SFTransform.cmi SFTexture.cmi SFShader.cmi
 SFRenderWindow.mli: SFRenderWindow.ml \
-  SFView.cmi SFKey.cmi SFEvent.cmi SFColor.cmi \
+  SFView.cmi SFKey.cmi SFEvent.cmi SFColor.cmi SFStyle.cmi \
   SFShape.cmi SFSprite.cmi SFText.cmi \
   SFRenderStates.cmi
 
@@ -421,6 +421,7 @@ WINDOW_MODULES := \
   SFJoystick.ml \
   SFEvent.ml \
   SFVideoMode.ml \
+  SFStyle.ml \
   SFWindow.ml \
   SFContext.ml \
   #END

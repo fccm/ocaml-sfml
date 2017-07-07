@@ -1,12 +1,5 @@
 type t
 
-type window_style =
-  [ `titlebar
-  | `resize  
-  | `close   
-  | `fullscreen
-  ]
-
 type context_settings =
   { depthBits : int;          (** bits of the depth buffer *)
     stencilBits : int;        (** bits of the stencil buffer *)
@@ -35,13 +28,13 @@ let settings ~depthBits ~stencilBits ~antialiasingLevel ~version ~sRgbCapable =
   }
 
 external create: mode:SFVideoMode.t -> title:string ->
-  style:window_style list -> settings:context_settings -> t
+  style:SFStyle.t list -> settings:context_settings -> t
   = "caml_sfRenderWindow_create"
 
 external createFromHandle: handle:nativeint -> settings:context_settings -> t
   = "caml_sfRenderWindow_createFromHandle"
 
-let make ?(style = [`titlebar; `resize; `close]) ?(bpp = 32)
+let make ?(style = SFStyle.default) ?(bpp = 32)
     ?(depth = 24) ?(stencil = 8) ?(antialiasing = 0)
     ?(version = (0, 0)) ?(sRgbCapable = false)
     (width, height) title =

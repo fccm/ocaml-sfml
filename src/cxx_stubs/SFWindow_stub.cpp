@@ -37,6 +37,13 @@
 #define SfWindow_val(win) ((sf::Window *)(win))
 
 
+int caml_Style_flags[] = {
+    sf::Style::Titlebar,
+    sf::Style::Resize,
+    sf::Style::Close,
+    sf::Style::Fullscreen
+};
+
 /* sf::Window */
 
 CAMLextern_C value
@@ -50,20 +57,7 @@ caml_sfWindow_create(
     sf::VideoMode mode;
     SfVideoMode_val(&mode, ml_mode);
 
-    sf::Uint32 style = sf::Style::None;
-    while (ml_style != Val_emptylist)
-    {
-        switch (Long_val(Field(ml_style, 0)))
-        {
-            case SF_WIN_STYLE_TITLEBAR:   style |= sf::Style::Titlebar;   break;
-            case SF_WIN_STYLE_RESIZE:     style |= sf::Style::Resize;     break;
-            case SF_WIN_STYLE_CLOSE:      style |= sf::Style::Close;      break;
-            case SF_WIN_STYLE_FULLSCREEN: style |= sf::Style::Fullscreen; break;
-            case SF_WIN_STYLE_DEFAULT:    style |= sf::Style::Default;    break;
-            default: caml_failwith("SFWindow.create");
-        }
-        ml_style = Field(ml_style, 1);
-    }
+    sf::Uint32 style = caml_convert_flag_list(ml_style, caml_Style_flags);
 
     if (style & sf::Style::Fullscreen && !mode.isValid())
         caml_invalid_argument("SFWindow.create: video_mode");
