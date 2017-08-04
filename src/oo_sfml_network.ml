@@ -83,6 +83,7 @@ class packet =
     method write_uint16 v = SFPacket.writeUint16 ~packet ~v
     method write_int31 v  = SFPacket.writeInt31 ~packet ~v
     method write_int32 v  = SFPacket.writeInt32 ~packet ~v
+    method write_int64 v  = SFPacket.writeInt64 ~packet ~v
 
     method write (vs : write_value list) =
       List.iter (function
@@ -313,5 +314,9 @@ class ftp =
     method get_working_directory () =
       let dir_resp = SFFtp.getWorkingDirectory ftp in
       (new directory_response dir_resp)
-  end
+
+    method send_command () =
+      let com_resp = SFFtp.sendCommand ftp in
+      (new response com_resp)
+end
 
