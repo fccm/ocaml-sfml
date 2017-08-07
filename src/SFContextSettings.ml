@@ -1,10 +1,12 @@
+type attribute = Default | Core | Debug
+
 type t =
   { depthBits : int;
     stencilBits : int;
     antialiasingLevel : int;
     majorVersion : int;
     minorVersion : int;
-    (* TODO: attributeFlags *)
+    attributes : attribute list;
     sRgbCapable : bool
   }
 
@@ -14,5 +16,6 @@ let default =
     antialiasingLevel = 0;
     majorVersion = 1;
     minorVersion = 1;
+    attributes = [Default];
     sRgbCapable = false
   }

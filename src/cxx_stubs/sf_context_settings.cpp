@@ -26,6 +26,12 @@
 #include "sf_caml_incs.hpp"
 #include "sf_context_settings.hpp"
 
+int caml_Attribute_flags[] = {
+    sf::ContextSettings::Attribute::Default,
+    sf::ContextSettings::Attribute::Core,
+    sf::ContextSettings::Attribute::Debug
+};
+
 void
 SfContextSettings_val(sf::ContextSettings *settings, value ml_settings)
 {
@@ -34,21 +40,48 @@ SfContextSettings_val(sf::ContextSettings *settings, value ml_settings)
     settings->antialiasingLevel = Long_val(Field(ml_settings, 2));
     settings->majorVersion      = Long_val(Field(ml_settings, 3));
     settings->minorVersion      = Long_val(Field(ml_settings, 4));
-    settings->sRgbCapable       = Bool_val(Field(ml_settings, 5));
+    settings->attributeFlags    = caml_convert_flag_list(Field(ml_settings, 5), caml_Attribute_flags);
+    settings->sRgbCapable       = Bool_val(Field(ml_settings, 6));
 }
 
 value
 Val_sfContextSettings(sf::ContextSettings *settings)
 {
     CAMLparam0();
-    CAMLlocal1(ret);
-    ret = caml_alloc(6, 0);
+    CAMLlocal2(attribute_list, ret);
+
+    attribute_list = Val_emptylist;
+    if (settings->attributeFlags & sf::ContextSettings::Attribute::Default)
+    {
+        value head = caml_alloc_tuple(2);
+        Store_field(head, 0, Val_long(0));
+        Store_field(head, 1, attribute_list);
+        attribute_list = head;
+    }
+    if (settings->attributeFlags & sf::ContextSettings::Attribute::Core)
+    {
+        value head = caml_alloc_tuple(2);
+        Store_field(head, 0, Val_long(1));
+        Store_field(head, 1, attribute_list);
+        attribute_list = head;
+    }
+    if (settings->attributeFlags & sf::ContextSettings::Attribute::Debug)
+    {
+        value head = caml_alloc_tuple(2);
+        Store_field(head, 0, Val_long(2));
+        Store_field(head, 1, attribute_list);
+        attribute_list = head;
+    }
+
+    ret = caml_alloc(7, 0);
     Store_field(ret, 0, Val_long(settings->depthBits));
     Store_field(ret, 1, Val_long(settings->stencilBits));
     Store_field(ret, 2, Val_long(settings->antialiasingLevel));
     Store_field(ret, 3, Val_long(settings->majorVersion));
     Store_field(ret, 4, Val_long(settings->minorVersion));
-    Store_field(ret, 5, Val_bool(settings->sRgbCapable));
+    Store_field(ret, 5, attribute_list);
+    Store_field(ret, 6, Val_bool(settings->sRgbCapable));
+
     CAMLreturn(ret);
 }
 
