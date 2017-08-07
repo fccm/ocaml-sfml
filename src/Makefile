@@ -222,7 +222,7 @@ GENERATED_MLI := \
       SFKey.mli SFMouse.mli SFKeyboard.mli SFJoystick.mli \
       SFEvent.mli SFView.mli SFWindow.mli SFVideoMode.mli SFStyle.mli \
       SFTexture.mli SFShader.mli SFTransform.mli \
-      SFRenderWindow.mli SFContext.mli \
+      SFRenderWindow.mli SFContext.mli SFContextSettings.mli \
       SFIpAddress.mli \
       SFTcpSocket.mli SFUdpSocket.mli \
       SFTcpListener.mli \
@@ -253,12 +253,12 @@ SFSprite.cmi: SFTexture.cmi SFColor.cmi SFRect.cmi
 SFText.cmi: SFFont.cmi SFColor.cmi SFRect.cmi
 SFFont.cmi: SFRect.cmi
 SFWindow.mli: SFWindow.ml \
-  SFView.cmi SFKey.cmi SFEvent.cmi SFColor.cmi SFStyle.cmi
+  SFView.cmi SFKey.cmi SFEvent.cmi SFColor.cmi SFStyle.cmi SFContextSettings.cmi
 SFRenderStates.cmi: SFRenderStates.mli \
   SFBlendMode.cmi SFTransform.cmi SFTexture.cmi SFShader.cmi
 SFRenderWindow.mli: SFRenderWindow.ml \
   SFView.cmi SFKey.cmi SFEvent.cmi SFColor.cmi SFStyle.cmi \
-  SFShape.cmi SFSprite.cmi SFText.cmi \
+  SFShape.cmi SFSprite.cmi SFText.cmi SFContextSettings.cmi \
   SFRenderStates.cmi
 
 SFIpAddress.mli: SFIpAddress.ml SFTime.cmi
@@ -424,6 +424,7 @@ WINDOW_MODULES := \
   SFStyle.ml \
   SFWindow.ml \
   SFContext.ml \
+  SFContextSettings.ml \
   #END
 GRAPHICS_MODULES := \
   SFColor.ml \

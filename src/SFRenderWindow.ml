@@ -1,57 +1,19 @@
 type t
 
-type context_settings =
-  { depthBits : int;          (** bits of the depth buffer *)
-    stencilBits : int;        (** bits of the stencil buffer *)
-    antialiasingLevel : int;  (** level of antialiasing *)
-    majorVersion : int;       (** major number of the context version to create *)
-    minorVersion : int;       (** minor number of the context version to create *)
-    (* TODO: attributeFlags *)
-    sRgbCapable : bool        (** sRGB capable framebuffer *)
-  }
-
-let mode ~width ~height ~bitsPerPixel =
-  { SFVideoMode.
-    width = width;
-    height = height;
-    bitsPerPixel = bitsPerPixel;
-  }
-
-let settings ~depthBits ~stencilBits ~antialiasingLevel ~version ~sRgbCapable =
-  let majorVersion, minorVersion = version in
-  { depthBits = depthBits;
-    stencilBits = stencilBits;
-    antialiasingLevel = antialiasingLevel;
-    majorVersion = majorVersion;
-    minorVersion = minorVersion;
-    sRgbCapable = sRgbCapable
-  }
-
 external create: mode:SFVideoMode.t -> title:string ->
-  style:SFStyle.t list -> settings:context_settings -> t
+  style:SFStyle.t list -> settings:SFContextSettings.t -> t
   = "caml_sfRenderWindow_create"
 
-external createFromHandle: handle:nativeint -> settings:context_settings -> t
+external createFromHandle: handle:nativeint -> settings:SFContextSettings.t -> t
   = "caml_sfRenderWindow_createFromHandle"
 
 let make ?(style = SFStyle.default) ?(bpp = 32)
-    ?(depth = 24) ?(stencil = 8) ?(antialiasing = 0)
-    ?(version = (0, 0)) ?(sRgbCapable = false)
-    (width, height) title =
-  let majorVersion, minorVersion = version in
+    ?(settings = SFContextSettings.default) (width, height) title =
   let mode =
     { SFVideoMode.
       width = width;
       height = height;
       bitsPerPixel = bpp;
-    }
-  and settings =
-    { depthBits = depth;
-      stencilBits = stencil;
-      antialiasingLevel = antialiasing;
-      majorVersion = majorVersion;
-      minorVersion = minorVersion;
-      sRgbCapable = sRgbCapable
     }
   in
   (create ~mode ~title ~style ~settings)
@@ -67,7 +29,7 @@ external waitEvent : t -> SFEvent.t = "caml_sfRenderWindow_waitEvent"
 external clear: t -> SFColor.t -> unit = "caml_sfRenderWindow_clear"
 external blank: t -> unit = "caml_sfRenderWindow_blank"
 
-external getSettings: t -> context_settings = "caml_sfRenderWindow_getSettings"
+external getSettings: t -> SFContextSettings.t = "caml_sfRenderWindow_getSettings"
 
 external getSize: t -> int * int = "caml_sfRenderWindow_getSize"
 external getWidth: t -> int = "caml_sfRenderWindow_getWidth"
