@@ -422,9 +422,9 @@ WINDOW_MODULES := \
   SFEvent.ml \
   SFVideoMode.ml \
   SFStyle.ml \
+  SFContextSettings.ml \
   SFWindow.ml \
   SFContext.ml \
-  SFContextSettings.ml \
   #END
 GRAPHICS_MODULES := \
   SFColor.ml \
