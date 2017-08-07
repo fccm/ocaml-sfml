@@ -67,7 +67,6 @@ let make ?(style = SFStyle.default) ?(bpp = 32)
 external isOpen: t -> bool = "caml_sfWindow_isOpen"
 external close: t -> unit = "caml_sfWindow_close"
 external display: t -> unit = "caml_sfWindow_display"
-external destroy: t -> unit = "caml_sfWindow_destroy"
 
 external pollEvent: t -> SFEvent.t option = "caml_sfWindow_pollEvent"
 external waitEvent: t -> SFEvent.t = "caml_sfWindow_waitEvent"

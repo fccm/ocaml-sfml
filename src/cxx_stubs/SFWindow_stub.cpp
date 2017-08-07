@@ -33,8 +33,7 @@
 #include "SFEvent_stub.hpp"
 #include "SFVideoMode_stub.hpp"
 
-#define Val_sfWindow(win) ((value)(win))
-#define SfWindow_val(win) ((sf::Window *)(win))
+#define SfWindow_val(win) (*(sf::Window **)Data_custom_val(win))
 
 
 int caml_Style_flags[] = {
@@ -44,12 +43,20 @@ int caml_Style_flags[] = {
     sf::Style::Fullscreen
 };
 
+void
+caml_sfWindow_destroy(value win)
+{
+    delete SfWindow_val(win);
+}
+
 /* sf::Window */
 
 CAMLextern_C value
 caml_sfWindow_create(
     value ml_mode, value title, value ml_style, value ml_settings)
 {
+    CAMLparam4(ml_mode, title, ml_style, ml_settings);
+
     sf::ContextSettings settings;
 
     SfContextSettings_val(&settings, ml_settings);
@@ -66,12 +73,18 @@ caml_sfWindow_create(
     window = new sf::Window;
     window->create(mode, String_val(title), style, settings);
 
-    return Val_sfWindow(window);
+    CAMLlocal1(ml_window);
+    ml_window = caml_alloc_final(2, caml_sfWindow_destroy, 0, 1);
+    SfWindow_val(ml_window) = window;
+
+    CAMLreturn(ml_window);
 }
 
 CAMLextern_C value
 caml_sfWindow_createFromHandle(value ml_handle, value ml_settings)
 {
+    CAMLparam2(ml_handle, ml_settings);
+
     sf::ContextSettings settings;
 
     SfContextSettings_val(&settings, ml_settings);
@@ -80,14 +93,11 @@ caml_sfWindow_createFromHandle(value ml_handle, value ml_settings)
     window = new sf::Window;
     window->create(Nativeint_val(ml_handle), settings);
 
-    return Val_sfWindow(window);
-}
+    CAMLlocal1(ml_window);
+    ml_window = caml_alloc_final(2, caml_sfWindow_destroy, 0, 1);
+    SfWindow_val(ml_window) = window;
 
-CAMLextern_C value
-caml_sfWindow_destroy(value win)
-{
-    delete SfWindow_val(win);
-    return Val_unit;
+    CAMLreturn(ml_window);
 }
 
 CAMLextern_C value
