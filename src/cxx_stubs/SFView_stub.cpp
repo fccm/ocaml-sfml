@@ -35,7 +35,7 @@ caml_sfView_destroy(value view)
 }
 
 value
-Val_sfView(sf::View *view, value origin)
+Val_sfView(const sf::View *view, value origin)
 {
     CAMLparam1(origin);
     CAMLlocal1(ret);
@@ -43,20 +43,24 @@ Val_sfView(sf::View *view, value origin)
         ret = caml_alloc_final(2, caml_sfView_destroy, 0, 1);
     else
     {
+        /* The view is owned by another object that will free it when
+           appropriate. Keep a pointer to the owning object in place of the
+           function suite of custom blocks so that it doesn’t get GC'd. */
         ret = caml_alloc_tuple(2);
         Store_field(ret, 0, origin);
     }
-    SfView_val(ret) = view;
+    /* const correctness is checked at runtime with the tag of the value using
+       the sfView_immutable_guard function below. */
+    SfView_val(ret) = const_cast<sf::View *>(view);
     CAMLreturn(ret);
 }
 
 static void
 sfView_immutable_guard(const char *fname, value view)
 {
-    char error[64];
-
     if (Tag_val(view) == 0)
     {
+        char error[64];
         snprintf(error, sizeof(error), "SFView.%s: immutable view", fname);
         caml_invalid_argument(error);
     }

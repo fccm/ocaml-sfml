@@ -422,7 +422,7 @@ CAMLextern_C value
 caml_sfRenderWindow_getView(value win)
 {
     CAMLparam1(win);
-    CAMLreturn(Val_sfView(SfRenderWindow_val(win)->getView(), win));
+    CAMLreturn(Val_sfView(&SfRenderWindow_val(win)->getView(), win));
 }
 
 /* TODO

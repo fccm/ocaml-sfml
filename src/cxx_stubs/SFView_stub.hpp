@@ -4,7 +4,7 @@
 #include <SFML/Graphics/View.hpp>
 
 
-value Val_sfView(sf::View *view, value origin = Val_unit);
+value Val_sfView(const sf::View *view, value origin = Val_unit);
 
 #define SfView_val(view) (*(sf::View **)(Data_custom_val(view)))
 
