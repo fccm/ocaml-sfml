@@ -421,8 +421,8 @@ caml_sfRenderWindow_setTitle(value win, value title)
 CAMLextern_C value
 caml_sfRenderWindow_getView(value win)
 {
-    sf::View view = SfRenderWindow_val(win)->getView();
-    return Val_sfView(&view, Val_false);
+    CAMLparam1(win);
+    CAMLreturn(Val_sfView(SfRenderWindow_val(win)->getView(), win));
 }
 
 /* TODO

@@ -2,7 +2,7 @@ type t
 
 external create: unit -> t = "caml_sfView_create"
 external createFromRect: rect:float SFRect.t -> t = "caml_sfView_createFromRect"
-external destroy: view:t -> unit = "caml_sfView_destroy"
+external copy: view:t -> unit = "caml_sfView_copy"
 external setCenter: view:t -> center:float * float -> unit
   = "caml_sfView_setCenter2"
 external setCenter2: view:t -> x:float -> y:float -> unit

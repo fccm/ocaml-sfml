@@ -28,13 +28,38 @@
 #include "SFView_stub.hpp"
 #include "SFRect_stub.hpp"
 
-value Val_sfView(sf::View *view, value deletable) {
-    CAMLparam0();
-    CAMLlocal1(var);
-    var = caml_alloc(2, 0);
-    Store_field(var, 0, ((value) (view)));
-    Store_field(var, 1, deletable);
-    CAMLreturn(var);
+static void
+caml_sfView_destroy(value view)
+{
+    delete SfView_val(view);
+}
+
+value
+Val_sfView(sf::View *view, value origin)
+{
+    CAMLparam1(origin);
+    CAMLlocal1(ret);
+    if (origin == Val_unit)
+        ret = caml_alloc_final(2, caml_sfView_destroy, 0, 1);
+    else
+    {
+        ret = caml_alloc_tuple(2);
+        Store_field(ret, 0, origin);
+    }
+    SfView_val(ret) = view;
+    CAMLreturn(ret);
+}
+
+static void
+sfView_immutable_guard(const char *fname, value view)
+{
+    char error[64];
+
+    if (Tag_val(view) == 0)
+    {
+        snprintf(error, sizeof(error), "SFView.%s: immutable view", fname);
+        caml_invalid_argument(error);
+    }
 }
 
 /* sf::View */
@@ -42,29 +67,31 @@ value Val_sfView(sf::View *view, value deletable) {
 CAMLextern_C value
 caml_sfView_create(value unit)
 {
+    CAMLparam0();
     sf::View *view = new sf::View;
-    return Val_sfView(view, Val_true);
+    CAMLreturn(Val_sfView(view));
 }
 
 CAMLextern_C value
 caml_sfView_createFromRect(value float_rect)
 {
+    CAMLparam1(float_rect);
     sf::View *view = new sf::View(SfFloatRect_val(float_rect));
-    return Val_sfView(view, Val_true);
+    CAMLreturn(Val_sfView(view));
 }
 
 CAMLextern_C value
-caml_sfView_destroy(value view)
+caml_sfView_copy(value view)
 {
-    if (sfView_deletable(view)) {
-        delete SfView_val(view);
-    }
-    return Val_unit;
+    CAMLparam1(view);
+    sf::View *copy = new sf::View(*SfView_val(view));
+    CAMLreturn(Val_sfView(copy));
 }
 
 CAMLextern_C value
 caml_sfView_setCenter(value view, value x, value y)
 {
+    sfView_immutable_guard("setCenter", view);
     SfView_val(view)->setCenter(SfVector2f_val2(x, y));
     return Val_unit;
 }
@@ -72,6 +99,7 @@ caml_sfView_setCenter(value view, value x, value y)
 CAMLextern_C value
 caml_sfView_setCenter2(value view, value center)
 {
+    sfView_immutable_guard("setCenter2", view);
     SfView_val(view)->setCenter(SfVector2f_val(center));
     return Val_unit;
 }
@@ -79,6 +107,7 @@ caml_sfView_setCenter2(value view, value center)
 CAMLextern_C value
 caml_sfView_move(value view, value offsetX, value offsetY)
 {
+    sfView_immutable_guard("move", view);
     SfView_val(view)->move(SfVector2f_val2(offsetX, offsetY));
     return Val_unit;
 }
@@ -86,6 +115,7 @@ caml_sfView_move(value view, value offsetX, value offsetY)
 CAMLextern_C value
 caml_sfView_move2(value view, value offset)
 {
+    sfView_immutable_guard("move2", view);
     SfView_val(view)->move(SfVector2f_val(offset));
     return Val_unit;
 }
@@ -93,6 +123,7 @@ caml_sfView_move2(value view, value offset)
 CAMLextern_C value
 caml_sfView_zoom(value view, value factor)
 {
+    sfView_immutable_guard("zoom", view);
     SfView_val(view)->zoom(Double_val(factor));
     return Val_unit;
 }
