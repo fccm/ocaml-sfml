@@ -43,7 +43,7 @@ int caml_Style_flags[] = {
     sf::Style::Fullscreen
 };
 
-void
+static void
 caml_sfWindow_destroy(value win)
 {
     delete SfWindow_val(win);
