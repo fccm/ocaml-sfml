@@ -27,11 +27,11 @@
 #include "sf_caml_incs.hpp"
 #include "sf_caml_conv.hpp"
 #include "sf_conv_vectors.hpp"
+#include "sf_conv_style.hpp"
 #include "sf_context_settings.hpp"
 
 #include "SFRenderWindow_stub.hpp"
 #include "SFRenderStates_stub.hpp"
-#include "SFWindow_stub.hpp"
 #include "SFVideoMode_stub.hpp"
 #include "SFView_stub.hpp"
 #include "SFEvent_stub.hpp"
@@ -60,7 +60,7 @@ caml_sfRenderWindow_create(
     sf::VideoMode mode;
     SfVideoMode_val(&mode, ml_mode);
 
-    sf::Uint32 style = caml_convert_flag_list(ml_style, caml_Style_flags);
+    sf::Uint32 style = SfStyle_val(ml_style);
 
     sf::RenderWindow *window;
     window = new sf::RenderWindow;

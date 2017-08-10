@@ -27,21 +27,14 @@
 
 #include "sf_caml_conv.hpp"
 #include "sf_conv_vectors.hpp"
+#include "sf_conv_style.hpp"
 #include "sf_context_settings.hpp"
 
-#include "SFWindow_stub.hpp"
 #include "SFEvent_stub.hpp"
 #include "SFVideoMode_stub.hpp"
 
 #define SfWindow_val(win) (*(sf::Window **)Data_custom_val(win))
 
-
-int caml_Style_flags[] = {
-    sf::Style::Titlebar,
-    sf::Style::Resize,
-    sf::Style::Close,
-    sf::Style::Fullscreen
-};
 
 static void
 caml_sfWindow_destroy(value win)
@@ -64,7 +57,7 @@ caml_sfWindow_create(
     sf::VideoMode mode;
     SfVideoMode_val(&mode, ml_mode);
 
-    sf::Uint32 style = caml_convert_flag_list(ml_style, caml_Style_flags);
+    sf::Uint32 style = SfStyle_val(ml_style);
 
     if (style & sf::Style::Fullscreen && !mode.isValid())
         caml_invalid_argument("SFWindow.create: video_mode");
