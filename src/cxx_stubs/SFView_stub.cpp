@@ -43,25 +43,26 @@ Val_sfView(const sf::View *view, value origin)
         ret = caml_alloc_final(2, caml_sfView_destroy, 0, 1);
     else
     {
-        /* The view is owned by another object that will free it when
+        /* The view is owned by an sf::RenderTarget that will free it when
            appropriate. Keep a pointer to the owning object in place of the
            function suite of custom blocks so that it doesn’t get GC'd. */
         ret = caml_alloc_tuple(2);
         Store_field(ret, 0, origin);
     }
-    /* const correctness is checked at runtime with the tag of the value using
-       the sfView_immutable_guard function below. */
+    /* const correctness is ensured at runtime against the tag of the value
+       using the sfView_owner_guard function below. */
     SfView_val(ret) = const_cast<sf::View *>(view);
     CAMLreturn(ret);
 }
 
 static void
-sfView_immutable_guard(const char *fname, value view)
+sfView_owner_guard(const char *fname, value view)
 {
     if (Tag_val(view) == 0)
     {
         char error[64];
-        snprintf(error, sizeof(error), "SFView.%s: immutable view", fname);
+        snprintf(error, sizeof(error),
+                 "SFView.%s: view is owned by an SFML render target", fname);
         caml_invalid_argument(error);
     }
 }
@@ -95,7 +96,7 @@ caml_sfView_copy(value view)
 CAMLextern_C value
 caml_sfView_setCenter(value view, value x, value y)
 {
-    sfView_immutable_guard("setCenter", view);
+    sfView_owner_guard("setCenter", view);
     SfView_val(view)->setCenter(SfVector2f_val2(x, y));
     return Val_unit;
 }
@@ -103,7 +104,7 @@ caml_sfView_setCenter(value view, value x, value y)
 CAMLextern_C value
 caml_sfView_setCenter2(value view, value center)
 {
-    sfView_immutable_guard("setCenter2", view);
+    sfView_owner_guard("setCenter2", view);
     SfView_val(view)->setCenter(SfVector2f_val(center));
     return Val_unit;
 }
@@ -111,7 +112,7 @@ caml_sfView_setCenter2(value view, value center)
 CAMLextern_C value
 caml_sfView_move(value view, value offsetX, value offsetY)
 {
-    sfView_immutable_guard("move", view);
+    sfView_owner_guard("move", view);
     SfView_val(view)->move(SfVector2f_val2(offsetX, offsetY));
     return Val_unit;
 }
@@ -119,7 +120,7 @@ caml_sfView_move(value view, value offsetX, value offsetY)
 CAMLextern_C value
 caml_sfView_move2(value view, value offset)
 {
-    sfView_immutable_guard("move2", view);
+    sfView_owner_guard("move2", view);
     SfView_val(view)->move(SfVector2f_val(offset));
     return Val_unit;
 }
@@ -127,7 +128,7 @@ caml_sfView_move2(value view, value offset)
 CAMLextern_C value
 caml_sfView_zoom(value view, value factor)
 {
-    sfView_immutable_guard("zoom", view);
+    sfView_owner_guard("zoom", view);
     SfView_val(view)->zoom(Double_val(factor));
     return Val_unit;
 }
