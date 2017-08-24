@@ -1,12 +1,41 @@
-type t
+type t = {
+    clock: SFClock.t;
+    mutable time: SFTime.t;
+    mutable paused: bool
+  }
 
-external create: paused:bool -> t = "caml_sfPausableClock_create"
-external destroy: clock:t -> unit = "caml_sfPausableClock_destroy"
-external isPaused: clock:t -> bool = "caml_sfPausableClock_isPaused"
-external getElapsedTime: clock:t -> SFTime.t = "caml_sfPausableClock_getElapsedTime"
-external restart: clock:t -> paused:bool -> SFTime.t = "caml_sfPausableClock_restart"
-external pause: clock:t -> unit = "caml_sfPausableClock_pause"
-external start: clock:t -> unit = "caml_sfPausableClock_start"
+let create ~paused = {
+    clock = SFClock.create ();
+    time = SFTime.zero;
+    paused
+  }
 
-external getElapsedTime_asSeconds: clock:t -> float
-  = "caml_sfPausableClock_getElapsedTime_asSeconds"
+let isPaused clock = clock.paused
+
+let getElapsedTime clock =
+  if clock.paused then
+    clock.time
+  else
+    SFTime.add clock.time (SFClock.getElapsedTime clock.clock)
+
+let restart clock ~paused =
+  let ret = match clock.paused, paused with
+    | true, _ -> clock.time
+    | false, false -> SFTime.add clock.time (SFClock.restart clock.clock)
+    | false, true -> SFTime.add clock.time (SFClock.getElapsedTime clock.clock)
+  in
+  clock.time <- SFTime.zero;
+  clock.paused <- paused;
+  ret
+
+let pause clock =
+  if not clock.paused then (
+    clock.time <- SFTime.add clock.time (SFClock.getElapsedTime clock.clock);
+    clock.paused <- true
+  )
+
+let start clock =
+  if clock.paused then (
+    ignore (SFClock.restart clock.clock);
+    clock.paused <- false
+  )

@@ -187,6 +187,8 @@ c_oo_cmxs: \
 
 SFTime.mli:
 	:
+SFPausableClock.mli:
+	:
 SFBlendMode.mli:
 	:
 SFText.mli:
@@ -216,7 +218,7 @@ SFRenderStates.mli:
 # clean generated .mli files:
 GENERATED_MLI := \
       SFConfig.mli \
-      SFClock.mli SFPausableClock.mli \
+      SFClock.mli \
       SFRect.mli SFColor.mli \
       SFMusic.mli SFListener.mli SFSoundRecorder.mli \
       SFKey.mli SFMouse.mli SFKeyboard.mli SFJoystick.mli \
@@ -350,7 +352,6 @@ STUBS_FILES_SYSTEM := \
   sf_conv_vectors.cpp \
   SFConfig_stub.cpp \
   SFClock_stub.cpp \
-  SFPausableClock_stub.cpp \
   #END
 STUBS_FILES_WINDOW := \
   sf_context_settings.cpp \
