@@ -28,79 +28,35 @@
 
 #include "SFTime_stub.hpp"
 
-#define Val_sfClock(clk) ((value)(clk))
-#define SfClock_val(clk) ((sf::Clock *)(clk))
+#define SfClock_val(clk) (*(sf::Clock **)Data_custom_val(clk))
+
+
+static void
+caml_sfClock_destroy(value clock)
+{
+    delete SfClock_val(clock);
+}
 
 /* sf::Clock */
 
 CAMLextern_C value
 caml_sfClock_create(value unit)
 {
-    sf::Clock *clock = new sf::Clock;
-    return Val_sfClock(clock);
-}
-
-CAMLextern_C value
-caml_sfClock_destroy(value clock)
-{
-    delete SfClock_val(clock);
-    return Val_unit;
+    value clock = caml_alloc_final(2, caml_sfClock_destroy, 0, 1);
+    SfClock_val(clock) = new sf::Clock;
+    return clock;
 }
 
 CAMLextern_C value
 caml_sfClock_restart(value clock)
 {
-    sf::Time time = SfClock_val(clock)->restart();
-    return Val_sfTime_u(time);
-}
-
-CAMLextern_C value
-caml_sfClock_restart_asSeconds(value clock)
-{
-    sf::Time time = SfClock_val(clock)->restart();
-    return caml_copy_double(time.asSeconds());
-}
-
-CAMLextern_C value
-caml_sfClock_restart_asMilliseconds(value clock)
-{
-    sf::Int32 millisec = SfClock_val(clock)->restart().asMilliseconds();
-    return caml_copy_int32(millisec);
-}
-
-CAMLextern_C value
-caml_sfClock_restart_asMicroseconds(value clock)
-{
-    sf::Int64 micro = SfClock_val(clock)->restart().asMicroseconds();
-    return caml_copy_int64(micro);
+    return Val_sfTime(SfClock_val(clock)->restart());
 }
 
 CAMLextern_C value
 caml_sfClock_getElapsedTime(value clock)
 {
-    sf::Time time = SfClock_val(clock)->getElapsedTime();
-    return Val_sfTime_u(time);
-}
-
-CAMLextern_C value
-caml_sfClock_getElapsedTime_asSeconds(value clock)
-{
-    float sec = SfClock_val(clock)->getElapsedTime().asSeconds();
-    return caml_copy_double(sec);
-}
-
-CAMLextern_C value
-caml_sfClock_getElapsedTime_asMilliseconds(value clock)
-{
-    sf::Int32 millisec = SfClock_val(clock)->getElapsedTime().asMilliseconds();
-    return caml_copy_int32(millisec);
-}
-
-CAMLextern_C value
-caml_sfClock_getElapsedTime_asMicroseconds(value clock)
-{
-    sf::Int64 micro = SfClock_val(clock)->getElapsedTime().asMicroseconds();
-    return caml_copy_int64(micro);
+    return Val_sfTime(SfClock_val(clock)->getElapsedTime());
 }
 
 // vim: sw=4 sts=4 ts=4 et

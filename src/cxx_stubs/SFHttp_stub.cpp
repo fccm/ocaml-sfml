@@ -206,7 +206,7 @@ caml_sfHttp_sendRequest(value http, value request, value timeout, value unit)
     sf::Http::Response resp;
     if (timeout != Val_none)
         resp = SfHttp_val(http)->sendRequest(
-                *SfHttpRequest_val(request), *SfTime_val_u(Some_val(timeout)));
+                *SfHttpRequest_val(request), SfTime_val(Some_val(timeout)));
     else
         resp = SfHttp_val(http)->sendRequest(
                 *SfHttpRequest_val(request));

@@ -93,7 +93,7 @@ CAMLextern_C value
 caml_sfIpAddress_getPublicAddress(value timeout)
 {
     //sf::IpAddress addr = sf::IpAddress::getPublicAddress();  // TODO
-    sf::IpAddress addr = sf::IpAddress::getPublicAddress(*SfTime_val_u(timeout));
+    sf::IpAddress addr = sf::IpAddress::getPublicAddress(SfTime_val(timeout));
     return Val_sfIpAddress(addr);
 }
 

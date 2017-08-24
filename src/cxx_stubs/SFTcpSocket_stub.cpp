@@ -55,7 +55,7 @@ caml_sfTcpSocket_connect(
     if (timeout != Val_none) {
         st = SfTcpSocket_val(socket)->connect(
                 SfIpAddress_val(address), Int_val(port),
-                *SfTime_val_u(Some_val(timeout)));
+                SfTime_val(Some_val(timeout)));
     } else {
         st = SfTcpSocket_val(socket)->connect(
                 SfIpAddress_val(address), Int_val(port));

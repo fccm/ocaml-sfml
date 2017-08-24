@@ -349,7 +349,6 @@ STUBS_FILES_SYSTEM := \
   sf_caml_conv.cpp \
   sf_conv_vectors.cpp \
   SFConfig_stub.cpp \
-  SFTime_stub.cpp \
   SFClock_stub.cpp \
   SFPausableClock_stub.cpp \
   #END

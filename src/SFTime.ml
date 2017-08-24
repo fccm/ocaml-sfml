@@ -1,112 +1,47 @@
-type u
+type t = int64
 
-external of_seconds: amount:float -> u = "caml_sfSeconds"
-external of_milliseconds: amount:int32 -> u = "caml_sfMilliseconds"
-external of_microseconds: amount:int64 -> u = "caml_sfMicroseconds"
+let zero = Int64.zero
 
-external asSeconds: u -> float = "caml_sfTime_asSeconds"
-external asMilliseconds: u -> int32 = "caml_sfTime_asMilliseconds"
-external asMicroseconds: u -> int64 = "caml_sfTime_asMicroseconds"
+let of_seconds amount =
+  Int64.of_float (amount *. 1000000.)
 
-external add: u -> u -> u = "caml_sfTime_add"
-external sub: u -> u -> u = "caml_sfTime_sub"
-external mul: float -> u -> u = "caml_sfTime_mul"
-external mult: u -> float -> u = "caml_sfTime_mult"
-external div: u -> float -> u = "caml_sfTime_div"
-external ratio: u -> u -> float = "caml_sfTime_ratio"
-external rem: u -> u -> u = "caml_sfTime_rem"
+let of_milliseconds amount =
+  Int64.(mul (of_int (Int32.to_int amount)) 1000L)
 
-external eq: u -> u -> bool = "caml_sfTime_eq"
-external gt: u -> u -> bool = "caml_sfTime_gt"
-external lt: u -> u -> bool = "caml_sfTime_lt"
+external of_microseconds : int64 -> t = "%identity"
 
-external destroy: u -> unit = "caml_sfTime_destroy"
+let asSeconds t =
+  Int64.to_float t /. 1000000.
 
-external sleep: duration:u -> unit = "caml_sfSleep"
-external sleep_sec: duration:float -> unit = "caml_sfSleep_sec"
-(* equivalent than: SFTime.sleep (SFTime.of_seconds x) *)
+let asMilliseconds t =
+  Int32.of_int Int64.(to_int (div t 1000L))
 
-external sleep_msec: duration:int32 -> unit = "caml_sfSleep_msec"
-external sleep_musec: duration:int64 -> unit = "caml_sfSleep_musec"
+external asMicroseconds : t -> int64 = "%identity"
 
-(* ================ *)
+let add t1 t2 = Int64.add t1 t2
 
-type t = { u:u; s:string }
+let sub t1 t2 = Int64.sub t1 t2
 
-let destroy t =
-  Printf.printf "# destroying time (%s)...\n%!" t.s;
-  destroy t.u
+let mul t f = Int64.(of_float (to_float t *. f))
 
-let of_seconds ~amount =
-  let u = of_seconds ~amount in
-  let t = {u=u; s=" "} in
-  Gc.finalise destroy t;
-  (t)
+let div t f = Int64.(of_float (to_float t /. f))
 
-let of_milliseconds ~amount =
-  let u = of_milliseconds ~amount in
-  let t = {u=u; s=" "} in
-  Gc.finalise destroy t;
-  (t)
+let ratio t1 t2 = Int64.(to_float t1 /. to_float t2)
 
-let of_microseconds ~amount =
-  let u = of_microseconds ~amount in
-  let t = {u=u; s=" "} in
-  Gc.finalise destroy t;
-  (t)
+let rem t1 t2 = Int64.rem t1 t2
 
-let asSeconds t = asSeconds t.u
-let asMilliseconds t = asMilliseconds t.u
-let asMicroseconds t = asMicroseconds t.u
+let (+) t1 t2 = add t1 t2
 
-let add a b =
-  let u = add a.u b.u in
-  let t = {u=u; s=" "} in
-  Gc.finalise destroy t;
-  (t)
+let (-) t1 t2 = sub t1 t2
 
-let sub a b =
-  let u = sub a.u b.u in
-  let t = {u=u; s=" "} in
-  Gc.finalise destroy t;
-  (t)
+let ( * ) t f = mul t f
 
-let mul a b =
-  let u = mul a b.u in
-  let t = {u=u; s=" "} in
-  Gc.finalise destroy t;
-  (t)
+let (/) t f = div t f
 
-let mult a b =
-  let u = mult a.u b in
-  let t = {u=u; s=" "} in
-  Gc.finalise destroy t;
-  (t)
+let (//) t1 t2 = ratio t1 t2
 
-let div a b =
-  let u = div a.u b in
-  let t = {u=u; s=" "} in
-  Gc.finalise destroy t;
-  (t)
+let (mod) t1 t2 = rem t1 t2
 
-let ratio a b =
-  (ratio a.u b.u)
+let compare t1 t2 = Int64.compare t1 t2
 
-let rem a b =
-  let u = rem a.u b.u in
-  let t = {u=u; s=" "} in
-  Gc.finalise destroy t;
-  (t)
-
-let eq a b =
-  (eq a.u b.u)
-
-let gt a b =
-  (gt a.u b.u)
-
-let lt a b =
-  (lt a.u b.u)
-
-let sleep ~duration:t =
-  sleep ~duration:t.u
-
+external sleep : t -> unit = "caml_sfSleep"

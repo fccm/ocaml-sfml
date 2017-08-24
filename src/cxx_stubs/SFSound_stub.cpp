@@ -171,7 +171,7 @@ caml_sfSound_setAttenuation(value sound, value attenuation)
 CAMLextern_C value
 caml_sfSound_setPlayingOffset(value sound, value timeOffset)
 {
-    SfSound_val(sound)->setPlayingOffset(*SfTime_val_u(timeOffset));
+    SfSound_val(sound)->setPlayingOffset(SfTime_val(timeOffset));
     return Val_unit;
 }
 
@@ -179,7 +179,7 @@ CAMLextern_C value
 caml_sfSound_getPlayingOffset(value sound)
 {
     sf::Time playingOffset = SfSound_val(sound)->getPlayingOffset();
-    return Val_sfTime_u(playingOffset);
+    return Val_sfTime(playingOffset);
 }
 
 CAMLextern_C value

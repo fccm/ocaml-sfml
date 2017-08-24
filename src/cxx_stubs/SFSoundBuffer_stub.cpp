@@ -104,7 +104,7 @@ CAMLextern_C value
 caml_sfSoundBuffer_getDuration(value soundBuffer)
 {
     sf::Time duration = SfSoundBuffer_val(soundBuffer)->getDuration();
-    return Val_sfTime_u(duration);
+    return Val_sfTime(duration);
 }
 
 CAMLextern_C value

@@ -92,7 +92,7 @@ caml_sfSocketSelector_wait(value selector, value timeout, value unit)
     else
         return Val_bool(
             SfSocketSelector_val(selector)->wait(
-                *SfTime_val_u(Some_val(timeout))));
+                SfTime_val(Some_val(timeout))));
 }
 
 CAMLextern_C value

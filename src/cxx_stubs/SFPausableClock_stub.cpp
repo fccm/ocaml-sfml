@@ -71,7 +71,7 @@ CAMLextern_C value
 caml_sfPausableClock_getElapsedTime(value pclock)
 {
     sf::Time time = SfPausableClock_val(pclock)->getElapsedTime();
-    return Val_sfTime_u(time);
+    return Val_sfTime(time);
 }
 
 CAMLextern_C value
@@ -85,7 +85,7 @@ CAMLextern_C value
 caml_sfPausableClock_restart(value pclock, value paused)
 {
     sf::Time time = SfPausableClock_val(pclock)->restart(Bool_val(paused));
-    return Val_sfTime_u(time);
+    return Val_sfTime(time);
 }
 
 // vim: sw=4 sts=4 ts=4 et

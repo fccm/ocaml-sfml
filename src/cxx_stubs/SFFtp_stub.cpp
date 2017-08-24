@@ -227,11 +227,11 @@ caml_sfFtp_connect(
             //conv_port();
             port = Option_val(ml_port, Long_val, 21);
             *resp = SfFtp_val(ftp)->connect(
-                    SfIpAddress_val(server), port, *SfTime_val(timeout));
+                    SfIpAddress_val(server), port, SfTime_val(timeout));
             break;
         case 0b0010:
             *resp = SfFtp_val(ftp)->connect(
-                    SfIpAddress_val(server), 21, *SfTime_val(timeout));
+                    SfIpAddress_val(server), 21, SfTime_val(timeout));
             break;
         default:
             caml_failwith("SFFtp.connect");

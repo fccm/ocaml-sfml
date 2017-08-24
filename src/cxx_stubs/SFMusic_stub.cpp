@@ -78,7 +78,7 @@ CAMLextern_C value
 caml_sfMusic_getDuration(value music)
 {
     sf::Time duration = SfMusic_val(music)->getDuration();
-    return Val_sfTime_u(duration);
+    return Val_sfTime(duration);
 }
 
 CAMLextern_C value
@@ -126,7 +126,7 @@ caml_sfMusic_getStatus(value music)
 CAMLextern_C value
 caml_sfMusic_setPlayingOffset(value music, value timeOffset)
 {
-    SfMusic_val(music)->setPlayingOffset(*SfTime_val_u(timeOffset));
+    SfMusic_val(music)->setPlayingOffset(SfTime_val(timeOffset));
     return Val_unit;
 }
 
@@ -134,7 +134,7 @@ CAMLextern_C value
 caml_sfMusic_getPlayingOffset(value music)
 {
     sf::Time playingOffset = SfMusic_val(music)->getPlayingOffset();
-    return Val_sfTime_u(playingOffset);
+    return Val_sfTime(playingOffset);
 }
 
 CAMLextern_C value
