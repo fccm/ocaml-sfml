@@ -6,15 +6,15 @@ type t
 
 val createFromFile: filename:string -> t
 val createFromColor: width:int -> height:int -> color:SFColor.t -> t
-val createFromMemory: data:string -> t
-val createFromPixels: width:int -> height:int -> data:string -> t
+val createFromMemory: data:bytes -> t
+val createFromPixels: width:int -> height:int -> data:bytes -> t
 val createFromPixelsArray: pixels:(int * int * int * int) array array -> t
 
 type input =
   [ `Filename of string
-  | `Memory of string
+  | `Memory of bytes
   | `Color of int * int * SFColor.t
-  | `Pixels of int * int * string
+  | `Pixels of int * int * bytes
   | `PixelsArray of (int * int * int * int) array array
   ]
 

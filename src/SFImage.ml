@@ -6,10 +6,10 @@ external destroy: u -> unit = "caml_sfImage_destroy"
 external createFromColor: width:int -> height:int -> color:SFColor.t -> u
   = "caml_sfImage_createFromColor"
 
-external createFromMemory: data:string -> u
+external createFromMemory: data:bytes -> u
   = "caml_sfImage_createFromMemory"
 
-external createFromPixels: width:int -> height:int -> data:string -> u
+external createFromPixels: width:int -> height:int -> data:bytes -> u
   = "caml_sfImage_createFromPixels"
 
 external getWidth: image:u -> int = "caml_sfImage_getWidth"
@@ -131,9 +131,9 @@ let createFromPixelsArray ~pixels =
 
 type input =
   [ `Filename of string
-  | `Memory of string
+  | `Memory of bytes
   | `Color of int * int * SFColor.t
-  | `Pixels of int * int * string
+  | `Pixels of int * int * bytes
   | `PixelsArray of (int * int * int * int) array array
   ]
 

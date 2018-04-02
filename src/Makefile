@@ -222,7 +222,7 @@ GENERATED_MLI := \
       SFRect.mli SFColor.mli \
       SFMusic.mli SFListener.mli SFSoundRecorder.mli \
       SFKey.mli SFMouse.mli SFKeyboard.mli SFJoystick.mli \
-      SFEvent.mli SFView.mli SFWindow.mli SFVideoMode.mli SFStyle.mli \
+      SFView.mli SFWindow.mli SFVideoMode.mli SFStyle.mli \
       SFTexture.mli SFShader.mli SFTransform.mli \
       SFRenderWindow.mli SFContext.mli SFContextSettings.mli \
       SFIpAddress.mli \
@@ -246,7 +246,6 @@ SFImage.cmi: SFColor.cmi
 SFTexture.mli: SFImage.cmi SFRect.cmi
 SFPausableClock.mli: SFPausableClock.ml SFTime.cmi
 SFKeyboard.mli: SFKeyboard.ml SFKey.cmi
-SFEvent.mli: SFEvent.ml SFKey.cmi SFMouse.cmi
 SFShape.mli: SFShape.ml SFColor.cmi SFBlendMode.cmi SFCircleShape.cmi SFRectangleShape.cmi
 SFView.mli: SFView.ml SFRect.cmi
 SFSound.cmi: SFSoundBuffer.cmi SFTime.cmi

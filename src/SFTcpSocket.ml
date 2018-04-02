@@ -30,13 +30,13 @@ external send: socket:t -> data:string -> unit = "caml_sfTcpSocket_send"
 external send_sub: socket:t -> data:string -> ofs:int -> len:int -> unit
   = "caml_sfTcpSocket_send_sub"
 
-external receive: socket:t -> data:string -> int = "caml_sfTcpSocket_receive"
+external receive: socket:t -> data:bytes -> int = "caml_sfTcpSocket_receive"
 
 let receive_str =
   let rec_buf = Bytes.create (800 * 1024) in
   fun ~socket ->
     let n = receive ~socket ~data:rec_buf in
-    (String.sub rec_buf 0 n)
+    (Bytes.sub rec_buf 0 n)
 
 external sendPacket: socket:t -> packet:SFPacket.t -> unit
   = "caml_sfTcpSocket_sendPacket"
