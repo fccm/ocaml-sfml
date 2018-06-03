@@ -25,6 +25,7 @@
 
 #include "sf_caml_incs.hpp"
 #include "sf_caml_conv.hpp"
+#include "sf_context_settings.hpp"
 
 #define Val_sfContext(ctx) ((value)(ctx))
 #define SfContext_val(ctx) ((sf::Context *)(ctx))
@@ -44,6 +45,13 @@ caml_sfContext_destroy(value context)
 {
     delete SfContext_val(context);
     return Val_unit;
+}
+
+CAMLextern_C value
+caml_sfContext_getSettings(value context)
+{
+	CAMLparam1(context);
+	CAMLreturn(Val_sfContextSettings(&SfContext_val(context)->getSettings()));
 }
 
 CAMLextern_C value

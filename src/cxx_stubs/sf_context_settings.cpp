@@ -45,7 +45,7 @@ SfContextSettings_val(sf::ContextSettings *settings, value ml_settings)
 }
 
 value
-Val_sfContextSettings(sf::ContextSettings *settings)
+Val_sfContextSettings(const sf::ContextSettings *settings)
 {
     CAMLparam0();
     CAMLlocal2(attribute_list, ret);
