@@ -218,7 +218,7 @@ SFRenderStates.mli:
 # clean generated .mli files:
 GENERATED_MLI := \
       SFConfig.mli \
-      SFClock.mli SFClipboard.mli \
+      SFClock.mli SFClipboard.mli SFCursor.mli \
       SFRect.mli SFColor.mli \
       SFMusic.mli SFListener.mli SFSoundRecorder.mli \
       SFKey.mli SFMouse.mli SFKeyboard.mli SFJoystick.mli \
@@ -355,6 +355,7 @@ STUBS_FILES_SYSTEM := \
 STUBS_FILES_WINDOW := \
   sf_context_settings.cpp \
   SFClipboard_stub.cpp \
+  SFCursor_stub.cpp \
   SFKey_stub.cpp \
   SFMouse_stub.cpp \
   SFKeyboard_stub.cpp \
@@ -416,6 +417,7 @@ SYSTEM_MODULES := \
   #END
 WINDOW_MODULES := \
   SFClipboard.ml \
+  SFCursor.ml \
   SFKey.ml \
   SFMouse.ml \
   SFKeyboard.ml \

@@ -30,6 +30,7 @@
 #include "sf_conv_style.hpp"
 #include "sf_context_settings.hpp"
 
+#include "SFCursor_stub.hpp"
 #include "SFEvent_stub.hpp"
 #include "SFVideoMode_stub.hpp"
 
@@ -225,6 +226,13 @@ CAMLextern_C value
 caml_sfWindow_setMouseCursorGrabbed(value win, value grabbed)
 {
     SfWindow_val(win)->setMouseCursorGrabbed(Bool_val(grabbed));
+    return Val_unit;
+}
+
+CAMLextern_C value
+caml_sfWindow_setMouseCursor(value win, value cursor)
+{
+    SfWindow_val(win)->setMouseCursor(*SfCursor_val(cursor));
     return Val_unit;
 }
 

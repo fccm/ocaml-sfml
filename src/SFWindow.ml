@@ -65,6 +65,9 @@ external setMouseCursorVisible: t -> visible:bool -> unit
 external setMouseCursorGrabbed: t -> grabbed:bool -> unit
   = "caml_sfWindow_setMouseCursorGrabbed"
 
+external setMouseCursor: t -> cursor:SFCursor.t -> unit
+  = "caml_sfWindow_setMouseCursor"
+
 external setKeyRepeatEnabled: t -> enabled:bool -> unit
   = "caml_sfWindow_setKeyRepeatEnabled"
 
