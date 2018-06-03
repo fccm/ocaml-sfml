@@ -24,6 +24,7 @@
 #include <SFML/Window/Context.hpp>
 
 #include "sf_caml_incs.hpp"
+#include "sf_caml_conv.hpp"
 
 #define Val_sfContext(ctx) ((value)(ctx))
 #define SfContext_val(ctx) ((sf::Context *)(ctx))
@@ -50,6 +51,19 @@ caml_sfContext_setActive(value context, value active)
 {
     SfContext_val(context)->setActive(Bool_val(active));
     return Val_unit;
+}
+
+CAMLextern_C value
+caml_sfContext_getActiveContext(value unit)
+{
+	const sf::Context* context = sf::Context::getActiveContext();
+    return context == NULL ? Val_none : Some_val(context);
+}
+
+CAMLextern_C value
+caml_sfContext_getActiveContextId(value unit)
+{
+    return caml_copy_int64(sf::Context::getActiveContextId());
 }
 
 // vim: sw=4 sts=4 ts=4 et
