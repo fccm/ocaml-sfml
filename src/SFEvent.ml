@@ -18,3 +18,7 @@ type t =
   | JoystickButtonReleased of int * int
   | JoystickConnected of int
   | JoystickDisconnected of int
+  | TouchBegan of int * int * int
+  | TouchMoved of int * int * int
+  | TouchEnded of int * int * int
+  | SensorChanged of SFSensor.sensor_type * (float * float * float)

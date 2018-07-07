@@ -51,6 +51,10 @@
 #define Tag_sfEvtJoystickButtonReleased  11
 #define Tag_sfEvtJoystickConnected       12
 #define Tag_sfEvtJoystickDisconnected    13
+#define Tag_sfEvtTouchBegan              14
+#define Tag_sfEvtTouchMoved              15
+#define Tag_sfEvtTouchEnded              16
+#define Tag_sfEvtSensorChanged           17
 
 
 static value
@@ -203,6 +207,43 @@ Val_sfJoystickConnectEvent(int tag,
     Val_sfJoystickConnectEvent(Tag_sfEvtJoystickDisconnected, joystickId)
 
 
+static value
+Val_sfTouchEvent(int tag, unsigned int finger, int x, int y)
+{
+    CAMLparam0();
+    CAMLlocal1(var);
+    var = caml_alloc(3, tag);
+    Store_field(var, 0, Val_int(finger));
+    Store_field(var, 1, Val_int(x));
+    Store_field(var, 2, Val_int(y));
+    CAMLreturn(var);
+}
+
+#define Val_sfEvtTouchBegan(finger, x, y) \
+    Val_sfTouchEvent(Tag_sfEvtTouchBegan, finger, x, y)
+
+#define Val_sfEvtTouchMoved(finger, x, y) \
+    Val_sfTouchEvent(Tag_sfEvtTouchMoved, finger, x, y)
+
+#define Val_sfEvtTouchEnded(finger, x, y) \
+    Val_sfTouchEvent(Tag_sfEvtTouchEnded, finger, x, y)
+
+
+static value
+Val_sfEvtSensorChanged(sf::Sensor::Type type, float x, float y, float z)
+{
+    CAMLparam0();
+    CAMLlocal1(var);
+    var = caml_alloc(2, Tag_sfEvtSensorChanged);
+    Store_field(var, 0, Val_int(type));
+    Store_field(var, 1, caml_alloc(3, Double_array_tag));
+    Store_double_field(Field(var, 1), 0, x);
+    Store_double_field(Field(var, 1), 1, y);
+    Store_double_field(Field(var, 1), 2, z);
+    CAMLreturn(var);
+}
+
+
 value Val_sfEvent(const sf::Event& event, char const *fail_msg)
 {
     switch (event.type)
@@ -299,6 +340,31 @@ value Val_sfEvent(const sf::Event& event, char const *fail_msg)
 
         case sf::Event::Closed:
             return Val_sfEvtClosed;
+
+        case sf::Event::TouchBegan:
+            return Val_sfEvtTouchBegan(
+                            event.touch.finger,
+                            event.touch.x,
+                            event.touch.y);
+
+        case sf::Event::TouchMoved:
+            return Val_sfEvtTouchMoved(
+                            event.touch.finger,
+                            event.touch.x,
+                            event.touch.y);
+
+        case sf::Event::TouchEnded:
+            return Val_sfEvtTouchEnded(
+                            event.touch.finger,
+                            event.touch.x,
+                            event.touch.y);
+
+        case sf::Event::SensorChanged:
+            return Val_sfEvtSensorChanged(
+                            event.sensor.type,
+                            event.sensor.x,
+                            event.sensor.y,
+                            event.sensor.z);
 
         default: caml_failwith(fail_msg);
     }

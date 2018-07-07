@@ -47,18 +47,18 @@ type t =
   | Menu
   | LBracket  (** [ *)
   | RBracket  (** ] *)
-  | SemiColon  (** ; *)
+  | Semicolon  (** ; *)
   | Comma  (** , *)
   | Period  (** . *)
   | Quote  (** ' *)
   | Slash  (** / *)
-  | BackSlash
+  | Backslash
   | Tilde     (** ~ *)
   | Equal     (** = *)
-  | Dash      (** - *)
+  | Hyphen    (** - *)
   | Space
-  | Return
-  | BackSpace
+  | Enter
+  | Backspace
   | Tab
   | PageUp
   | PageDown
@@ -176,18 +176,18 @@ let string_of_keyCode = function
   | Menu      -> "Menu"
   | LBracket  -> "LBracket"
   | RBracket  -> "RBracket"
-  | SemiColon -> "SemiColon"
+  | Semicolon -> "Semicolon"
   | Comma     -> "Comma"
   | Period    -> "Period"
   | Quote     -> "Quote"
   | Slash     -> "Slash"
-  | BackSlash -> "BackSlash"
+  | Backslash -> "Backslash"
   | Tilde     -> "Tilde"
   | Equal     -> "Equal"
-  | Dash      -> "Dash"
+  | Hyphen    -> "Hyphen"
   | Space     -> "Space"
-  | Return    -> "Return"
-  | BackSpace -> "BackSpace"
+  | Enter     -> "Enter"
+  | Backspace -> "Backspace"
   | Tab       -> "Tab"
   | PageUp    -> "PageUp"
   | PageDown  -> "PageDown"
@@ -280,18 +280,18 @@ let keyCode_of_string = function
   | "Menu"      -> Menu
   | "LBracket"  -> LBracket
   | "RBracket"  -> RBracket
-  | "SemiColon" -> SemiColon
+  | "Semicolon" -> Semicolon
   | "Comma"     -> Comma
   | "Period"    -> Period
   | "Quote"     -> Quote
   | "Slash"     -> Slash
-  | "BackSlash" -> BackSlash
+  | "Backslash" -> Backslash
   | "Tilde"     -> Tilde
   | "Equal"     -> Equal
-  | "Dash"      -> Dash
+  | "Hyphen"    -> Hyphen
   | "Space"     -> Space
-  | "Return"    -> Return
-  | "BackSpace" -> BackSpace
+  | "Enter"     -> Enter
+  | "Backspace" -> Backspace
   | "Tab"       -> Tab
   | "PageUp"    -> PageUp
   | "PageDown"  -> PageDown
