@@ -58,7 +58,7 @@ external readInt16 : packet:u -> int = "caml_sfPacket_readInt16"
 external readUint16: packet:u -> int = "caml_sfPacket_readUint16"
 external readInt31 : packet:u -> int = "caml_sfPacket_readInt31"
 external readInt32 : packet:u -> int32 = "caml_sfPacket_readInt32_l"
-external readInt64 : packet:u -> int64 = "caml_sfPacket_readInt64"
+external readInt64 : packet:u -> int64 = "caml_sfPacket_readInt32"
 
 let writeBool   ~packet:p ~v = writeBool   ~packet:p.u v
 let writeFloat  ~packet:p ~v = writeFloat  ~packet:p.u v
