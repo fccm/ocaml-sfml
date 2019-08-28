@@ -27,9 +27,9 @@
 #include "sf_context_settings.hpp"
 
 int caml_Attribute_flags[] = {
-    sf::ContextSettings::Attribute::Default,
-    sf::ContextSettings::Attribute::Core,
-    sf::ContextSettings::Attribute::Debug
+    sf::ContextSettings::Default,
+    sf::ContextSettings::Core,
+    sf::ContextSettings::Debug
 };
 
 void
@@ -51,21 +51,21 @@ Val_sfContextSettings(const sf::ContextSettings *settings)
     CAMLlocal2(attribute_list, ret);
 
     attribute_list = Val_emptylist;
-    if (settings->attributeFlags & sf::ContextSettings::Attribute::Default)
+    if (settings->attributeFlags & sf::ContextSettings::Default)
     {
         value head = caml_alloc_tuple(2);
         Store_field(head, 0, Val_long(0));
         Store_field(head, 1, attribute_list);
         attribute_list = head;
     }
-    if (settings->attributeFlags & sf::ContextSettings::Attribute::Core)
+    if (settings->attributeFlags & sf::ContextSettings::Core)
     {
         value head = caml_alloc_tuple(2);
         Store_field(head, 0, Val_long(1));
         Store_field(head, 1, attribute_list);
         attribute_list = head;
     }
-    if (settings->attributeFlags & sf::ContextSettings::Attribute::Debug)
+    if (settings->attributeFlags & sf::ContextSettings::Debug)
     {
         value head = caml_alloc_tuple(2);
         Store_field(head, 0, Val_long(2));
