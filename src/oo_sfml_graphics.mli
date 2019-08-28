@@ -206,6 +206,7 @@ class render_window :
   ?depth:int ->
   ?stencil:int ->
   ?antialiasing:int ->
+  ?srgb_capable:bool ->
   int * int ->
   string ->
   object
@@ -236,6 +237,8 @@ class render_window :
     method set_key_repeat_enabled : enabled:bool -> unit
     method set_mouse_cursor_invisible : unit -> unit
     method set_mouse_cursor_visible : unit -> unit
+    method set_mouse_cursor_ungrabbed : unit -> unit
+    method set_mouse_cursor_grabbed : unit -> unit
     method set_position : pos:int * int -> unit
     method set_position2 : left:int -> top:int -> unit
     method set_size : size:int * int -> unit

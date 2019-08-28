@@ -360,10 +360,11 @@ class view ?rect () =
 
 
 class render_window
-  ?style ?bpp ?depth ?stencil ?antialiasing (width, height) title =
+  ?style ?bpp ?depth ?stencil ?antialiasing ?srgb_capable (width, height) title =
   object
     val this =
-      SFRenderWindow.make ?style ?bpp ?depth ?stencil ?antialiasing
+      let sRgbCapable = srgb_capable in
+      SFRenderWindow.make ?style ?bpp ?depth ?stencil ?antialiasing ?sRgbCapable
         (width, height) title
 
     method is_open     = SFRenderWindow.isOpen this
@@ -386,6 +387,8 @@ class render_window
 
     method set_mouse_cursor_visible () = SFRenderWindow.setMouseCursorVisible this ~show:true
     method set_mouse_cursor_invisible () = SFRenderWindow.setMouseCursorVisible this ~show:false
+    method set_mouse_cursor_grabbed () = SFRenderWindow.setMouseCursorGrabbed this ~grabbed:true
+    method set_mouse_cursor_ungrabbed () = SFRenderWindow.setMouseCursorGrabbed this ~grabbed:false
     method set_visible ~visible = SFRenderWindow.setVisible this ~visible
     method set_key_repeat_enabled ~enabled = SFRenderWindow.setKeyRepeatEnabled this ~enabled
     method set_active ~active = SFRenderWindow.setActive this ~active

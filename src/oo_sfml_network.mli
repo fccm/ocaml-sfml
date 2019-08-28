@@ -186,4 +186,5 @@ class ftp :
     method upload :
       localFile:string ->
       destPath:string -> mode:SFFtp.transferMode -> response
+    method send_command : command:string -> parameter:string -> response
   end

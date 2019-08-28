@@ -48,9 +48,12 @@ class listener =
     method set_position ~pos = SFListener.setPosition ~pos
     method set_position3 ~posX ~posY ~posZ = SFListener.setPosition3 ~posX ~posY ~posZ
     method set_direction ~orientation = SFListener.setDirection ~orientation
+    method set_up_vector ~vec = SFListener.setUpVector ~vec
+    method set_up_vector3 ~vecX ~vecY ~vecZ = SFListener.setUpVector3 ~vecX ~vecY ~vecZ
     method global_volume = SFListener.getGlobalVolume ()
     method position = SFListener.getPosition ()
     method direction = SFListener.getDirection ()
+    method up_vector = SFListener.getUpVector ()
   end
 
 
