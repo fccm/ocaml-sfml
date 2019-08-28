@@ -1,3 +1,7 @@
+(**  *)
+(** {{:http://www.sfml-dev.org/documentation/2.0/classsf_1_1Event.php}
+  Online documentation for the Event class} *)
+
 type t =
   | Closed
   | MouseMoved of int * int  (** x, y *)
