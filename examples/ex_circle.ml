@@ -4,11 +4,14 @@ let width, height = (640, 480)
 let () =
   (* Create the main window *)
   let mode, settings =
-    { SFRenderWindow.width; height; bitsPerPixel = 32 },
-    { SFRenderWindow.depthBits = 24; stencilBits = 8; antialiasingLevel = 2;
-      majorVersion = 0; minorVersion = 0 }
+    { SFVideoMode.width; height; bitsPerPixel = 32 },
+    { SFContextSettings.depthBits = 24; stencilBits = 8; antialiasingLevel = 2;
+      majorVersion = 0; minorVersion = 0;
+      attributes = []; sRgbCapable = false }
   in
-  let app = SFRenderWindow.create mode "SFML window" [`resize; `close] settings in
+  let app =
+    SFRenderWindow.create ~mode ~title:"SFML window"
+        ~style:[SFStyle.Resize; SFStyle.Close] ~settings in
 
   (* Create a graphical string to display *)
   let font = SFFont.createFromFile "./data/Vera.ttf" in
