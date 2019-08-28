@@ -70,9 +70,9 @@ class float_rect ((left, top), (width, height)) =
 
 type image_src = [
   | `FromFile of string
-  | `FromMemory of string
+  | `FromMemory of bytes
   | `FromColor of (int * int * SFColor.t)
-  | `FromPixels of (int * int * string)
+  | `FromPixels of (int * int * bytes)
   | `FromPixelsArray of (int * int * int * int) array array
   | `FromSFImage of SFImage.t
   ]
@@ -347,7 +347,6 @@ class view ?rect () =
       | None -> SFView.create ()
       | Some rect -> SFView.createFromRect ~rect
 
-    method destroy () = SFView.destroy ~view
     method set_center ~center = SFView.setCenter ~view ~center
     method set_center2 ~x ~y = SFView.setCenter2 ~view ~x ~y
     method move ~offset = SFView.move ~view ~offset
@@ -360,11 +359,10 @@ class view ?rect () =
 
 
 class render_window
-  ?style ?bpp ?depth ?stencil ?antialiasing ?srgb_capable (width, height) title =
+  ?style ?bpp ?settings (width, height) title =
   object
     val this =
-      let sRgbCapable = srgb_capable in
-      SFRenderWindow.make ?style ?bpp ?depth ?stencil ?antialiasing ?sRgbCapable
+      SFRenderWindow.make ?style ?bpp ?settings
         (width, height) title
 
     method is_open     = SFRenderWindow.isOpen this

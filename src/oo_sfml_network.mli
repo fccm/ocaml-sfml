@@ -66,6 +66,7 @@ class packet :
     method write_int16 : int -> unit
     method write_int31 : int -> unit
     method write_int32 : int32 -> unit
+    method write_int64 : int64 -> unit
     method write_int8 : int -> unit
     method write_string : string -> unit
     method write_uint16 : int -> unit
@@ -77,8 +78,8 @@ class tcp_socket :
     method connect :
       port:int -> address:SFIpAddress.t -> timeout:SFTime.t -> unit -> unit
     method destroy : unit -> unit
-    method receive : unit -> string
-    method receive_buf : buf:string -> int
+    method receive : unit -> bytes
+    method receive_buf : buf:bytes -> int
     method receive_packet : packet:packet -> unit
     method send : data:string -> unit
     method send_packet : packet:packet -> unit
@@ -89,7 +90,7 @@ class tcp_socket :
 class udp_socket :
   object
     val socket : SFUdpSocket.t
-    method bind : port:int -> unit
+    method bind : port:int -> ?address:SFIpAddress.t -> unit
     method destroy : unit -> unit
     method receive : data:string -> int * SFIpAddress.t * int
     method receive_packet : packet:packet -> SFIpAddress.t * int
@@ -183,8 +184,8 @@ class ftp :
     method login_anonymous : unit -> response
     method parent_directory : unit -> response
     method rename_file : file:string -> newName:string -> response
+    method send_command : command:string -> parameter:string -> response
     method upload :
       localFile:string ->
       destPath:string -> mode:SFFtp.transferMode -> response
-    method send_command : command:string -> parameter:string -> response
   end

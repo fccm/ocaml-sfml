@@ -315,8 +315,8 @@ class ftp =
       let dir_resp = SFFtp.getWorkingDirectory ftp in
       (new directory_response dir_resp)
 
-    method send_command () =
-      let com_resp = SFFtp.sendCommand ftp in
+    method send_command  ~command ~parameter =
+      let com_resp = SFFtp.sendCommand ftp ~command ~parameter in
       (new response com_resp)
 end
 

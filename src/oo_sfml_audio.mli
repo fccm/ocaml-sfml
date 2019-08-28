@@ -34,13 +34,13 @@ class listener :
     method direction : float * float * float
     method global_volume : float
     method position : float * float * float
-    method up_vector : float * float * float
     method set_direction : orientation:float * float * float -> unit
     method set_global_volume : volume:float -> unit
     method set_position : pos:float * float * float -> unit
     method set_position3 : posX:float -> posY:float -> posZ:float -> unit
-    method set_up_vector : vec:float * float * float -> unit
+    method set_up_vector : vector:float * float * float -> unit
     method set_up_vector3 : vecX:float -> vecY:float -> vecZ:float -> unit
+    method up_vector : float * float * float
   end
 type sound_buffer_src =
     [ `FromFile of string

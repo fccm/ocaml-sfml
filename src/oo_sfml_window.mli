@@ -3,18 +3,14 @@
   Online documentation for the window module} *)
 
 class window :
-  ?style:SFWindow.window_style list ->
+  ?style:SFStyle.t list ->
   ?bpp:int ->
-  ?depth:int ->
-  ?stencil:int ->
-  ?antialiasing:int ->
-  ?version:int * int ->
+  ?settings:SFContextSettings.t ->
   int * int ->
   string ->
   object
     val this : SFWindow.t
     method close : unit -> unit
-    method destroy : unit -> unit
     method display : unit -> unit
     method get_mouse_position : unit -> int * int
     method height : int

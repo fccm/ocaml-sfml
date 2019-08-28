@@ -7,10 +7,10 @@
 
 
 class window
-  ?style ?bpp ?depth ?stencil ?antialiasing ?version (width, height) title =
+  ?style ?bpp ?settings (width, height) title =
   object
     val this =
-      SFWindow.make ?style ?bpp ?depth ?stencil ?antialiasing ?version
+      SFWindow.make ?style ?bpp ?settings
         (width, height) title
 
 (* TODO: SFWindow.createFromHandle : handle:nativeint -> settings:window_settings -> t *)
@@ -18,7 +18,6 @@ class window
     method is_open = SFWindow.isOpen this
     method close () = SFWindow.close this
     method display () = SFWindow.display this
-    method destroy () = SFWindow.destroy this
 
     method poll_event () = SFWindow.pollEvent this
     method wait_event () = SFWindow.waitEvent this

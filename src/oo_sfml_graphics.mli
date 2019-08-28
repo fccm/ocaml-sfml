@@ -31,8 +31,8 @@ class float_rect :
 type image_src =
     [ `FromColor of int * int * SFColor.t
     | `FromFile of string
-    | `FromMemory of string
-    | `FromPixels of int * int * string
+    | `FromMemory of bytes
+    | `FromPixels of int * int * bytes
     | `FromPixelsArray of (int * int * int * int) array array
     | `FromSFImage of SFImage.t ]
 type flip_direction = [ `horizontally | `vertically ]
@@ -192,7 +192,6 @@ class view :
   object
     val view : SFView.t
     method center : float * float
-    method destroy : unit -> unit
     method move : offset:float * float -> unit
     method move2 : offset_x:float -> offset_y:float -> unit
     method set_center : center:float * float -> unit
@@ -201,12 +200,9 @@ class view :
     method zoom : factor:float -> unit
   end
 class render_window :
-  ?style:SFRenderWindow.window_style list ->
+  ?style:SFStyle.t list ->
   ?bpp:int ->
-  ?depth:int ->
-  ?stencil:int ->
-  ?antialiasing:int ->
-  ?srgb_capable:bool ->
+  ?settings:SFContextSettings.t ->
   int * int ->
   string ->
   object
@@ -235,10 +231,10 @@ class render_window :
     method set_framerate_limit : limit:int -> unit
     method set_joystick_threshold : threshold:float -> unit
     method set_key_repeat_enabled : enabled:bool -> unit
-    method set_mouse_cursor_invisible : unit -> unit
-    method set_mouse_cursor_visible : unit -> unit
-    method set_mouse_cursor_ungrabbed : unit -> unit
     method set_mouse_cursor_grabbed : unit -> unit
+    method set_mouse_cursor_invisible : unit -> unit
+    method set_mouse_cursor_ungrabbed : unit -> unit
+    method set_mouse_cursor_visible : unit -> unit
     method set_position : pos:int * int -> unit
     method set_position2 : left:int -> top:int -> unit
     method set_size : size:int * int -> unit
