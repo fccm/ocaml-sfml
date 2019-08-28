@@ -28,6 +28,8 @@
 #include "SFView_stub.hpp"
 #include "SFRect_stub.hpp"
 
+#include <stdio.h>
+
 static void
 caml_sfView_destroy(value view)
 {
