@@ -8,3 +8,7 @@
 - Update from the 1.6 API to the 2.0 API by Florent Monnier.
 
 - Added stubs for the C++ API by Florent Monnier.
+
+- Updated to SFML 2.2 by Sylvain Boilard.
+
+- Updated to SFML 2.4 by Sylvain Boilard.

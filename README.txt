@@ -50,6 +50,8 @@ The main author of the SFML library is Laurent Gomila.
 The main author of the ocaml-sfml bindings is Florent Monnier (contact
 by email: <monnier.florent()gmail.com>).
 Jérémie Dimino also contributed to ocaml-sfml (email: <jeremie()dimino.org>).
+Sylvain Boilard made a lot of changes to update to the SFML versions 2.2 and
+2.4 (email <boilard()crans.org>).
 
 You can get more details about the contributions in the file "Authors.txt",
 or browsing the history of the SCM.
