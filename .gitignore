@@ -1,0 +1,7 @@
+*.cm[ioxa]
+*.cmx[as]
+*.[oa]
+*.so
+*.swp
+*~
+*_depend.mk
