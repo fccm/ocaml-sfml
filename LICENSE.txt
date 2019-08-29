@@ -1,5 +1,6 @@
 ocaml-sfml : OCaml bindings for the SFML library.
-Copyright (C) 2010 - 2013 Florent Monnier <monnier.florent()gmail.com>
+Copyright (C) 2010 - 2013, 2019 Florent Monnier <monnier.florent()gmail.com>
+Copyright (C) 2017, 2018 Sylvain Boilard <boilard()crans.org>
 
 This software is provided 'as-is', without any express or implied warranty.
 In no event will the authors be held liable for any damages arising from the
