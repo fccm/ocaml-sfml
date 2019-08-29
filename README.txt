@@ -19,28 +19,17 @@ the GPL or the LGPL license (or even CC0), just switch to it!
 
 === Home-Page ===
 
-ocaml-sfml is hosted on the OCaml Forge.
+ocaml-sfml is hosted on GitHub.
 The home page of ocaml-sfml is:
-  http://ocaml-sfml.forge.ocamlcore.org/
-The project page is:
-  http://forge.ocamlcore.org/projects/ocaml-sfml/
+  https://github.com/fccm/ocaml-sfml
+The releases can be found at:
+  https://github.com/fccm/ocaml-sfml/releases
 
 The home page of the SFML project is:
   http://www.sfml-dev.org/
 
-OCaml's home pages:
-  http://caml.inria.fr/ocaml/
+OCaml's home page is:
   http://ocaml.org/
-
-
-=== Sources ===
-
-You can browse the source code of ocaml-sfml at:
-  http://forge.ocamlcore.org/scm/browser.php?group_id=176
-or get the last version of the sources with the command:
-  svn checkout svn://scm.ocamlcore.org/svn/ocaml-sfml/trunk ocaml-sfml
-Currently migrating from svn to git:
-  https://github.com/blue-prawn/ocaml-sfml
 
 
 === Authors ===
