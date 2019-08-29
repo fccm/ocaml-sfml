@@ -150,8 +150,11 @@ caml_sfTcpSocket_getRemotePort(value socket)
     return Val_int(pt);
 }
 
-/* TODO
-sfIpAddress sfTcpSocket_getRemoteAddress(const sfTcpSocket* socket);
-*/
+CAMLextern_C value
+caml_sfTcpSocket_getRemoteAddress(value socket)
+{
+    sf::IpAddress address = SfTcpSocket_val(socket)->getRemoteAddress();
+    return Val_sfIpAddress(address);
+}
 
 // vim: sw=4 sts=4 ts=4 et

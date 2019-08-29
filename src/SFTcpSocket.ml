@@ -36,7 +36,7 @@ let receive_str =
   let rec_buf = Bytes.create (800 * 1024) in
   fun ~socket ->
     let n = receive ~socket ~data:rec_buf in
-    (Bytes.sub rec_buf 0 n)
+    Bytes.unsafe_to_string (Bytes.sub rec_buf 0 n)
 
 external sendPacket: socket:t -> packet:SFPacket.t -> unit
   = "caml_sfTcpSocket_sendPacket"
@@ -46,5 +46,8 @@ external receivePacket: socket:t -> packet:SFPacket.t -> unit
 
 external getLocalPort: socket:t -> int = "caml_sfTcpSocket_getLocalPort"
 external getRemotePort: socket:t -> int = "caml_sfTcpSocket_getRemotePort"
+
+external getRemoteAddress: socket:t -> SFIpAddress.t
+  = "caml_sfTcpSocket_getRemoteAddress"
 
 let link_me = ()
