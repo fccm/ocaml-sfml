@@ -21,10 +21,7 @@ let example_2 () =
   let t0s = SFTime.asSeconds (SFClock.getElapsedTime clock) in
   SFTime.sleep (SFTime.of_seconds 0.2);
   let t1 = SFClock.getElapsedTime clock in
-  (*
   let t1s = SFTime.asSeconds (SFClock.getElapsedTime clock) in
-  *)
-  let t1s = SFClock.getElapsedTime_asSeconds clock in
   List.iter (fun (t, ts) ->
     Printf.printf "t: %f\t" ts;
     Printf.printf " %f\t" (SFTime.asSeconds t);
