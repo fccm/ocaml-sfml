@@ -3,11 +3,14 @@
 let () =
   (* Create the main window *)
   let mode, settings =
-    { SFRenderWindow.width = 800; height = 600; bitsPerPixel = 32 },
-    { SFRenderWindow.depthBits = 24; stencilBits = 8; antialiasingLevel = 0;
-      majorVersion = 0; minorVersion = 0 }
+    { SFVideoMode.width = 800; height = 600; bitsPerPixel = 32 },
+    { SFContextSettings.depthBits = 24; stencilBits = 8; antialiasingLevel = 0;
+      majorVersion = 0; minorVersion = 0;
+      attributes = []; sRgbCapable = false }
   in
-  let app = SFRenderWindow.create mode "SFML window" [`resize; `close] settings in
+  let app =
+    SFRenderWindow.create ~mode ~settings ~title:"SFML window"
+        ~style:[SFStyle.Resize; SFStyle.Close] in
 
   (* Load a sprite to display *)
   let image = SFImage.createFromFile "./data/background.jpg" in
@@ -67,7 +70,7 @@ let () =
   SFShape.setFillColor polygon (rgb 255 0 0);
   SFShape.setOutlineColor polygon (rgb 0 255 0);
   SFShape.setOutlineThickness polygon 8.0;
-  SFShape.move polygon 120.0 180.0;
+  SFShape.move2 polygon 120.0 180.0;
   (*
   let polygon = SFShape.create () in
   SFShape.addPoint polygon (  0.0, -50.0) (rgb 255   0   0) (rgb 0 128 128);
@@ -76,7 +79,7 @@ let () =
   SFShape.addPoint polygon (  0.0, 100.0) (rgb 255 255 255) (rgb 0 128 128);
   SFShape.addPoint polygon (-50.0,  50.0) (rgb 255 170 170) (rgb 0 128 128);
   SFShape.addPoint polygon (-50.0,   0.0) (rgb 255  85  85) (rgb 0 128 128);
-  SFShape.move polygon 60.0 140.0;
+  SFShape.move2 polygon 60.0 140.0;
   *)
 
   (* Start the game loop *)
