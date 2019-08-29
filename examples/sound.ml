@@ -60,7 +60,7 @@ let playMusic () =
 (* Entry point of application *)
 let () =
   (* Play a sound *)
-  playSound ();
+  (*playSound ();*)
 
   (* Play a music *)
   playMusic ();
