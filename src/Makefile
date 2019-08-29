@@ -22,8 +22,6 @@ PREFIX := $(OCAML_DIR)/$(BINDING_DIR)
 DLL_PREFIX := $(PREFIX)
 DOC_DIR := doc
 
-VERSION := $(shell date --iso)
-
 LIB_SFML_BASEDIR := /usr
 LIB_CSFML_BASEDIR := /usr
 
@@ -780,20 +778,6 @@ edit_audio:
 edit_network:
 	cd cxx_stubs &&	$(EDITOR) $(STUBS_FILES_NETWORK)
 .PHONY: edit_sys edit_win edit_audio edit_network
-
-
-
-# ==== META ==== #
-
-META_cxx/META: META_cxx/META.in
-	cat $< | sed -e 's/@VERSION@/$(VERSION)/' > $@
-
-META_c/META: META_c/META.in
-	cat $< | sed -e 's/@VERSION@/$(VERSION)/' > $@
-
-.PHONY: clean_meta
-clean_meta:
-	$(RM)  META_cxx/META  META_c/META
 
 
 
