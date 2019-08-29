@@ -2,7 +2,7 @@
 let test f =
   begin
     let font = f () in
-    Printf.printf "line spacing: %d\n%!" (SFFont.getLineSpacing font 1);
+    Printf.printf "line spacing: %g\n%!" (SFFont.getLineSpacing font 1);
   end;
   Gc.full_major ();
   print_endline "Done";
