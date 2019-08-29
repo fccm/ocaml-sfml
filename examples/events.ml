@@ -1,37 +1,28 @@
-open SFRenderWindow
 open SFEvent
 
-let string_of_mouse_button = function
-  | SFMouse.ButtonLeft       -> "ButtonLeft"
-  | SFMouse.ButtonRight      -> "ButtonRight"
-  | SFMouse.ButtonMiddle     -> "ButtonMiddle"
-  | SFMouse.ButtonX1         -> "ButtonX1"
-  | SFMouse.ButtonX2         -> "ButtonX2"
-
 let string_of_joy_axis = function
-  | SFEvent.JoystickX    -> "JoystickX"
-  | SFEvent.JoystickY    -> "JoystickY"
-  | SFEvent.JoystickZ    -> "JoystickZ"
-  | SFEvent.JoystickR    -> "JoystickR"
-  | SFEvent.JoystickU    -> "JoystickU"
-  | SFEvent.JoystickV    -> "JoystickV"
-  | SFEvent.JoystickPovX -> "JoystickPovX"
-  | SFEvent.JoystickPovY -> "JoystickPovY"
+  | SFJoystick.X    -> "SFJoystick.X"
+  | SFJoystick.Y    -> "SFJoystick.Y"
+  | SFJoystick.Z    -> "SFJoystick.Z"
+  | SFJoystick.R    -> "SFJoystick.R"
+  | SFJoystick.U    -> "SFJoystick.U"
+  | SFJoystick.V    -> "SFJoystick.V"
+  | SFJoystick.PovX -> "SFJoystick.PovX"
+  | SFJoystick.PovY -> "SFJoystick.PovY"
 
 let b = function true -> '1' | false -> '0'
 let c = SFKey.string_of_keyCode
 
 let () =
-  let mode = { width = 640; height = 480; bitsPerPixel = 32 } in
-  let settings =
-    { depthBits = 24;
-      stencilBits = 8;
-      antialiasingLevel = 0;
-      majorVersion = 0;
-      minorVersion = 0;
-    }
+  let mode, settings =
+    { SFVideoMode.width = 640; height = 480; bitsPerPixel = 32 },
+    { SFContextSettings.depthBits = 24; stencilBits = 8; antialiasingLevel = 0;
+      majorVersion = 0; minorVersion = 0;
+      attributes = []; sRgbCapable = false }
   in
-  let app = SFRenderWindow.create mode "SFML window" [`resize; `close] settings in
+  let app =
+    SFRenderWindow.create ~mode ~title:"SFML window"
+        ~style:[SFStyle.Resize; SFStyle.Close] ~settings in
 
   while SFRenderWindow.isOpen app do
     let rec proc_ev() =
@@ -42,14 +33,16 @@ let () =
 
       | SFEvent.MouseButtonPressed (mbut, x, y) ->
           Printf.printf " MouseButtonPressed(%d,%d,%s)\n%!"
-            x y (string_of_mouse_button mbut)
+            x y (SFMouse.string_of_button mbut)
 
       | SFEvent.MouseButtonReleased (mbut, x, y) ->
           Printf.printf " MouseButtonReleased(%d,%d,%s)\n%!"
-            x y (string_of_mouse_button mbut)
+            x y (SFMouse.string_of_button mbut)
 
-      | SFEvent.MouseWheelMoved (delta, x, y) ->
-          Printf.printf " MouseWheel(%d, %d, %d)\n%!" delta x y
+      | SFEvent.MouseWheelScrolled (wheel, delta, x, y) ->
+          Printf.printf " MouseWheelScrolled(%s, %g, %d, %d)\n%!"
+            (SFMouse.string_of_wheel wheel) delta x y
+      | SFEvent.MouseWheelMoved (_, _, _) -> ()
 
       | SFEvent.KeyPressed (key, alt, control, shift, system) ->
           Printf.printf " KeyPressed(%s,%c,%c,%c,%c)\n%!"
@@ -84,6 +77,11 @@ let () =
       | SFEvent.JoystickConnected _ ->
           Printf.printf " JoystickConnected\n%!"
       | SFEvent.Closed -> assert false
+
+      | SFEvent.TouchBegan (_, _, _)
+      | SFEvent.TouchMoved (_, _, _)
+      | SFEvent.TouchEnded (_, _, _)
+      | SFEvent.SensorChanged (_, _) -> ()
       in
       match SFRenderWindow.pollEvent app with
       | None -> ()
