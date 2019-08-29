@@ -78,7 +78,7 @@ class tcp_socket :
     method connect :
       port:int -> address:SFIpAddress.t -> timeout:SFTime.t -> unit -> unit
     method destroy : unit -> unit
-    method receive : unit -> bytes
+    method receive : unit -> string
     method receive_buf : buf:bytes -> int
     method receive_packet : packet:packet -> unit
     method send : data:string -> unit
