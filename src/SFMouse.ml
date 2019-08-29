@@ -31,3 +31,14 @@ let button_of_string s =
   | "buttonx2"      -> ButtonX2
   | _ -> invalid_arg "SFMouse.button_of_string"
 
+
+let string_of_wheel = function
+  | VerticalWheel   -> "VerticalWheel"
+  | HorizontalWheel -> "HorizontalWheel"
+
+let wheel_of_string s =
+  match String.lowercase_ascii s with
+  | "verticalwheel"   -> VerticalWheel
+  | "horizontalwheel" -> HorizontalWheel
+  | _ -> invalid_arg "SFMouse.wheel_of_string"
+
