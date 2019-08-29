@@ -10,7 +10,7 @@ let test1 () =
 
 let test2 () =
   let t = SFTime.of_seconds 2.0 in
-  let res = SFTime.mul 3.0 t in
+  let res = SFTime.mul t 3.0 in
   let should = 6.0 in
   print res should
 
