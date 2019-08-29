@@ -5,43 +5,44 @@ let filter_some lst =
 
 let () =
   let port = 2000 in
-  let s = SFSocketTCP.create () in
-  SFSocketTCP.setBlocking s false;
 
-  SFSocketTCP.listen s port;
+  let li = SFTcpListener.create () in
+  SFTcpListener.listen li port;
   print_endline "listening";
 
   let len = 1024 in
-  let data = String.create len in
+  let data = Bytes.create len in
 
-  let accept s cls =
+  let accept cls =
     try
-      let cl, addr = SFSocketTCP.accept s in
-      Printf.printf "accepted: %s\n%!" addr;
-      SFSocketTCP.setBlocking cl false;
+      let cl = SFTcpListener.accept li in
+      (*
+      SFTcpSocket.setBlocking cl false;
+      *)
       (cl :: cls)
-    with SFSocketTCP.Socket_Not_Ready ->
+    with SFTcpSocket.Socket_Not_Ready ->
       Printf.printf "-%!";
-      SFClock.sleep 0.2;
+      SFTime.sleep (SFTime.of_seconds 0.2);
       (cls)
   in
   let receive cl =
     try
-      let n = SFSocketTCP.receive cl data in
-      Some(String.sub data 0 n)
+      let n = SFTcpSocket.receive cl data in
+      Some(Bytes.sub data 0 n)
     with
-    | SFSocketTCP.Socket_Not_Ready -> None
-    | SFSocketTCP.Socket_Disconnected -> None
+    | SFTcpSocket.Socket_Not_Ready -> None
+    | SFTcpSocket.Socket_Disconnected -> None
   in
   let rec aux cls =
-    let cls = accept s cls in
+    let cls = accept cls in
     let gs = List.map receive cls in
     let gs = filter_some gs in
-    List.iter print_endline gs;
+    List.iter (fun b -> print_bytes b; print_newline ()) gs;
     Printf.printf ".%!";
-    SFClock.sleep 0.2;
+    SFTime.sleep (SFTime.of_seconds 0.2);
     aux cls
   in
   let _ = aux [] in
-  SFSocketTCP.destroy s;
+
+  SFTcpListener.destroy li;
 ;;
