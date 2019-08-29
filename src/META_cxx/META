@@ -2,7 +2,6 @@ name = "sfml"
 description = "bindings to the SFML library"
 license = "zlib/png"
 version = "0.08"
-directory = "+sfml"
 
 package "system" (
   description = "system module"
