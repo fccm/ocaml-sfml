@@ -74,8 +74,6 @@ or the C API. Only the C or C++ stubs are different.
 
 === Compile ===
 
-##### Compile for the C++ API:
-
 You can use these "make" targets:
 
 - cxx_byte, to build the bytecode modules
@@ -97,28 +95,6 @@ the *.so files and "include/" containing the headers, you can build this way:
 
 $ make cxx_all LIB_SFML_BASEDIR=/tmp/my_sfml
 
-
-##### Compile for the C API:
-
-The targets are the same, except that you should replace "cxx" by "c".
-
-In order to compile for the C API of SFML (called CSFML), the compilation
-script should be able to find the headers of CSFML (the headers of SFML
-are not needed for this one), and the *.so files for both SFML and CSFML.
-
-If both sfml and csfml *.so files are in a directory "/custom/path/lib"
-and the headers of CSFML are in "/non/standard/include"
-then use:
-$ make <c-api-target> LD_PATH=-L/custom/path/lib \
-    C_INC_PATH=-I/non/standard/include
-
-If the *.so of sfml are in /custom/sfml/lib and the *.so of csfml are
-in /custom/Csfml/lib and the headers of csfml are in /my/Csfml/include
-then use:
-$ make <c-api-target> \
-    CXX_LD_DIR=/custom/sfml/lib \
-    C_LD_DIR=/custom/Csfml/lib \
-    C_INC_DIR=/my/Csfml/include
 
 
 === Documentation ===
