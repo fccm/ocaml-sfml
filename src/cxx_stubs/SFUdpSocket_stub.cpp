@@ -93,7 +93,7 @@ caml_sfUdpSocket_receive(value sock, value data)
     sf::Socket::Status st;
 
     st = SfUdpSocket_val(sock)->receive(
-            String_val(data), maxSize, sizeReceived, address, port);
+            Bytes_val(data), maxSize, sizeReceived, address, port);
     check_sfSocketStatus(st, "SFUdpSocket")
 
     ret = caml_alloc(3, 0);

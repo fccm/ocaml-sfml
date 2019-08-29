@@ -13,7 +13,7 @@ let () =
   let loop = ref true in
   while !loop do
     print_endline "Fill the buffer";
-    let data = read_line() in
+    let data = read_line () in
     SFUdpSocket.send s data address port;
 
     if data = "quit" then loop := false

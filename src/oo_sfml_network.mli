@@ -92,7 +92,7 @@ class udp_socket :
     val socket : SFUdpSocket.t
     method bind : port:int -> ?address:SFIpAddress.t -> unit
     method destroy : unit -> unit
-    method receive : data:string -> int * SFIpAddress.t * int
+    method receive : data:bytes -> int * SFIpAddress.t * int
     method receive_packet : packet:packet -> SFIpAddress.t * int
     method send : data:string -> address:SFIpAddress.t -> port:int -> unit
     method send_packet :

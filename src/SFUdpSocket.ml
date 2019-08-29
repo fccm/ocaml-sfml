@@ -22,7 +22,7 @@ external bind: socket:t -> ?address:SFIpAddress.t -> port:int -> unit = "caml_sf
 external unbind: socket:t -> unit = "caml_sfUdpSocket_unbind"
 external send: socket:t -> data:string -> address:SFIpAddress.t -> port:int -> unit
   = "caml_sfUdpSocket_send"
-external receive: socket:t -> data:string -> int * SFIpAddress.t * int
+external receive: socket:t -> data:bytes -> int * SFIpAddress.t * int
   = "caml_sfUdpSocket_receive"
 external sendPacket: socket:t -> packet:SFPacket.t -> address:SFIpAddress.t -> port:int -> unit
   = "caml_sfUdpSocket_sendPacket"
