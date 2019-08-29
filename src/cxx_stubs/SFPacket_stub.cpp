@@ -164,9 +164,7 @@ caml_sfPacket_readString(value packet)
         caml_failwith("SFPacket.readString: length mismatch");
     }
     str = caml_alloc_string(size);
-    std::cout << "## Before memcpy" << std::endl << std::flush;
     memcpy(String_val(str), s.c_str(), size);
-    std::cout << "## After memcpy" << std::endl << std::flush;
     CAMLreturn(str);
 }
 
