@@ -3,7 +3,7 @@ type t = int64
 let zero = Int64.zero
 
 let of_seconds amount =
-  Int64.of_float (amount *. 1000000.)
+  Int64.of_float (amount *. 1_000_000.)
 
 let of_milliseconds amount =
   Int64.(mul (of_int (Int32.to_int amount)) 1000L)
@@ -11,7 +11,7 @@ let of_milliseconds amount =
 external of_microseconds : int64 -> t = "%identity"
 
 let asSeconds t =
-  Int64.to_float t /. 1000000.
+  Int64.to_float t /. 1_000_000.
 
 let asMilliseconds t =
   Int32.of_int Int64.(to_int (div t 1000L))
