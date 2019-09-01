@@ -32,6 +32,12 @@ OCaml's home page is:
   http://ocaml.org/
 
 
+=== Versions ===
+
+This version of the bindings have been tested with SFML 2.5.1
+and OCaml 4.07.1
+
+
 === Authors ===
 
 The main author of the SFML library is Laurent Gomila.
