@@ -21,6 +21,6 @@ val getLineSpacing: t -> characterSize:int -> float
 val getUnderlinePosition: t -> characterSize:int -> float
 val getUnderlineThickness: t -> characterSize:int -> float
 
-type info = { family: string }
+type info = { family: string } [@@boxed]
 
 val getInfo: t -> info

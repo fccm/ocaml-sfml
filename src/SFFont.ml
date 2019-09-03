@@ -27,7 +27,9 @@ external getUnderlinePosition: u -> characterSize:int -> float
 external getUnderlineThickness: u -> characterSize:int -> float
   = "caml_sfFont_getUnderlineThickness"
 
-type info = { family: string }
+(* annotation "boxed" is explained here:
+   http://caml.inria.fr/pub/docs/manual-ocaml-4.08/intfc.html#sec433 *)
+type info = { family: string } [@@boxed]
 
 external getInfo: u -> info = "caml_sfFont_getInfo"
 
