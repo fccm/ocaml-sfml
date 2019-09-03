@@ -8,7 +8,7 @@
 OCAML := ocaml
 OCAMLC := ocamlc -g
 CC_PARAMS := -Wall -Werror -Wno-deprecated-declarations
-OCAMLOPT_PARAMS := -g -w A -warn-error A -ccopt "$(CC_PARAMS)"
+OCAMLOPT_PARAMS := -g -w A -ccopt "$(CC_PARAMS)"
 OCAMLOPT := ocamlopt $(OCAMLOPT_PARAMS)
 OCAMLDOC := ocamldoc
 OCAMLMKLIB := ocamlmklib
