@@ -9,6 +9,8 @@
   case sf::Socket::Done: break; \
   case sf::Socket::NotReady: \
     caml_raise_constant(*caml_named_value(mod_name ".Socket_Not_Ready")); break; \
+  case sf::Socket::Partial: \
+    caml_raise_constant(*caml_named_value(mod_name ".Socket_Partial")); break; \
   case sf::Socket::Disconnected: \
     caml_raise_constant(*caml_named_value(mod_name ".Socket_Disconnected")); break; \
   case sf::Socket::Error: \

@@ -2,11 +2,13 @@ type t
 
 exception Socket_Not_Ready
 exception Socket_Disconnected
+exception Socket_Partial
 exception Socket_Error
 
 let init () =
   Callback.register_exception "SFTcpSocket.Socket_Not_Ready" Socket_Not_Ready;
   Callback.register_exception "SFTcpSocket.Socket_Disconnected" Socket_Disconnected;
+  Callback.register_exception "SFTcpSocket.Socket_Partial" Socket_Partial;
   Callback.register_exception "SFTcpSocket.Socket_Error" Socket_Error;
 ;;
 
