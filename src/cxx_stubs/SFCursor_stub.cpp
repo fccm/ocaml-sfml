@@ -48,7 +48,7 @@ caml_sfCursor_loadFromPixels(value data, value size, value hotspot)
 	CAMLlocal1(ml_cursor);
 	ml_cursor = caml_alloc_final(2, caml_sfCursor_destroy, 0, 1);
 	SfCursor_val(ml_cursor) = cursor;
-	return ml_cursor;
+	CAMLreturn(ml_cursor);
 }
 
 CAMLextern_C value
@@ -65,5 +65,5 @@ caml_sfCursor_loadFromSystem(value type)
 	CAMLlocal1(ml_cursor);
 	ml_cursor = caml_alloc_final(2, caml_sfCursor_destroy, 0, 1);
 	SfCursor_val(ml_cursor) = cursor;
-	return ml_cursor;
+	CAMLreturn(ml_cursor);
 }
