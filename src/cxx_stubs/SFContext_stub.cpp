@@ -50,8 +50,8 @@ caml_sfContext_destroy(value context)
 CAMLextern_C value
 caml_sfContext_getSettings(value context)
 {
-	CAMLparam1(context);
-	CAMLreturn(Val_sfContextSettings(&SfContext_val(context)->getSettings()));
+    CAMLparam1(context);
+    CAMLreturn(Val_sfContextSettings(&SfContext_val(context)->getSettings()));
 }
 
 CAMLextern_C value
@@ -64,7 +64,7 @@ caml_sfContext_setActive(value context, value active)
 CAMLextern_C value
 caml_sfContext_getActiveContext(value unit)
 {
-	const sf::Context* context = sf::Context::getActiveContext();
+    const sf::Context* context = sf::Context::getActiveContext();
     return context == NULL ? Val_none : Some_val(context);
 }
 
