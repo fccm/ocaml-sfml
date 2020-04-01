@@ -29,55 +29,6 @@
 #include "SFTime_stub.hpp"
 
 
-static const sf::Ftp::Response::Status ml_table_sfFtpStatus[] = {
-    sf::Ftp::Response::RestartMarkerReply,
-    sf::Ftp::Response::ServiceReadySoon,
-    sf::Ftp::Response::DataConnectionAlreadyOpened,
-    sf::Ftp::Response::OpeningDataConnection,
-    sf::Ftp::Response::Ok,
-    sf::Ftp::Response::PointlessCommand,
-    sf::Ftp::Response::SystemStatus,
-    sf::Ftp::Response::DirectoryStatus,
-    sf::Ftp::Response::FileStatus,
-    sf::Ftp::Response::HelpMessage,
-    sf::Ftp::Response::SystemType,
-    sf::Ftp::Response::ServiceReady,
-    sf::Ftp::Response::ClosingConnection,
-    sf::Ftp::Response::DataConnectionOpened,
-    sf::Ftp::Response::ClosingDataConnection,
-    sf::Ftp::Response::EnteringPassiveMode,
-    sf::Ftp::Response::LoggedIn,
-    sf::Ftp::Response::FileActionOk,
-    sf::Ftp::Response::DirectoryOk,
-    sf::Ftp::Response::NeedPassword,
-    sf::Ftp::Response::NeedAccountToLogIn,
-    sf::Ftp::Response::NeedInformation,
-    sf::Ftp::Response::ServiceUnavailable,
-    sf::Ftp::Response::DataConnectionUnavailable,
-    sf::Ftp::Response::TransferAborted,
-    sf::Ftp::Response::FileActionAborted,
-    sf::Ftp::Response::LocalError,
-    sf::Ftp::Response::InsufficientStorageSpace,
-    sf::Ftp::Response::CommandUnknown,
-    sf::Ftp::Response::ParametersUnknown,
-    sf::Ftp::Response::CommandNotImplemented,
-    sf::Ftp::Response::BadCommandSequence,
-    sf::Ftp::Response::ParameterNotImplemented,
-    sf::Ftp::Response::NotLoggedIn,
-    sf::Ftp::Response::NeedAccountToStore,
-    sf::Ftp::Response::FileUnavailable,
-    sf::Ftp::Response::PageTypeUnknown,
-    sf::Ftp::Response::NotEnoughMemory,
-    sf::Ftp::Response::FilenameNotAllowed,
-    sf::Ftp::Response::InvalidResponse,
-    sf::Ftp::Response::ConnectionFailed,
-    sf::Ftp::Response::ConnectionClosed,
-    sf::Ftp::Response::InvalidFile,
-};
-
-#define SfFtpStatus_val(v) \
-    (ml_table_sfFtpStatus[Long_val(v)])
-
 
 
 value

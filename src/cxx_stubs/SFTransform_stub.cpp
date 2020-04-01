@@ -44,16 +44,16 @@ void finalize_sfTransform_oo(value v)
 
 char id_sf_trans[] = "sf::Transform class";
 static struct custom_operations sfTransform_custom_ops = {
-    identifier:  id_sf_trans,
+    .identifier =  id_sf_trans,
     /*
     finalize:    custom_finalize_default,
     */
-    finalize:    finalize_sfTransform_oo,
+    .finalize =    finalize_sfTransform_oo,
 
-    compare:     custom_compare_default,
-    hash:        custom_hash_default,
-    serialize:   custom_serialize_default,
-    deserialize: custom_deserialize_default
+    .compare =     custom_compare_default,
+    .hash =        custom_hash_default,
+    .serialize =   custom_serialize_default,
+    .deserialize = custom_deserialize_default
 };
 
 value Val_sfTransform(sf::Transform *trans)
