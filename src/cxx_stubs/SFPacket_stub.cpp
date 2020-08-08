@@ -75,8 +75,7 @@ caml_sfPacket_getData(value packet)
     CAMLlocal1(str);
     const std::size_t size = SfPacket_val(packet)->getDataSize();
     const void *ptr = SfPacket_val(packet)->getData();
-    str = caml_alloc_string(size);
-    memcpy(String_val(str), ptr, size);
+    str = caml_alloc_initialized_string(size, (const char *)ptr);
     CAMLreturn(str);
 }
 
@@ -163,15 +162,14 @@ caml_sfPacket_readString(value packet)
     if (size != len) {
         caml_failwith("SFPacket.readString: length mismatch");
     }
-    str = caml_alloc_string(size);
-    memcpy(String_val(str), s.c_str(), size);
+    str = caml_alloc_initialized_string(size, s.c_str());
     CAMLreturn(str);
 }
 
 CAMLextern_C value
 caml_sfPacket_writeString(value packet, value str)
 {
-    char *s = String_val(str);
+    const char *s = String_val(str);
     sf::Uint32 len = caml_string_length(str);
     *SfPacket_val(packet) << len;
     *SfPacket_val(packet) << s;

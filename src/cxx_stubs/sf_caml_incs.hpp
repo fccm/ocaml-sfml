@@ -12,6 +12,7 @@ extern "C" {
 #include <caml/signals.h>
 #include <caml/custom.h>
 #include <caml/callback.h>
+#include <caml/version.h>
 }
 
 #define CAMLextern_C extern "C"

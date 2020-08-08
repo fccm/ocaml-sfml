@@ -14,6 +14,10 @@ value Val_some(value v);
 
 #define UInt_val(v) ((unsigned int) Long_val(v))
 
+#if OCAML_VERSION < 40600
+#define Bytes_val(x) String_val(x)
+#endif
+
 /*
 static inline
 unsigned int UInt_val(value v) {
