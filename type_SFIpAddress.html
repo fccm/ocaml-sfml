@@ -1,0 +1,86 @@
+<html><head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="Start" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of class attributes" rel=Appendix href="index_attributes.html">
+<link title="Index of class methods" rel=Appendix href="index_methods.html">
+<link title="Index of classes" rel=Appendix href="index_classes.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="SFConfig" rel="Chapter" href="SFConfig.html">
+<link title="SFTime" rel="Chapter" href="SFTime.html">
+<link title="SFClock" rel="Chapter" href="SFClock.html">
+<link title="SFPausableClock" rel="Chapter" href="SFPausableClock.html">
+<link title="SFClipboard" rel="Chapter" href="SFClipboard.html">
+<link title="SFCursor" rel="Chapter" href="SFCursor.html">
+<link title="SFKey" rel="Chapter" href="SFKey.html">
+<link title="SFMouse" rel="Chapter" href="SFMouse.html">
+<link title="SFKeyboard" rel="Chapter" href="SFKeyboard.html">
+<link title="SFJoystick" rel="Chapter" href="SFJoystick.html">
+<link title="SFEvent" rel="Chapter" href="SFEvent.html">
+<link title="SFVideoMode" rel="Chapter" href="SFVideoMode.html">
+<link title="SFStyle" rel="Chapter" href="SFStyle.html">
+<link title="SFContextSettings" rel="Chapter" href="SFContextSettings.html">
+<link title="SFWindow" rel="Chapter" href="SFWindow.html">
+<link title="SFContext" rel="Chapter" href="SFContext.html">
+<link title="SFColor" rel="Chapter" href="SFColor.html">
+<link title="SFRect" rel="Chapter" href="SFRect.html">
+<link title="SFBlendMode" rel="Chapter" href="SFBlendMode.html">
+<link title="SFImage" rel="Chapter" href="SFImage.html">
+<link title="SFTexture" rel="Chapter" href="SFTexture.html">
+<link title="SFFont" rel="Chapter" href="SFFont.html">
+<link title="SFText" rel="Chapter" href="SFText.html">
+<link title="SFShape" rel="Chapter" href="SFShape.html">
+<link title="SFCircleShape" rel="Chapter" href="SFCircleShape.html">
+<link title="SFRectangleShape" rel="Chapter" href="SFRectangleShape.html">
+<link title="SFSprite" rel="Chapter" href="SFSprite.html">
+<link title="SFShader" rel="Chapter" href="SFShader.html">
+<link title="SFTransform" rel="Chapter" href="SFTransform.html">
+<link title="SFView" rel="Chapter" href="SFView.html">
+<link title="SFRenderStates" rel="Chapter" href="SFRenderStates.html">
+<link title="SFRenderWindow" rel="Chapter" href="SFRenderWindow.html">
+<link title="SFMusic" rel="Chapter" href="SFMusic.html">
+<link title="SFSoundBuffer" rel="Chapter" href="SFSoundBuffer.html">
+<link title="SFSound" rel="Chapter" href="SFSound.html">
+<link title="SFListener" rel="Chapter" href="SFListener.html">
+<link title="SFSoundBufferRecorder" rel="Chapter" href="SFSoundBufferRecorder.html">
+<link title="SFSoundRecorder" rel="Chapter" href="SFSoundRecorder.html">
+<link title="SFHttp" rel="Chapter" href="SFHttp.html">
+<link title="SFFtp" rel="Chapter" href="SFFtp.html">
+<link title="SFIpAddress" rel="Chapter" href="SFIpAddress.html">
+<link title="SFPacket" rel="Chapter" href="SFPacket.html">
+<link title="SFUdpSocket" rel="Chapter" href="SFUdpSocket.html">
+<link title="SFTcpSocket" rel="Chapter" href="SFTcpSocket.html">
+<link title="SFTcpListener" rel="Chapter" href="SFTcpListener.html">
+<link title="SFSocketSelector" rel="Chapter" href="SFSocketSelector.html">
+<link title="Oo_sfml_system" rel="Chapter" href="Oo_sfml_system.html">
+<link title="Oo_sfml_window" rel="Chapter" href="Oo_sfml_window.html">
+<link title="Oo_sfml_graphics" rel="Chapter" href="Oo_sfml_graphics.html">
+<link title="Oo_sfml_audio" rel="Chapter" href="Oo_sfml_audio.html">
+<link title="Oo_sfml_network" rel="Chapter" href="Oo_sfml_network.html"><title>SFIpAddress</title>
+</head>
+<body>
+<code class="code"><span class="keyword">sig</span><br>
+&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;t&nbsp;=&nbsp;string<br>
+&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;fromString&nbsp;:&nbsp;str:string&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">SFIpAddress</span>.t<br>
+&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="string">"caml_sfIpAddress_fromString"</span><br>
+&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;fromBytes&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;b0:char&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;b1:char&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;b2:char&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;b3:char&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">SFIpAddress</span>.t<br>
+&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="string">"caml_sfIpAddress_fromBytes"</span><br>
+&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;fromInteger&nbsp;:&nbsp;int32&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">SFIpAddress</span>.t<br>
+&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="string">"caml_sfIpAddress_fromInteger"</span><br>
+&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;toString&nbsp;:&nbsp;address:<span class="constructor">SFIpAddress</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="string">"caml_sfIpAddress_toString"</span><br>
+&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;toInteger&nbsp;:&nbsp;address:<span class="constructor">SFIpAddress</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;int32<br>
+&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="string">"caml_sfIpAddress_toInteger"</span><br>
+&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;getLocalAddress&nbsp;:&nbsp;unit&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">SFIpAddress</span>.t<br>
+&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="string">"caml_sfIpAddress_getLocalAddress"</span><br>
+&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;getPublicAddress&nbsp;:&nbsp;timeout:<span class="constructor">SFTime</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">SFIpAddress</span>.t<br>
+&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="string">"caml_sfIpAddress_getPublicAddress"</span><br>
+&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;localHost&nbsp;:&nbsp;unit&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">SFIpAddress</span>.t&nbsp;=&nbsp;<span class="string">"caml_sfIpAddress_localHost"</span><br>
+&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;none&nbsp;:&nbsp;unit&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">SFIpAddress</span>.t&nbsp;=&nbsp;<span class="string">"caml_sfIpAddress_None"</span><br>
+&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;broadcast&nbsp;:&nbsp;unit&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">SFIpAddress</span>.t&nbsp;=&nbsp;<span class="string">"caml_sfIpAddress_Broadcast"</span><br>
+<span class="keyword">end</span></code></body></html>

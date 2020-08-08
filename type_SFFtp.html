@@ -1,0 +1,197 @@
+<html><head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="Start" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of class attributes" rel=Appendix href="index_attributes.html">
+<link title="Index of class methods" rel=Appendix href="index_methods.html">
+<link title="Index of classes" rel=Appendix href="index_classes.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="SFConfig" rel="Chapter" href="SFConfig.html">
+<link title="SFTime" rel="Chapter" href="SFTime.html">
+<link title="SFClock" rel="Chapter" href="SFClock.html">
+<link title="SFPausableClock" rel="Chapter" href="SFPausableClock.html">
+<link title="SFClipboard" rel="Chapter" href="SFClipboard.html">
+<link title="SFCursor" rel="Chapter" href="SFCursor.html">
+<link title="SFKey" rel="Chapter" href="SFKey.html">
+<link title="SFMouse" rel="Chapter" href="SFMouse.html">
+<link title="SFKeyboard" rel="Chapter" href="SFKeyboard.html">
+<link title="SFJoystick" rel="Chapter" href="SFJoystick.html">
+<link title="SFEvent" rel="Chapter" href="SFEvent.html">
+<link title="SFVideoMode" rel="Chapter" href="SFVideoMode.html">
+<link title="SFStyle" rel="Chapter" href="SFStyle.html">
+<link title="SFContextSettings" rel="Chapter" href="SFContextSettings.html">
+<link title="SFWindow" rel="Chapter" href="SFWindow.html">
+<link title="SFContext" rel="Chapter" href="SFContext.html">
+<link title="SFColor" rel="Chapter" href="SFColor.html">
+<link title="SFRect" rel="Chapter" href="SFRect.html">
+<link title="SFBlendMode" rel="Chapter" href="SFBlendMode.html">
+<link title="SFImage" rel="Chapter" href="SFImage.html">
+<link title="SFTexture" rel="Chapter" href="SFTexture.html">
+<link title="SFFont" rel="Chapter" href="SFFont.html">
+<link title="SFText" rel="Chapter" href="SFText.html">
+<link title="SFShape" rel="Chapter" href="SFShape.html">
+<link title="SFCircleShape" rel="Chapter" href="SFCircleShape.html">
+<link title="SFRectangleShape" rel="Chapter" href="SFRectangleShape.html">
+<link title="SFSprite" rel="Chapter" href="SFSprite.html">
+<link title="SFShader" rel="Chapter" href="SFShader.html">
+<link title="SFTransform" rel="Chapter" href="SFTransform.html">
+<link title="SFView" rel="Chapter" href="SFView.html">
+<link title="SFRenderStates" rel="Chapter" href="SFRenderStates.html">
+<link title="SFRenderWindow" rel="Chapter" href="SFRenderWindow.html">
+<link title="SFMusic" rel="Chapter" href="SFMusic.html">
+<link title="SFSoundBuffer" rel="Chapter" href="SFSoundBuffer.html">
+<link title="SFSound" rel="Chapter" href="SFSound.html">
+<link title="SFListener" rel="Chapter" href="SFListener.html">
+<link title="SFSoundBufferRecorder" rel="Chapter" href="SFSoundBufferRecorder.html">
+<link title="SFSoundRecorder" rel="Chapter" href="SFSoundRecorder.html">
+<link title="SFHttp" rel="Chapter" href="SFHttp.html">
+<link title="SFFtp" rel="Chapter" href="SFFtp.html">
+<link title="SFIpAddress" rel="Chapter" href="SFIpAddress.html">
+<link title="SFPacket" rel="Chapter" href="SFPacket.html">
+<link title="SFUdpSocket" rel="Chapter" href="SFUdpSocket.html">
+<link title="SFTcpSocket" rel="Chapter" href="SFTcpSocket.html">
+<link title="SFTcpListener" rel="Chapter" href="SFTcpListener.html">
+<link title="SFSocketSelector" rel="Chapter" href="SFSocketSelector.html">
+<link title="Oo_sfml_system" rel="Chapter" href="Oo_sfml_system.html">
+<link title="Oo_sfml_window" rel="Chapter" href="Oo_sfml_window.html">
+<link title="Oo_sfml_graphics" rel="Chapter" href="Oo_sfml_graphics.html">
+<link title="Oo_sfml_audio" rel="Chapter" href="Oo_sfml_audio.html">
+<link title="Oo_sfml_network" rel="Chapter" href="Oo_sfml_network.html"><title>SFFtp</title>
+</head>
+<body>
+<code class="code"><span class="keyword">sig</span><br>
+&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;ftp<br>
+&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;response<br>
+&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;directoryResponse<br>
+&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;listingResponse<br>
+&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;status&nbsp;=<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">RestartMarkerReply</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">ServiceReadySoon</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">DataConnectionAlreadyOpened</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">OpeningDataConnection</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Ok</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">PointlessCommand</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">SystemStatus</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">DirectoryStatus</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">FileStatus</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">HelpMessage</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">SystemType</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">ServiceReady</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">ClosingConnection</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">DataConnectionOpened</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">ClosingDataConnection</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">EnteringPassiveMode</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">LoggedIn</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">FileActionOk</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">DirectoryOk</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">NeedPassword</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">NeedAccountToLogIn</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">NeedInformation</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">ServiceUnavailable</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">DataConnectionUnavailable</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">TransferAborted</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">FileActionAborted</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">LocalError</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">InsufficientStorageSpace</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">CommandUnknown</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">ParametersUnknown</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">CommandNotImplemented</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">BadCommandSequence</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">ParameterNotImplemented</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">NotLoggedIn</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">NeedAccountToStore</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">FileUnavailable</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">PageTypeUnknown</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">NotEnoughMemory</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">FilenameNotAllowed</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">InvalidResponse</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">ConnectionFailed</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">ConnectionClosed</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">InvalidFile</span><br>
+&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;transferMode&nbsp;=&nbsp;<span class="constructor">Binary</span>&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Ascii</span>&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Ebcdic</span><br>
+&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;create&nbsp;:&nbsp;unit&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">SFFtp</span>.ftp&nbsp;=&nbsp;<span class="string">"caml_sfFtp_create"</span><br>
+&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;destroy&nbsp;:&nbsp;<span class="constructor">SFFtp</span>.ftp&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit&nbsp;=&nbsp;<span class="string">"caml_sfFtp_destroy"</span><br>
+&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;connect&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">SFFtp</span>.ftp&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;server:<span class="constructor">SFIpAddress</span>.t&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;?port:int&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;?timeout:<span class="constructor">SFTime</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">SFFtp</span>.response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="string">"caml_sfFtp_connect"</span><br>
+&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;loginAnonymous&nbsp;:&nbsp;<span class="constructor">SFFtp</span>.ftp&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">SFFtp</span>.response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="string">"caml_sfFtp_loginAnonymous"</span><br>
+&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;login&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">SFFtp</span>.ftp&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;userName:string&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;password:string&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">SFFtp</span>.response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="string">"caml_sfFtp_login"</span><br>
+&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;disconnect&nbsp;:&nbsp;<span class="constructor">SFFtp</span>.ftp&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">SFFtp</span>.response&nbsp;=&nbsp;<span class="string">"caml_sfFtp_disconnect"</span><br>
+&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;keepAlive&nbsp;:&nbsp;<span class="constructor">SFFtp</span>.ftp&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">SFFtp</span>.response&nbsp;=&nbsp;<span class="string">"caml_sfFtp_keepAlive"</span><br>
+&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;changeDirectory&nbsp;:&nbsp;<span class="constructor">SFFtp</span>.ftp&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;directory:string&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">SFFtp</span>.response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="string">"caml_sfFtp_changeDirectory"</span><br>
+&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;parentDirectory&nbsp;:&nbsp;<span class="constructor">SFFtp</span>.ftp&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">SFFtp</span>.response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="string">"caml_sfFtp_parentDirectory"</span><br>
+&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;createDirectory&nbsp;:&nbsp;<span class="constructor">SFFtp</span>.ftp&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;name:string&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">SFFtp</span>.response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="string">"caml_sfFtp_createDirectory"</span><br>
+&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;deleteDirectory&nbsp;:&nbsp;<span class="constructor">SFFtp</span>.ftp&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;name:string&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">SFFtp</span>.response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="string">"caml_sfFtp_deleteDirectory"</span><br>
+&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;renameFile&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">SFFtp</span>.ftp&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;file:string&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;newName:string&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">SFFtp</span>.response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="string">"caml_sfFtp_renameFile"</span><br>
+&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;deleteFile&nbsp;:&nbsp;<span class="constructor">SFFtp</span>.ftp&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;name:string&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">SFFtp</span>.response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="string">"caml_sfFtp_deleteFile"</span><br>
+&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;upload&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">SFFtp</span>.ftp&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;localFile:string&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;destPath:string&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;mode:<span class="constructor">SFFtp</span>.transferMode&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">SFFtp</span>.response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="string">"caml_sfFtp_upload"</span><br>
+&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;download&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">SFFtp</span>.ftp&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;distantFile:string&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;destPath:string&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;mode:<span class="constructor">SFFtp</span>.transferMode&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">SFFtp</span>.response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="string">"caml_sfFtp_download"</span><br>
+&nbsp;&nbsp;<span class="keyword">module</span>&nbsp;<span class="constructor">Response</span>&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">sig</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;destroy&nbsp;:&nbsp;<span class="constructor">SFFtp</span>.response&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="string">"caml_sfFtpResponse_destroy"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;isOk&nbsp;:&nbsp;<span class="constructor">SFFtp</span>.response&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;bool&nbsp;=&nbsp;<span class="string">"caml_sfFtpResponse_isOk"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;getStatus&nbsp;:&nbsp;<span class="constructor">SFFtp</span>.response&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">SFFtp</span>.status<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="string">"caml_sfFtpResponse_getStatus"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;getMessage&nbsp;:&nbsp;<span class="constructor">SFFtp</span>.response&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="string">"caml_sfFtpResponse_getMessage"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">end</span><br>
+&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;getDirectoryListing&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">SFFtp</span>.ftp&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;directory:string&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">SFFtp</span>.listingResponse<br>
+&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="string">"caml_sfFtp_getDirectoryListing"</span><br>
+&nbsp;&nbsp;<span class="keyword">module</span>&nbsp;<span class="constructor">ListingResponse</span>&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">sig</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;destroy&nbsp;:&nbsp;<span class="constructor">SFFtp</span>.listingResponse&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="string">"caml_sfFtpListingResponse_destroy"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;isOk&nbsp;:&nbsp;<span class="constructor">SFFtp</span>.listingResponse&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;bool<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="string">"caml_sfFtpListingResponse_isOk"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;getStatus&nbsp;:&nbsp;<span class="constructor">SFFtp</span>.listingResponse&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">SFFtp</span>.status<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="string">"caml_sfFtpListingResponse_getStatus"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;getMessage&nbsp;:&nbsp;<span class="constructor">SFFtp</span>.listingResponse&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="string">"caml_sfFtpListingResponse_getMessage"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;getListing&nbsp;:&nbsp;<span class="constructor">SFFtp</span>.listingResponse&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;string&nbsp;array<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="string">"caml_sfFtpListingResponse_getListing"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">end</span><br>
+&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;getWorkingDirectory&nbsp;:&nbsp;<span class="constructor">SFFtp</span>.ftp&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">SFFtp</span>.directoryResponse<br>
+&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="string">"caml_sfFtp_getWorkingDirectory"</span><br>
+&nbsp;&nbsp;<span class="keyword">module</span>&nbsp;<span class="constructor">DirectoryResponse</span>&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">sig</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;destroy&nbsp;:&nbsp;<span class="constructor">SFFtp</span>.directoryResponse&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="string">"caml_sfFtpDirectoryResponse_destroy"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;isOk&nbsp;:&nbsp;<span class="constructor">SFFtp</span>.directoryResponse&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;bool<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="string">"caml_sfFtpDirectoryResponse_isOk"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;getStatus&nbsp;:&nbsp;<span class="constructor">SFFtp</span>.directoryResponse&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">SFFtp</span>.status<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="string">"caml_sfFtpDirectoryResponse_getStatus"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;getMessage&nbsp;:&nbsp;<span class="constructor">SFFtp</span>.directoryResponse&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="string">"caml_sfFtpDirectoryResponse_getMessage"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;getDirectory&nbsp;:&nbsp;<span class="constructor">SFFtp</span>.directoryResponse&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;string<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="string">"caml_sfFtpDirectoryResponse_getDirectory"</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">end</span><br>
+&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;sendCommand&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">SFFtp</span>.ftp&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;command:string&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;parameter:string&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">SFFtp</span>.response<br>
+&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="string">"caml_sfFtp_sendCommand"</span><br>
+<span class="keyword">end</span></code></body></html>
