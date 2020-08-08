@@ -132,8 +132,7 @@ caml_sfImage_getPixelsStr(value sf_image)
     unsigned int len = width * height * 4;
     const sf::Uint8 *img_data = SfImage_val(sf_image)->getPixelsPtr();
     if (img_data == NULL) caml_failwith("SFImage.getPixelsStr");
-    img_str = caml_alloc_string(len);
-    memcpy(String_val(img_str), img_data, len);
+    img_str = caml_alloc_initialized_string(len, (const char *)img_data);
     CAMLreturn(img_str);
 }
 

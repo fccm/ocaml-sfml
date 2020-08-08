@@ -31,6 +31,7 @@
 #include "SFPacket_stub.hpp"
 #include "SFTime_stub.hpp"
 
+
 /* sf::TcpSocket */
 
 CAMLextern_C value
@@ -111,7 +112,7 @@ caml_sfTcpSocket_receive(value socket, value data)
     std::size_t sizeReceived;
     sf::Socket::Status st =
         SfTcpSocket_val(socket)->receive(
-            String_val(data),
+            Bytes_val(data),
             caml_string_length(data),
             sizeReceived);
     check_sfSocketStatus(st, "SFTcpSocket")
