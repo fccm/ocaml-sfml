@@ -42,6 +42,9 @@ let do_server ~port =
   (* Add the listener *)
   SFSocketSelector.addTcpListener selector listener;
 
+  (* Create a list to store the future clients *)
+  let clients = ref [] in
+
   (* Loop while... we close the program :) *)
   while true do
     (* Make the selector wait for data on any socket *)
@@ -54,26 +57,35 @@ let do_server ~port =
         (* If the listening socket is ready,
            it means that we can accept a new connection *)
         let client = SFTcpListener.accept listener in
-        (*
-        Printf.printf "Client connected ! (%s)\n%!" address;  (* TODO *)
-        *)
-        Printf.printf "Client connected !\n%!";
+
+        let address = SFIpAddress. (SFTcpSocket.getRemoteAddress client) in
+        Printf.printf "Client connected: '%s'\n%!" address;
 
         (* Add it to the selector *)
         SFSocketSelector.addTcpSocket selector client;
+
+        (* Add the new client to the clients list *)
+        clients := client :: !clients;
       end else begin
         (* Else, it is a client socket so we can read the data he sent *)
-        try
-          let message = SFTcpSocket.receive_str socket in
-          (* display then message *)
-          Printf.printf "A client says : \"%s\"\n%!" message;
-        with _ ->
-          (* Error : we'd better remove the socket from the selector *)
-          SFSocketSelector.TCP.remove selector socket;
+        clients :=
+          List.fold_left (fun clients client ->
+            try
+              if SFSocketSelector.isTcpSocketReady selector client then
+              begin
+                let message = SFTcpSocket.receive_str client in
+                (* display then message *)
+                Printf.printf "A client says: '%s'\n%!" message;
+              end;
+              (client :: clients)
+            with _ ->
+              (* Error: we'd better remove the socket from the selector *)
+              SFSocketSelector.removeTcpSocket selector client;
+              (clients)
+
+          ) [] !clients
       end
-
     end
-
   done
 
 
