@@ -102,6 +102,18 @@ the *.so files and "include/" containing the headers, you can build this way:
 $ make cxx_all LIB_SFML_BASEDIR=/tmp/my_sfml
 
 
+=== Opam ===
+
+You can compile and install this local repository with:
+
+$ opam install .
+
+Or you can install the last released version published in the public Opam
+repository with:
+
+$ opam install sfml
+
+
 
 === Documentation ===
 
