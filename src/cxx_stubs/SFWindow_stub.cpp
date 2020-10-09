@@ -85,7 +85,7 @@ caml_sfWindow_createFromHandle(value ml_handle, value ml_settings)
 
     sf::Window *window;
     window = new sf::Window;
-    window->create(Nativeint_val(ml_handle), settings);
+    window->create((sf::WindowHandle)Nativeint_val(ml_handle), settings);
 
     CAMLlocal1(ml_window);
     ml_window = caml_alloc_final(2, caml_sfWindow_destroy, 0, 1);
@@ -290,7 +290,7 @@ CAMLextern_C value
 caml_sfWindow_getSystemHandle(value win)
 {
     sf::WindowHandle handle = SfWindow_val(win)->getSystemHandle();
-    return caml_copy_nativeint(handle);
+    return caml_copy_nativeint((intnat)handle);
 }
 
 CAMLextern_C value
