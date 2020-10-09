@@ -60,8 +60,8 @@ If you think SFML is useful for you, you can make a donation
 to the author of SFML, Laurent Gomila:
 https://www.paypal.com/cgi-bin/webscr/?cmd=_s-xclick&hosted_button_id=TYJ2XQPG3SXPG
 
-If you want to donate something to the author of the ocaml bindings (me)
-I don't accept any money donation, but I would be interested by books.
+If you want to donate something to the author of the ocaml bindings:
+https://www.paypal.com/donate?business=monnier.florent@gmail.com&item_name=ocaml-sfml
 
 
 === C vs. C++ API ===
