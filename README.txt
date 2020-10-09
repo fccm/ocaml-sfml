@@ -35,7 +35,7 @@ OCaml's home page is:
 === Versions ===
 
 This version of the bindings have been tested with SFML 2.5.1
-and OCaml 4.07.1
+and OCaml 4.11.1
 
 
 === Authors ===
