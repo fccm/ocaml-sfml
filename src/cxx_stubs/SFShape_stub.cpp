@@ -28,6 +28,18 @@
 #include "SFShape_stub.hpp"
 #include "SFColor_stub.hpp"
 
+
+value Val_sfShape(sf::Shape * p)
+{
+    return caml_copy_nativeint((intnat) p);
+}
+
+sf::Shape * SfShape_val(value v)
+{
+    return (sf::Shape *) Nativeint_val(v);
+}
+
+
 class sfShapeImpl : public sf::Shape
 {
 public:

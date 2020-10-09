@@ -3,9 +3,8 @@
 
 #include <SFML/Graphics/Sprite.hpp>
 
-
-#define Val_sfSprite(spr) ((value)(spr))
-#define SfSprite_val(spr) ((sf::Sprite *)(spr))
+value Val_sfSprite(sf::Sprite * p);
+sf::Sprite * SfSprite_val(value v);
 
 #define SfSprite_val_u(sprite) \
             SfSprite_val(Field(sprite,0))

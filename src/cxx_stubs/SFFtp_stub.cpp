@@ -160,17 +160,17 @@ Val_sfFtpTransferMode(sf::Ftp::TransferMode e)
     caml_failwith("SFFtp.transferMode");
 }
 
-#define Val_sfFtp(ftp) ((value)(ftp))
-#define SfFtp_val(ftp) ((sf::Ftp *)(ftp))
+static value Val_sfFtp(sf::Ftp * p) { return caml_copy_nativeint((intnat) p); }
+static sf::Ftp * SfFtp_val(value v) { return (sf::Ftp *) Nativeint_val(v); }
 
-#define Val_sfFtpResponse(res) ((value)(res))
-#define SfFtpResponse_val(res) ((sf::Ftp::Response *)(res))
+static value Val_sfFtpResponse(sf::Ftp::Response * p) { return caml_copy_nativeint((intnat) p); }
+static sf::Ftp::Response * SfFtpResponse_val(value v) { return (sf::Ftp::Response *) Nativeint_val(v); }
 
-#define Val_sfFtpDirectoryResponse(fdr) ((value)(fdr))
-#define SfFtpDirectoryResponse_val(fdr) ((sf::Ftp::DirectoryResponse *)(fdr))
+static value Val_sfFtpDirectoryResponse(sf::Ftp::DirectoryResponse * p) { return caml_copy_nativeint((intnat) p); }
+static sf::Ftp::DirectoryResponse * SfFtpDirectoryResponse_val(value v) { return (sf::Ftp::DirectoryResponse *) Nativeint_val(v); }
 
-#define Val_sfFtpListingResponse(flr) ((value)(flr))
-#define SfFtpListingResponse_val(flr) ((sf::Ftp::ListingResponse *)(flr))
+static value Val_sfFtpListingResponse(sf::Ftp::ListingResponse * p) { return caml_copy_nativeint((intnat) p); }
+static sf::Ftp::ListingResponse * SfFtpListingResponse_val(value v) { return (sf::Ftp::ListingResponse *) Nativeint_val(v); }
 
 
 CAMLextern_C value

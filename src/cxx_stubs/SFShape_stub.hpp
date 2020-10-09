@@ -3,9 +3,8 @@
 
 #include <SFML/Graphics/Shape.hpp>
 
-
-#define Val_sfShape(shp) ((value)(shp))
-#define SfShape_val(shp) ((sf::Shape *)(shp))
+value Val_sfShape(sf::Shape * p);
+sf::Shape * SfShape_val(value v);
 
 #define SfShape_val_u(shape) \
             SfShape_val(Field(shape,0))

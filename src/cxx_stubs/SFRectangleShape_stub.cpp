@@ -27,8 +27,16 @@
 #include "sf_caml_conv.hpp"
 #include "sf_conv_vectors.hpp"
 
-#define Val_sfRectangleShape(rect) ((value)(rect))
-#define SfRectangleShape_val(rect) ((sf::RectangleShape *)(rect))
+static value Val_sfRectangleShape(sf::RectangleShape * p)
+{
+    return caml_copy_nativeint((intnat) p);
+}
+
+static sf::RectangleShape * SfRectangleShape_val(value v)
+{
+    return (sf::RectangleShape *) Nativeint_val(v);
+}
+
 
 CAMLextern_C value
 caml_sfRectangleShape_create(value size, value unit)

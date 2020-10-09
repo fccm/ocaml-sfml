@@ -27,6 +27,16 @@
 #include "sf_caml_conv.hpp"
 #include "SFShader_stub.hpp"
 
+value Val_sfShader(sf::Shader * p)
+{
+    return caml_copy_nativeint((intnat) p);
+}
+
+sf::Shader * SfShader_val(value v)
+{
+    return (sf::Shader *) Nativeint_val(v);
+}
+
 /* sf::Shader */
 
 CAMLextern_C value

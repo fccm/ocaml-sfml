@@ -3,7 +3,7 @@
 
 #include <SFML/Graphics/RenderStates.hpp>
 
-#define Val_sfRenderStates(rst) ((value)(rst))
-#define SfRenderStates_val(rst) ((sf::RenderStates *)(rst))
+value Val_sfRenderStates(sf::RenderStates * p);
+sf::RenderStates * SfRenderStates_val(value v);
 
 #endif // _SF_RENDERSTATES_INC

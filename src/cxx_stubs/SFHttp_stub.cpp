@@ -70,14 +70,14 @@ static value Val_sfHttpStatus(sf::Http::Response::Status status)
     caml_failwith("SFHttp.status");
 }
 
-#define Val_sfHttpRequest(req) ((value)(req))
-#define SfHttpRequest_val(req) ((sf::Http::Request *)(req))
+static value Val_sfHttpRequest(sf::Http::Request * p) { return caml_copy_nativeint((intnat) p); }
+static sf::Http::Request * SfHttpRequest_val(value v) { return (sf::Http::Request *) Nativeint_val(v); }
 
-#define Val_sfHttpResponse(req) ((value)(req))
-#define SfHttpResponse_val(req) ((sf::Http::Response *)(req))
+static value Val_sfHttpResponse(sf::Http::Response * p) { return caml_copy_nativeint((intnat) p); }
+static sf::Http::Response * SfHttpResponse_val(value v) { return (sf::Http::Response *) Nativeint_val(v); }
 
-#define Val_sfHttp(req) ((value)(req))
-#define SfHttp_val(req) ((sf::Http *)(req))
+static value Val_sfHttp(sf::Http * p) { return caml_copy_nativeint((intnat) p); }
+static sf::Http * SfHttp_val(value v) { return (sf::Http *) Nativeint_val(v); }
 
 CAMLextern_C value
 caml_sfHttpRequest_create(value unit)

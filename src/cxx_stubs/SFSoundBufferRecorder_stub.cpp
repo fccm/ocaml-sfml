@@ -25,8 +25,14 @@
 
 #include "sf_caml_incs.hpp"
 
-#define Val_sfSoundBufferRecorder(sbr) ((value)(sbr))
-#define SfSoundBufferRecorder_val(sbr) ((sf::SoundBufferRecorder *)(sbr))
+static value Val_sfSoundBufferRecorder(sf::SoundBufferRecorder * p)
+{
+    return caml_copy_nativeint((intnat) p);
+}
+static sf::SoundBufferRecorder * SfSoundBufferRecorder_val(value v)
+{
+    return (sf::SoundBufferRecorder *) Nativeint_val(v);
+}
 
 CAMLextern_C value
 caml_sfSoundBufferRecorder_create()

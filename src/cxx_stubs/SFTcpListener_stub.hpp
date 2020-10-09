@@ -3,7 +3,7 @@
 
 #include <SFML/Network/TcpListener.hpp>
 
-#define Val_sfTcpListener(list) ((value)(list))
-#define SfTcpListener_val(list) ((sf::TcpListener *)(list))
+value Val_sfTcpListener(sf::TcpListener * p);
+sf::TcpListener * SfTcpListener_val(value v);
 
 #endif // _SF_TCPLISTENER_INC

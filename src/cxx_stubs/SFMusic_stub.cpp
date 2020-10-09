@@ -27,8 +27,8 @@
 #include "sf_conv_vectors.hpp"
 #include "SFTime_stub.hpp"
 
-#define Val_sfMusic(music) ((value)(music))
-#define SfMusic_val(music) ((sf::Music *)(music))
+static value Val_sfMusic(sf::Music * p) { return caml_copy_nativeint((intnat) p); }
+static sf::Music * SfMusic_val(value v) { return (sf::Music *) Nativeint_val(v); }
 
 static value
 Val_sfMusicStatus(sf::Music::Status sndst)

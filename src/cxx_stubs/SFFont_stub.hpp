@@ -4,8 +4,8 @@
 #include <SFML/Graphics/Font.hpp>
 
 
-#define Val_sfFont(fnt) ((value)(fnt))
-#define SfFont_val(fnt) ((sf::Font *)(fnt))
+value Val_sfFont(sf::Font * p);
+sf::Font * SfFont_val(value v);
 
 #define SfFont_val_u(font) \
             SfFont_val(Field(font,0))

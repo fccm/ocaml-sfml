@@ -32,6 +32,17 @@
 #include "SFTime_stub.hpp"
 
 
+value Val_sfTcpSocket(sf::TcpSocket * p)
+{
+    return caml_copy_nativeint((intnat) p);
+}
+
+sf::TcpSocket * SfTcpSocket_val(value v)
+{
+    return (sf::TcpSocket *) Nativeint_val(v);
+}
+
+
 /* sf::TcpSocket */
 
 CAMLextern_C value

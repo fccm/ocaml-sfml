@@ -3,8 +3,8 @@
 
 #include <SFML/Graphics/CircleShape.hpp>
 
-#define Val_sfCircleShape(cs) ((value)(cs))
-#define SfCircleShape_val(cs) ((sf::CircleShape *)(cs))
+value Val_sfCircleShape(sf::CircleShape * cs);
+sf::CircleShape * SfCircleShape_val(value cs);
 
 #define SfCircleShape_val_u(shape) \
             SfCircleShape_val(Field(shape,0))

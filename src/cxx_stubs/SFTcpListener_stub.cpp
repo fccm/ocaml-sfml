@@ -31,6 +31,17 @@
 #include "SFSocket_stub.hpp"
 
 
+value Val_sfTcpListener(sf::TcpListener * p)
+{
+    return caml_copy_nativeint((intnat) p);
+}
+
+sf::TcpListener * SfTcpListener_val(value v)
+{
+    return (sf::TcpListener *) Nativeint_val(v);
+}
+
+
 CAMLextern_C value
 caml_sfTcpListener_create(value unit)
 {

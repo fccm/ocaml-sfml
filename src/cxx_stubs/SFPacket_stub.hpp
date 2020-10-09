@@ -4,8 +4,8 @@
 #include <SFML/Network/Packet.hpp>
 #include "sf_caml_incs.hpp"
 
-#define Val_sfPacket(pkt) ((value)(pkt))
-#define SfPacket_val(pkt) ((sf::Packet *)(pkt))
+value Val_sfPacket(sf::Packet * p);
+sf::Packet * SfPacket_val(value v);
 
 #define SfPacket_val_u(pkt) \
             SfPacket_val(Field(pkt,0))

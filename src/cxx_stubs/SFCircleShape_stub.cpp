@@ -29,6 +29,16 @@
 #include "SFCircleShape_stub.hpp"
 #include "SFColor_stub.hpp"
 
+value Val_sfCircleShape(sf::CircleShape * cs)
+{
+    return caml_copy_nativeint((intnat) cs);
+}
+
+sf::CircleShape * SfCircleShape_val(value cs)
+{
+    return (sf::CircleShape *) Nativeint_val(cs);
+}
+
 CAMLextern_C value
 caml_sfCircleShape_create(value radius, value pointCount, value unit)
 {

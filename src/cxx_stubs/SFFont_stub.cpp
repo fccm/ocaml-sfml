@@ -27,6 +27,16 @@
 #include "SFFont_stub.hpp"
 #include "SFRect_stub.hpp"
 
+value Val_sfFont(sf::Font * p)
+{
+    return caml_copy_nativeint((intnat) p);
+}
+
+sf::Font * SfFont_val(value v)
+{
+    return (sf::Font *) Nativeint_val(v);
+}
+
 /* sf::Font */
 
 CAMLextern_C value

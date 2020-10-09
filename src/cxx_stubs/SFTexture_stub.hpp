@@ -3,8 +3,7 @@
 
 #include <SFML/Graphics/Texture.hpp>
 
-
-#define Val_sfTexture(tex) ((value)(tex))
-#define SfTexture_val(tex) ((sf::Texture *)(tex))
+value Val_sfTexture(sf::Texture * p);
+sf::Texture * SfTexture_val(value v);
 
 #endif // _SF_TEXTURE_INC

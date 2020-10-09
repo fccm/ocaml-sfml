@@ -28,6 +28,16 @@
 #include "SFSoundBuffer_stub.hpp"
 #include "SFTime_stub.hpp"
 
+value Val_sfSoundBuffer(sf::SoundBuffer * p)
+{
+    return caml_copy_nativeint((intnat) p);
+}
+
+sf::SoundBuffer * SfSoundBuffer_val(value v)
+{
+    return (sf::SoundBuffer *) Nativeint_val(v);
+}
+
 
 /* sf::SoundBuffer */
 

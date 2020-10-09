@@ -3,7 +3,7 @@
 
 #include <SFML/Network/TcpSocket.hpp>
 
-#define Val_sfTcpSocket(sock) ((value)(sock))
-#define SfTcpSocket_val(sock) ((sf::TcpSocket *)(sock))
+value Val_sfTcpSocket(sf::TcpSocket * p);
+sf::TcpSocket * SfTcpSocket_val(value v);
 
 #endif // _SF_TCPSOCKET_INC

@@ -3,7 +3,14 @@
 
 #include <SFML/Graphics/RenderWindow.hpp>
 
-#define Val_sfRenderWindow(win) ((value)(win))
-#define SfRenderWindow_val(win) ((sf::RenderWindow *)(win))
+static value Val_sfRenderWindow(sf::RenderWindow * p)
+{
+    return caml_copy_nativeint((intnat) p);
+}
+
+static sf::RenderWindow * SfRenderWindow_val(value v)
+{
+    return (sf::RenderWindow *) Nativeint_val(v);
+}
 
 #endif // _SF_RENDERWINDOW_INC

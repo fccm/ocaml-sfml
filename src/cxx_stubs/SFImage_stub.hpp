@@ -3,8 +3,8 @@
 
 #include <SFML/Graphics/Image.hpp>
 
-#define Val_sfImage(img) ((value)(img))
-#define SfImage_val(img) ((sf::Image *)(img))
+value Val_sfImage(sf::Image * p);
+sf::Image * SfImage_val(value v);
 
 
 #define SfImage_val_u(img) \

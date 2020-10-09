@@ -30,6 +30,16 @@
 #include "SFRect_stub.hpp"
 #include "SFImage_stub.hpp"
 
+value Val_sfTexture(sf::Texture * p)
+{
+    return caml_copy_nativeint((intnat) p);
+}
+
+sf::Texture * SfTexture_val(value v)
+{
+    return (sf::Texture *) Nativeint_val(v);
+}
+
 /* sf::Texture */
 
 CAMLextern_C value

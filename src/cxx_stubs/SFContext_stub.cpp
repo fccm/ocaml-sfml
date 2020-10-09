@@ -27,8 +27,15 @@
 #include "sf_caml_conv.hpp"
 #include "sf_context_settings.hpp"
 
-#define Val_sfContext(ctx) ((value)(ctx))
-#define SfContext_val(ctx) ((sf::Context *)(ctx))
+static value Val_sfContext(sf::Context * ctx)
+{
+    return caml_copy_nativeint((intnat) ctx);
+}
+
+static sf::Context * SfContext_val(value ctx)
+{
+    return (sf::Context *) Nativeint_val(ctx);
+}
 
 
 /* sf::Context */

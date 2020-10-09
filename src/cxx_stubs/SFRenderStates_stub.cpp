@@ -31,6 +31,16 @@
 #include "SFTexture_stub.hpp"
 #include "SFShader_stub.hpp"
 
+value Val_sfRenderStates(sf::RenderStates * p)
+{
+    return caml_copy_nativeint((intnat) p);
+}
+
+sf::RenderStates * SfRenderStates_val(value v)
+{
+    return (sf::RenderStates *) Nativeint_val(v);
+}
+
 /* sf::RenderStates */
 
 CAMLextern_C value

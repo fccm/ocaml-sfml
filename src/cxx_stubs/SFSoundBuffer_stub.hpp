@@ -3,8 +3,8 @@
 
 #include <SFML/Audio/SoundBuffer.hpp>
 
-#define Val_sfSoundBuffer(sdb) ((value)(sdb))
-#define SfSoundBuffer_val(sdb) ((sf::SoundBuffer *)(sdb))
+value Val_sfSoundBuffer(sf::SoundBuffer * p);
+sf::SoundBuffer * SfSoundBuffer_val(value v);
 
 #define SfSoundBuffer_val_u(sdb) SfSoundBuffer_val(Field(sdb,0))
 

@@ -3,7 +3,7 @@
 
 #include <SFML/Network/UdpSocket.hpp>
 
-#define Val_sfUdpSocket(sck) ((value)(sck))
-#define SfUdpSocket_val(sck) ((sf::UdpSocket *)(sck))
+value Val_sfUdpSocket(sf::UdpSocket * p);
+sf::UdpSocket * SfUdpSocket_val(value v);
 
 #endif // _SF_UDPSOCKET_INC

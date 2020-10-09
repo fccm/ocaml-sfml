@@ -30,6 +30,16 @@
 #include "SFRect_stub.hpp"
 #include "SFFont_stub.hpp"
 
+value Val_sfText(sf::Text * p)
+{
+    return caml_copy_nativeint((intnat) p);
+}
+
+sf::Text * SfText_val(value v)
+{
+    return (sf::Text *) Nativeint_val(v);
+}
+
 
 /* sf::Text */
 

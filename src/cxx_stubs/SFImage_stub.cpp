@@ -30,6 +30,16 @@
 
 #include <cstring>
 
+value Val_sfImage(sf::Image * p)
+{
+    return caml_copy_nativeint((intnat) p);
+}
+
+sf::Image * SfImage_val(value v)
+{
+    return (sf::Image *) Nativeint_val(v);
+}
+
 
 /* sf::Image */
 

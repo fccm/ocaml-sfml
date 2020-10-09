@@ -28,6 +28,17 @@
 #include "sf_caml_incs.hpp"
 #include "SFPacket_stub.hpp"
 
+value Val_sfPacket(sf::Packet * p)
+{
+    return caml_copy_nativeint((intnat) p);
+}
+
+sf::Packet * SfPacket_val(value v)
+{
+    return (sf::Packet *) Nativeint_val(v);
+}
+
+
 CAMLextern_C value
 caml_sfPacket_create(value unit)
 {

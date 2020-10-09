@@ -30,6 +30,16 @@
 #include "SFIpAddress_stub.hpp"
 #include "SFPacket_stub.hpp"
 
+value Val_sfUdpSocket(sf::UdpSocket * p)
+{
+    return caml_copy_nativeint((intnat) p);
+}
+
+sf::UdpSocket * SfUdpSocket_val(value v)
+{
+    return (sf::UdpSocket *) Nativeint_val(v);
+}
+
 
 CAMLextern_C value
 caml_sfUdpSocket_create(value unit)

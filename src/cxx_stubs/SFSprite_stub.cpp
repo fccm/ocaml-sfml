@@ -29,6 +29,16 @@
 #include "SFTexture_stub.hpp"
 #include "SFColor_stub.hpp"
 
+value Val_sfSprite(sf::Sprite * p)
+{
+    return caml_copy_nativeint((intnat) p);
+}
+
+sf::Sprite * SfSprite_val(value v)
+{
+    return (sf::Sprite *) Nativeint_val(v);
+}
+
 /* sf::Sprite */
 
 CAMLextern_C value

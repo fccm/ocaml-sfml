@@ -4,8 +4,8 @@
 #include <SFML/Graphics/Text.hpp>
 
 
-#define Val_sfText(txt) ((value)(txt))
-#define SfText_val(txt) ((sf::Text *)(txt))
+value Val_sfText(sf::Text * p);
+sf::Text * SfText_val(value v);
 
 #define SfText_val_u(text) \
             SfText_val(Field(text,0))

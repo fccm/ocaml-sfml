@@ -30,8 +30,15 @@
 #include "SFUdpSocket_stub.hpp"
 #include "SFTime_stub.hpp"
 
-#define SfSocketSelector_val(s) ((sf::SocketSelector *)(s))
-#define Val_sfSocketSelector(s) ((value)(s))
+static value Val_sfSocketSelector(sf::SocketSelector * p)
+{
+    return caml_copy_nativeint((intnat) p);
+}
+
+static sf::SocketSelector * SfSocketSelector_val(value v)
+{
+    return (sf::SocketSelector *) Nativeint_val(v);
+}
 
 CAMLextern_C value
 caml_sfSocketSelector_create(value unit)
