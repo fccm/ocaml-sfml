@@ -1,6 +1,6 @@
 /*
  * OCaml-SFML - OCaml bindings for the SFML library.
- * Copyright (C) 2012 Florent Monnier <monnier.florent(_)gmail.com>
+ * Copyright (C) 2018 Sylvain Boilard <boilard(_)crans.org>
  *
  * This software is provided 'as-is', without any express or implied warranty.
  * In no event will the authors be held liable for any damages arising from the
@@ -31,39 +31,41 @@
 void
 caml_sfCursor_destroy(value cursor)
 {
-	delete SfCursor_val(cursor);
+    delete SfCursor_val(cursor);
 }
 
 CAMLextern_C value
 caml_sfCursor_loadFromPixels(value data, value size, value hotspot)
 {
-	CAMLparam3(data, size, hotspot);
-	sf::Cursor* cursor = new sf::Cursor;
+    CAMLparam3(data, size, hotspot);
+    CAMLlocal1(ml_cursor);
+    sf::Cursor* cursor = new sf::Cursor;
 
-	if (!cursor->loadFromPixels((const sf::Uint8*)String_val(data), SfVector2u_val(size), SfVector2u_val(hotspot)))
-	{
-		delete cursor;
-		caml_failwith("SFCursor.loadFromPixels");
-	}
-	CAMLlocal1(ml_cursor);
-	ml_cursor = caml_alloc_final(2, caml_sfCursor_destroy, 0, 1);
-	SfCursor_val(ml_cursor) = cursor;
-	CAMLreturn(ml_cursor);
+    if (!cursor->loadFromPixels((const sf::Uint8*)String_val(data), SfVector2u_val(size), SfVector2u_val(hotspot)))
+    {
+        delete cursor;
+        caml_failwith("SFCursor.loadFromPixels");
+    }
+    ml_cursor = caml_alloc_final(2, caml_sfCursor_destroy, 0, 1);
+    SfCursor_val(ml_cursor) = cursor;
+    CAMLreturn(ml_cursor);
 }
 
 CAMLextern_C value
 caml_sfCursor_loadFromSystem(value type)
 {
-	CAMLparam1(type);
-	sf::Cursor* cursor = new sf::Cursor;
+    CAMLparam1(type);
+    CAMLlocal1(ml_cursor);
+    sf::Cursor* cursor = new sf::Cursor;
 
-	if (!cursor->loadFromSystem((sf::Cursor::Type)Long_val(type)))
-	{
-		delete cursor;
-		caml_failwith("SFCursor.loadFromSystem");
-	}
-	CAMLlocal1(ml_cursor);
-	ml_cursor = caml_alloc_final(2, caml_sfCursor_destroy, 0, 1);
-	SfCursor_val(ml_cursor) = cursor;
-	CAMLreturn(ml_cursor);
+    if (!cursor->loadFromSystem((sf::Cursor::Type)Long_val(type)))
+    {
+        delete cursor;
+        caml_failwith("SFCursor.loadFromSystem");
+    }
+    ml_cursor = caml_alloc_final(2, caml_sfCursor_destroy, 0, 1);
+    SfCursor_val(ml_cursor) = cursor;
+    CAMLreturn(ml_cursor);
 }
+
+// vim: sw=4 sts=4 ts=4 et
