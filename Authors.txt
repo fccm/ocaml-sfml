@@ -12,3 +12,10 @@
 - Updated to SFML 2.2 by Sylvain Boilard.
 
 - Updated to SFML 2.4 by Sylvain Boilard.
+
+- Rewrite PausableClock in pure OCaml by Sylvain Boilard.
+
+- Thanks to Julow and kristofer for patch, help, comments and testing on MacOS:
+  Jules Aguillon <juloo.dsi()gmail.com> (Julow@GitHub)
+  Kristófer Reykjalín <kristofer()thorlaksson.com> (reykjalin@GitHub)
+
