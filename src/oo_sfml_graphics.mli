@@ -1,5 +1,5 @@
 (** *)
-(** {{:http://www.sfml-dev.org/documentation/2.0/group__graphics.php}
+(** {{:https://www.sfml-dev.org/documentation/2.5.1/group__graphics.php}
   Online documentation for the graphics module} *)
 
 class int_rect :

@@ -17,7 +17,7 @@ let do_this = function
 let add_class_doc basename =
   let mod_name = String.sub basename 2 (String.length basename - 2) in
   Printf.printf "(**  *)
-(** {{:http://www.sfml-dev.org/documentation/2.0/classsf_1_1%s.php}
+(** {{:https://www.sfml-dev.org/documentation/2.5.1/classsf_1_1%s.php}
   Online documentation for the %s class} *)\n\n"
   mod_name
   mod_name
@@ -25,7 +25,7 @@ let add_class_doc basename =
 let add_group_doc basename =
   let mod_name = Scanf.sscanf basename "oo_sfml_%s" (fun s -> s) in
   Printf.printf "(** *)
-(** {{:http://www.sfml-dev.org/documentation/2.0/group__%s.php}
+(** {{:https://www.sfml-dev.org/documentation/2.5.1/group__%s.php}
   Online documentation for the %s module} *)\n\n"
   mod_name
   mod_name

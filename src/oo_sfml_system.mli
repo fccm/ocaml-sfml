@@ -1,5 +1,5 @@
 (** *)
-(** {{:http://www.sfml-dev.org/documentation/2.0/group__system.php}
+(** {{:https://www.sfml-dev.org/documentation/2.5.1/group__system.php}
   Online documentation for the system module} *)
 
 type time_src =

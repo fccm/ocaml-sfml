@@ -1,5 +1,5 @@
 (** *)
-(** {{:http://www.sfml-dev.org/documentation/2.0/group__window.php}
+(** {{:https://www.sfml-dev.org/documentation/2.5.1/group__window.php}
   Online documentation for the window module} *)
 
 class window :

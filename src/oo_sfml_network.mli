@@ -1,5 +1,5 @@
 (** *)
-(** {{:http://www.sfml-dev.org/documentation/2.0/group__network.php}
+(** {{:https://www.sfml-dev.org/documentation/2.5.1/group__network.php}
   Online documentation for the network module} *)
 
 type ip_address_src =

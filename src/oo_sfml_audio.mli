@@ -1,5 +1,5 @@
 (** *)
-(** {{:http://www.sfml-dev.org/documentation/2.0/group__audio.php}
+(** {{:https://www.sfml-dev.org/documentation/2.5.1/group__audio.php}
   Online documentation for the audio module} *)
 
 type music_src = [ `FromFile of string | `FromMemory of string ]
