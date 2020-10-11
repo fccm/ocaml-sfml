@@ -6,7 +6,7 @@
 # This software is provided "AS IS", without warranty of any kind.
 
 OCAML := ocaml
-OCAMLC := ocamlc -g
+OCAMLC := ocamlc -g -bin-annot
 CC_PARAMS := -Wall -Werror -Wno-deprecated-declarations
 OCAMLOPT_PARAMS := -g -w A -ccopt "$(CC_PARAMS)"
 OCAMLOPT := ocamlopt $(OCAMLOPT_PARAMS)
@@ -801,9 +801,13 @@ install_cxx: $(CMI_INTRF) $(SFML_STUBS) META_cxx/META
 	$(INSTALL_FILE) META_cxx/META $(PREFIX)
 	$(INSTALL_FILE) *.mli $(PREFIX)
 	$(INSTALL_FILE) libsfml_*_stubs.a sfml_*.a $(PREFIX)
-	$(INSTALL_FILE) *.cmi sfml_*.cma sfml_*.cmxa $(PREFIX)
+	$(INSTALL_FILE) *.cmi sfml_*.cma sfml_*.cmxa *.cmx $(PREFIX)
 	if [ "`ls sfml_*.cmxs 2> /dev/null`" != "" ]; then\
 	 $(INSTALL_EXE) sfml_*.cmxs $(PREFIX); fi
+	if [ "`ls *.cmt 2> /dev/null`" != "" ]; then\
+	 $(INSTALL_EXE) *.cmt $(PREFIX); fi
+	if [ "`ls *.cmti 2> /dev/null`" != "" ]; then\
+	 $(INSTALL_EXE) *.cmti $(PREFIX); fi
 	$(INSTALL_EXE) dllsfml_*_stubs.so $(DLL_PREFIX)
 
 
@@ -816,9 +820,13 @@ install_c: $(CMI_INTRF) $(CSFML_STUBS) META_c/META
 	$(INSTALL_FILE) META_c/META $(PREFIX)
 	$(INSTALL_FILE) *.mli $(PREFIX)
 	$(INSTALL_FILE) libcsfml_*_stubs.a csfml_*.a $(PREFIX)
-	$(INSTALL_FILE) *.cmi csfml_*.cma csfml_*.cmxa $(PREFIX)
+	$(INSTALL_FILE) *.cmi csfml_*.cma csfml_*.cmxa *.cmx $(PREFIX)
 	if [ "`ls csfml_*.cmxs 2> /dev/null`" != "" ]; then\
 	 $(INSTALL_EXE) csfml_*.cmxs $(PREFIX); fi
+	if [ "`ls *.cmt 2> /dev/null`" != "" ]; then\
+	 $(INSTALL_EXE) *.cmt $(PREFIX); fi
+	if [ "`ls *.cmti 2> /dev/null`" != "" ]; then\
+	 $(INSTALL_EXE) *.cmti $(PREFIX); fi
 	$(INSTALL_EXE) dllcsfml_*_stubs.so $(DLL_PREFIX)
 
 
@@ -828,10 +836,10 @@ install_c: $(CMI_INTRF) $(CSFML_STUBS) META_c/META
 .PHONY: findinstall findinstall_c findinstall_cxx
 findinstall: findinstall_cxx
 findinstall_cxx: META_cxx/META
-	$(OCAMLFIND) install sfml $< *.cma *.cmxa *.cmxs *.cmi *.mli *.so *.a
+	$(OCAMLFIND) install sfml $< *.cma *.cmxa *.cmxs *.cmi *.cmx *.cmt *.cmti *.mli *.so *.a
 
 findinstall_c: META_c/META
-	$(OCAMLFIND) install sfml $< *.cma *.cmxa *.cmxs *.cmi *.mli *.so *.a
+	$(OCAMLFIND) install sfml $< *.cma *.cmxa *.cmxs *.cmi *.cmx *.cmt *.cmti *.mli *.so *.a
 
 
 
