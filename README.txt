@@ -149,6 +149,7 @@ PausableClock is not part of the SFML library, but have been included in the
 bindings because it has been found usefull.
 The author of PausableClock gave the permission to use it under the same
 license than SFML (zlib/png).
+PausableClock was rewritten later in pure OCaml by Sylvain Boilard.
 
 
 === Miscellaneous ===
