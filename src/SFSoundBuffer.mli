@@ -1,5 +1,5 @@
 (**  *)
-(** {{:http://sfml-dev.org/documentation/2.0/classsf_1_1SoundBuffer.php}
+(** {{:https://www.sfml-dev.org/documentation/2.5.1/classsf_1_1SoundBuffer.php}
   Online documentation for the SoundBuffer class} *)
 
 type t

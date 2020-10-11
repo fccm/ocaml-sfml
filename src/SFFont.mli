@@ -1,5 +1,5 @@
 (** *)
-(** {{:http://sfml-dev.org/documentation/2.0/classsf_1_1Font.php}
+(** {{:https://www.sfml-dev.org/documentation/2.5.1/classsf_1_1Font.php}
   Online documentation for the Font class} *)
 
 type t

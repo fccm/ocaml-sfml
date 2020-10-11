@@ -1,5 +1,5 @@
 (** *)
-(** {{:http://sfml-dev.org/documentation/2.0/classsf_1_1Sound.php}
+(** {{:https://www.sfml-dev.org/documentation/2.5.1/classsf_1_1Sound.php}
   Online documentation for the Sound class} *)
 
 type t
