@@ -96,49 +96,49 @@ caml_sfView_copy(value view)
 }
 
 CAMLextern_C value
-caml_sfView_setCenter(value view, value x, value y)
+caml_sfView_setCenter2(value view, value x, value y)
 {
-    sfView_owner_guard("setCenter", view);
+    sfView_owner_guard("setCenter2", view);
     SfView_val(view)->setCenter(SfVector2f_val2(x, y));
     return Val_unit;
 }
 
 CAMLextern_C value
-caml_sfView_setCenter2(value view, value center)
+caml_sfView_setCenter(value view, value center)
 {
-    sfView_owner_guard("setCenter2", view);
+    sfView_owner_guard("setCenter", view);
     SfView_val(view)->setCenter(SfVector2f_val(center));
     return Val_unit;
 }
 
 CAMLextern_C value
-caml_sfView_setSize(value view, value width, value height)
+caml_sfView_setSize2(value view, value width, value height)
 {
-	sfView_owner_guard("setSize", view);
+	sfView_owner_guard("setSize2", view);
 	SfView_val(view)->setSize(SfVector2f_val2(width, height));
 	return Val_unit;
 }
 
 CAMLextern_C value
-caml_sfView_setSize2(value view, value size)
+caml_sfView_setSize(value view, value size)
 {
-	sfView_owner_guard("setSize2", view);
+	sfView_owner_guard("setSize", view);
 	SfView_val(view)->setSize(SfVector2f_val(size));
 	return Val_unit;
 }
 
 CAMLextern_C value
-caml_sfView_move(value view, value offsetX, value offsetY)
+caml_sfView_move2(value view, value offsetX, value offsetY)
 {
-    sfView_owner_guard("move", view);
+    sfView_owner_guard("move2", view);
     SfView_val(view)->move(SfVector2f_val2(offsetX, offsetY));
     return Val_unit;
 }
 
 CAMLextern_C value
-caml_sfView_move2(value view, value offset)
+caml_sfView_move(value view, value offset)
 {
-    sfView_owner_guard("move2", view);
+    sfView_owner_guard("move", view);
     SfView_val(view)->move(SfVector2f_val(offset));
     return Val_unit;
 }
