@@ -112,6 +112,22 @@ caml_sfView_setCenter2(value view, value center)
 }
 
 CAMLextern_C value
+caml_sfView_setSize(value view, value width, value height)
+{
+	sfView_owner_guard("setSize", view);
+	SfView_val(view)->setSize(SfVector2f_val2(width, height));
+	return Val_unit;
+}
+
+CAMLextern_C value
+caml_sfView_setSize2(value view, value size)
+{
+	sfView_owner_guard("setSize2", view);
+	SfView_val(view)->setSize(SfVector2f_val(size));
+	return Val_unit;
+}
+
+CAMLextern_C value
 caml_sfView_move(value view, value offsetX, value offsetY)
 {
     sfView_owner_guard("move", view);

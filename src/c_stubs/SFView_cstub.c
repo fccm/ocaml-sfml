@@ -81,6 +81,20 @@ caml_sfView_setCenter2(value view, value center)
 }
 
 CAMLprim value
+caml_sfView_setSize(value view, value width, value height)
+{
+	sfView_setSize(SfView_val(view), SfVector2f_val2(width, height));
+	return Val_unit;
+}
+
+CAMLprim value
+caml_sfView_setSize2(value view, value size)
+{
+	sfView_setSize(SfView_val(view), SfVector2f_val(size));
+	return Val_unit;
+}
+
+CAMLprim value
 caml_sfView_move(value view, value offsetX, value offsetY)
 {
     sfView_move(SfView_val(view), SfVector2f_val2(offsetX, offsetY));

@@ -7,6 +7,10 @@ external setCenter: view:t -> center:float * float -> unit
   = "caml_sfView_setCenter2"
 external setCenter2: view:t -> x:float -> y:float -> unit
   = "caml_sfView_setCenter"
+external setSize: view:t -> size:float * float -> unit
+  = "caml_sfView_setSize2"
+external setSize2: view:t -> width:float -> height:float -> unit
+  = "caml_sfView_setSize"
 external move: view:t -> offset:float * float -> unit
   = "caml_sfView_move2"
 external move2: view:t -> offsetX:float -> offsetY:float -> unit
