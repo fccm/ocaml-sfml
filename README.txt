@@ -139,6 +139,9 @@ documentation of the matching SFML class.
 Run this command to build the ocamldoc HTML documentation:
 $ make doc
 
+This documentation can also be browsed online at:
+http://fccm.github.io/ocaml-sfml/
+
 
 === PausableClock ===
 
