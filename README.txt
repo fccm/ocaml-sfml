@@ -100,6 +100,10 @@ You can use these "make" targets:
 - cxx_all, to build all the previous ones
 
 - install_cxx, to install the build files
+  (this target will install the files using the 'install' command line tool)
+
+- findinstall, to install the build files using the ocamlfind tool
+  (if you're using opam, this target will install inside the ~/.opam subdirectory)
 
 If the SFML library is in a custom path, for example a directory
 "/tmp/my_sfml" that contains at least 2 directories, one "lib/" containing
