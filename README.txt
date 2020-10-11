@@ -67,15 +67,21 @@ https://www.paypal.com/donate?business=monnier.florent@gmail.com&item_name=ocaml
 === C vs. C++ API ===
 
 The main API of SFML is in C++ but a C API is also available.
-The first version of ocaml-sfml was wrapping the C API.
-During the transition from SFML 1.6 to 2.0 the decision was taken to wrap
-the C++ API because several very interesting projects are provided for
-this API, and it will be easier to use those with bindings to the C++ API.
-But the binding to the C++ API is more recent, so the binding to the C API
-has probably less bugs, if any.
+The first version of ocaml-sfml was wrapping the C API only.
 
-The OCaml interface is exactly the same, whether the stubs wrap the C++ API
-or the C API. Only the C or C++ stubs are different.
+During the transition from SFML 1.6 to 2.0 the decision was made to wrap
+the C++ API also because several very interesting projects are provided for
+this API, and it will be easier to use those with bindings to the C++ API.
+
+For several versions of ocaml-sfml it was possible to compile with C stubs
+or C++ stubs, each respectively linking with the C lib or the C++ lib of SFML.
+
+The OCaml interface was exactly the same, whether we were using the stubs for
+the C++ API or for the C API. Only the C or C++ stubs were different.
+
+Today only the C++ stubs are maintained because it require more work to maintain
+both, and also when a new version of the SFML is released, the C++ always comes
+first, and the C lib usualy comes quite a lot of time later.
 
 
 === Compile ===
