@@ -153,7 +153,7 @@ license than SFML (zlib/png).
 
 === Miscellaneous ===
 
-The SFML_oo module is equivalent to all the other modules but provides an
+The Oo_sfml_* modules are equivalent to all the other modules but provide an
 Object Oriented style.
 
 
