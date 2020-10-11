@@ -70,13 +70,17 @@
 &nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="string">"caml_sfView_createFromRect"</span><br>
 &nbsp;&nbsp;<span class="keyword">external</span>&nbsp;copy&nbsp;:&nbsp;view:<span class="constructor">SFView</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit&nbsp;=&nbsp;<span class="string">"caml_sfView_copy"</span><br>
 &nbsp;&nbsp;<span class="keyword">external</span>&nbsp;setCenter&nbsp;:&nbsp;view:<span class="constructor">SFView</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;center:float&nbsp;*&nbsp;float&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit<br>
-&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="string">"caml_sfView_setCenter2"</span><br>
-&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;setCenter2&nbsp;:&nbsp;view:<span class="constructor">SFView</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;x:float&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;y:float&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit<br>
 &nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="string">"caml_sfView_setCenter"</span><br>
+&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;setCenter2&nbsp;:&nbsp;view:<span class="constructor">SFView</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;x:float&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;y:float&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit<br>
+&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="string">"caml_sfView_setCenter2"</span><br>
+&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;setSize&nbsp;:&nbsp;view:<span class="constructor">SFView</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;size:float&nbsp;*&nbsp;float&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit<br>
+&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="string">"caml_sfView_setSize"</span><br>
+&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;setSize2&nbsp;:&nbsp;view:<span class="constructor">SFView</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;width:float&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;height:float&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit<br>
+&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="string">"caml_sfView_setSize2"</span><br>
 &nbsp;&nbsp;<span class="keyword">external</span>&nbsp;move&nbsp;:&nbsp;view:<span class="constructor">SFView</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;offset:float&nbsp;*&nbsp;float&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit<br>
-&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="string">"caml_sfView_move2"</span><br>
-&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;move2&nbsp;:&nbsp;view:<span class="constructor">SFView</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;offsetX:float&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;offsetY:float&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit<br>
 &nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="string">"caml_sfView_move"</span><br>
+&nbsp;&nbsp;<span class="keyword">external</span>&nbsp;move2&nbsp;:&nbsp;view:<span class="constructor">SFView</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;offsetX:float&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;offsetY:float&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit<br>
+&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="string">"caml_sfView_move2"</span><br>
 &nbsp;&nbsp;<span class="keyword">external</span>&nbsp;zoom&nbsp;:&nbsp;view:<span class="constructor">SFView</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;factor:float&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit&nbsp;=&nbsp;<span class="string">"caml_sfView_zoom"</span><br>
 &nbsp;&nbsp;<span class="keyword">external</span>&nbsp;getCenter&nbsp;:&nbsp;view:<span class="constructor">SFView</span>.t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;float&nbsp;*&nbsp;float<br>
 &nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;<span class="string">"caml_sfView_getCenter"</span><br>
