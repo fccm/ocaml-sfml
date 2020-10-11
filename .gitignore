@@ -1,5 +1,6 @@
-*.cm[ioxa]
+*.cm[ioxat]
 *.cmx[as]
+*.cmti
 *.[oa]
 *.so
 *.swp
