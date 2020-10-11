@@ -1,7 +1,7 @@
 name = "csfml"
 description = "bindings to the SFML library"
 license = "zlib/png"
-version = "0.08"
+version = "0.09"
 directory = "+csfml"
 
 package "system" (
