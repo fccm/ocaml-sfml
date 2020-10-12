@@ -36,6 +36,7 @@
 #include "SFView_stub.hpp"
 #include "SFEvent_stub.hpp"
 #include "SFColor_stub.hpp"
+#include "SFCursor_stub.hpp"
 #include "SFImage_stub.hpp"
 #include "SFText_stub.hpp"
 #include "SFSprite_stub.hpp"
@@ -263,6 +264,13 @@ CAMLextern_C value
 caml_sfRenderWindow_setMouseCursorGrabbed(value win, value grabbed)
 {
     SfRenderWindow_val(win)->setMouseCursorGrabbed(Bool_val(grabbed));
+    return Val_unit;
+}
+
+CAMLextern_C value
+caml_sfRenderWindow_setMouseCursor(value win, value cursor)
+{
+    SfRenderWindow_val(win)->setMouseCursor(*SfCursor_val(cursor));
     return Val_unit;
 }
 
