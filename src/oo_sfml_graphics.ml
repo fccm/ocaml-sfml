@@ -387,6 +387,7 @@ class render_window
     method set_mouse_cursor_invisible () = SFRenderWindow.setMouseCursorVisible this ~show:false
     method set_mouse_cursor_grabbed () = SFRenderWindow.setMouseCursorGrabbed this ~grabbed:true
     method set_mouse_cursor_ungrabbed () = SFRenderWindow.setMouseCursorGrabbed this ~grabbed:false
+    method set_mouse_cursor ~cursor = SFRenderWindow.setMouseCursor this ~cursor
     method set_visible ~visible = SFRenderWindow.setVisible this ~visible
     method set_key_repeat_enabled ~enabled = SFRenderWindow.setKeyRepeatEnabled this ~enabled
     method set_active ~active = SFRenderWindow.setActive this ~active
