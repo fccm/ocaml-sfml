@@ -50,21 +50,24 @@ external getRotation: sprite:u -> float = "caml_sfSprite_getRotation"
 
 (* ================ *)
 
-type t = { u:u; s:string }
+type t = { u:u }
+
+let debug = true
 
 let destroy sprite =
-  Printf.printf "# destroying sprite (%s)...\n%!" sprite.s;
+  if debug
+  then Printf.eprintf "# finalising sprite...\n%!";
   destroy sprite.u
 
 let create () =
   let u = create () in
-  let t = {u=u; s=" "} in
+  let t = { u=u } in
   Gc.finalise destroy t;
   (t)
 
 let copy ~sprite:s =
   let u = copy ~sprite:s.u in
-  let t = {u=u; s=" "} in
+  let t = { u=u } in
   Gc.finalise destroy t;
   (t)
 

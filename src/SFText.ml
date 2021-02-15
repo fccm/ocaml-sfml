@@ -33,15 +33,18 @@ external getGlobalBounds: text:u -> float SFRect.t = "caml_sfText_getGlobalBound
 
 (* ================ *)
 
-type t = { u:u; mutable font: SFFont.t option; s:string }
+type t = { u:u; mutable font: SFFont.t option }
+
+let debug = true
 
 let destroy text =
-  Printf.printf "# destroying text (%s)...\n%!" text.s;
+  if debug
+  then Printf.eprintf "# finalising text...\n%!";
   destroy text.u
 
 let create () =
   let u = create () in
-  let t = {u=u; font=None; s=" "} in
+  let t = { u=u; font=None } in
   Gc.finalise destroy t;
   (t)
 

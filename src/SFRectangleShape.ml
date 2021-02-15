@@ -7,14 +7,17 @@ external destroy: u -> unit = "caml_sfRectangleShape_destroy"
 
 (* ================ *)
 
-type t = { u:u; s:string }
+type t = { u:u }
+
+let debug = true
 
 let destroy rectangle =
-  Printf.printf "# destroying rectangle (%s)...\n%!" rectangle.s;
+  if debug
+  then Printf.eprintf "# finalising rectangle...\n%!";
   destroy rectangle.u
 
 let create ?size () =
   let u = create ?size () in
-  let t = {u=u; s=" "} in
+  let t = { u=u } in
   Gc.finalise destroy t;
   (t)

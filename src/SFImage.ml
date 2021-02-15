@@ -42,7 +42,7 @@ external flipVertically: image:u -> unit = "caml_sfImage_flipVertically"
 
 (* ================ *)
 
-type t = { u:u; s:string }
+type t = { u:u }
 
 let getWidth ~image     = getWidth ~image:image.u
 let getHeight ~image    = getHeight ~image:image.u
@@ -70,32 +70,34 @@ let createMaskFromColor ~image ~color ~alpha =
 let flipHorizontally ~image = flipHorizontally ~image:image.u
 let flipVertically   ~image = flipVertically ~image:image.u
 
+let debug = true
 
 let destroy img =
-  Printf.printf "# destroying image (%s)...\n%!" img.s;
+  if debug
+  then Printf.eprintf "# finalising image...\n%!";
   destroy img.u
 
 let createFromFile ~filename =
   let u = createFromFile ~filename in
-  let t = {u=u; s=" "} in
+  let t = { u=u } in
   Gc.finalise destroy t;
   (t)
 
 let createFromColor ~width ~height ~color =
   let u = createFromColor ~width ~height ~color in
-  let t = {u=u; s=" "} in
+  let t = { u=u } in
   Gc.finalise destroy t;
   (t)
 
 let createFromMemory ~data =
   let u = createFromMemory ~data in
-  let t = {u=u; s=" "} in
+  let t = { u=u } in
   Gc.finalise destroy t;
   (t)
 
 let createFromPixels ~width ~height ~data =
   let u = createFromPixels ~width ~height ~data in
-  let t = {u=u; s=" "} in
+  let t = { u=u } in
   Gc.finalise destroy t;
   (t)
 

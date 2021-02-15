@@ -19,27 +19,30 @@ external saveToFile: u -> filename:string -> unit = "caml_sfSoundBuffer_saveToFi
 
 (* ================ *)
 
-type t = { u:u; s:string }
+type t = { u:u }
+
+let debug = true
 
 let destroy sbuf =
-  Printf.printf "# destroying soundBuffer (%s)...\n%!" sbuf.s;
+  if debug
+  then Printf.eprintf "# finalising soundBuffer...\n%!";
   destroy sbuf.u
 
 let loadFromFile ~filename =
   let u = loadFromFile ~filename in
-  let t = {u=u; s=" "} in
+  let t = { u=u } in
   Gc.finalise destroy t;
   (t)
 
 let loadFromMemory ~data =
   let u = loadFromMemory ~data in
-  let t = {u=u; s=" "} in
+  let t = { u=u } in
   Gc.finalise destroy t;
   (t)
 
 let loadFromSamples ~samples ~channelCount ~sampleRate =
   let u = loadFromSamples ~samples ~channelCount ~sampleRate in
-  let t = {u=u; s=" "} in
+  let t = { u=u } in
   Gc.finalise destroy t;
   (t)
 

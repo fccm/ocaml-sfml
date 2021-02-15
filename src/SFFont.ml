@@ -35,27 +35,30 @@ external getInfo: u -> info = "caml_sfFont_getInfo"
 
 (* ================ *)
 
-type t = { u:u; s:string }
+type t = { u:u }
+
+let debug = true
 
 let destroy font =
-  Printf.printf "# destroying font (%s)...\n%!" font.s;
+  if debug
+  then Printf.eprintf "# finalising font...\n%!";
   destroy font.u
 
 let createFromFile ~filename =
   let u = createFromFile ~filename in
-  let t = {u=u; s=" " } in
+  let t = { u=u } in
   Gc.finalise destroy t;
   (t)
 
 let createFromMemory ~data =
   let u = createFromMemory ~data in
-  let t = {u=u; s=" " } in
+  let t = { u=u } in
   Gc.finalise destroy t;
   (t)
 
 let copy font =
   let u = copy font.u in
-  let t = {u=u; s=" " } in
+  let t = { u=u } in
   Gc.finalise destroy t;
   (t)
 

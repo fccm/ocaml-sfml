@@ -1,23 +1,26 @@
 type u
-type t = { u:u; s:string }
+type t = { u:u }
 
 external create: unit -> u = "caml_sfPacket_create"
 external destroy: u -> unit = "caml_sfPacket_destroy"
 external copy: packet:u -> u = "caml_sfPacket_copy"
 
+let debug = true
+
 let destroy packet =
-  Printf.printf "# destroying packet (%s)...\n%!" packet.s;
+  if debug
+  then Printf.eprintf "# finalising packet...\n%!";
   destroy packet.u
 
 let create () =
   let u = create () in
-  let t = {u=u; s=" "} in
+  let t = { u=u } in
   Gc.finalise destroy t;
   (t)
 
 let copy ~packet:p =
   let u = copy ~packet:p.u in
-  let t = {u=u; s=" "} in
+  let t = { u=u } in
   Gc.finalise destroy t;
   (t)
 
