@@ -43,6 +43,7 @@ external setSize2: t -> width:int -> height:int -> unit
 
 external setMouseCursorVisible: t -> show:bool -> unit = "caml_sfRenderWindow_setMouseCursorVisible"
 external setMouseCursorGrabbed: t -> grabbed:bool -> unit = "caml_sfRenderWindow_setMouseCursorGrabbed"
+external setMouseCursor: t -> cursor:SFCursor.t -> unit = "caml_sfRenderWindow_setMouseCursor"
 external setVisible: t -> visible:bool -> unit = "caml_sfRenderWindow_setVisible"
 external setKeyRepeatEnabled: t -> enabled:bool -> unit = "caml_sfRenderWindow_setKeyRepeatEnabled"
 external setActive: t -> active:bool -> unit = "caml_sfRenderWindow_setActive"
