@@ -231,6 +231,7 @@ class render_window :
     method set_framerate_limit : limit:int -> unit
     method set_joystick_threshold : threshold:float -> unit
     method set_key_repeat_enabled : enabled:bool -> unit
+    method set_mouse_cursor : cursor:SFCursor.t -> unit
     method set_mouse_cursor_grabbed : unit -> unit
     method set_mouse_cursor_invisible : unit -> unit
     method set_mouse_cursor_ungrabbed : unit -> unit
