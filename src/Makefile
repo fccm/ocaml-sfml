@@ -72,6 +72,7 @@ vpath %.h ./c_stubs/
 vpath %.cpp ./cxx_stubs/
 vpath %.hpp ./cxx_stubs/
 
+all: cxx_all
 
 # Bindings to the C++ API:
 cxx: cxx_byte cxx_opt
