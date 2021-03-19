@@ -1,0 +1,2 @@
+The C stubs are deprecated.
+Only the C++ stubs are currently maintained.
