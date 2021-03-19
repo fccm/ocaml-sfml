@@ -14,7 +14,7 @@ These bindings are released under the zlib/png license.
 This is the same license than the SFML library, this is
 why this license was chosen.
 But for any reason if you prefer the MIT, the BSD, the ISC,
-the GPL or the LGPL license (or even CC0), just switch to it!
+the GPL or the LGPL license (or even CC), just switch to it!
 
 
 === Home-Page ===
@@ -60,7 +60,7 @@ If you think SFML is useful for you, you can make a donation
 to the author of SFML, Laurent Gomila:
 https://www.paypal.com/cgi-bin/webscr/?cmd=_s-xclick&hosted_button_id=TYJ2XQPG3SXPG
 
-If you want to donate something to the author of the ocaml bindings:
+If you want to donate something to the authors of the ocaml bindings:
 https://www.paypal.com/donate?business=monnier.florent@gmail.com&item_name=ocaml-sfml
 
 
@@ -164,11 +164,9 @@ Object Oriented style.
 
 === Friends Projects ===
 
-There is another binding that we are aware of that is Ocsfml available at:
+There is another bindings that we are aware of that is Ocsfml available at:
 https://github.com/JoeDralliam/Ocsfml
 Although the stubs code are very different between ocaml-sfml and ocsfml,
 the resulting OCaml interface are quite close, modulo the namings of the
 functions and the module packing that are different.
-I have no opinion whether which one could be considered the best one, but
-I think that the source code of ocaml-sfml is probably simpler.
 
