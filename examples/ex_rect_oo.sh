@@ -1,4 +1,4 @@
-ocaml -I ../src \
+ocaml -w -6 -I ../src \
   sfml_system.cma \
   sfml_window.cma \
   sfml_graphics.cma \

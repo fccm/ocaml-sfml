@@ -1,4 +1,4 @@
-ocaml bigarray.cma \
+ocaml -w -6 bigarray.cma \
   -I ../src \
   sfml_system.cma \
   sfml_window.cma \

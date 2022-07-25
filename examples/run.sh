@@ -16,4 +16,4 @@ echo "running"
 echo
 echo ocaml bigarray.cma -I $LIBDIR   $1 $2
 echo
-     ocaml bigarray.cma -I $LIBDIR   $1 $2
+     ocaml -w -6 bigarray.cma -I $LIBDIR   $1 $2
