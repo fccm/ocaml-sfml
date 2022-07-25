@@ -1,5 +1,5 @@
 # Makefile for ocaml-sfml
-# Copyright (C) 2012 Florent Monnier (monnier dot florent on gmail)
+# Copyright (C) 2012 Florent Monnier <monnier.florent (at) gmail.com>
 # Code provided under MIT license:
 # See the file COPYING.txt or this URL:
 # https://secure.wikimedia.org/wikipedia/en/wiki/MIT_License
@@ -7,8 +7,12 @@
 
 OCAML := ocaml
 OCAMLC := ocamlc -g -bin-annot
-CC_PARAMS := -Wall -Werror -Wno-deprecated-declarations
-OCAMLOPT_PARAMS := -g -w A -ccopt "$(CC_PARAMS)"
+
+#CC_PARAMS := -Wall -Werror -Wno-deprecated-declarations
+#OCAMLOPT_PARAMS := -g -w A -ccopt "$(CC_PARAMS)"
+CC_PARAMS := -Wno-deprecated-declarations
+OCAMLOPT_PARAMS := -g -ccopt "$(CC_PARAMS)"
+
 OCAMLOPT := ocamlopt $(OCAMLOPT_PARAMS)
 OCAMLDOC := ocamldoc
 OCAMLMKLIB := ocamlmklib
@@ -876,7 +880,7 @@ clean_doc:
 	$(RM) -r $(DOC_DIR)
 
 clean:
-	$(RM) *.[oa] *.cm[ixoa] *.cmx[as] *.so *.opt *.byte
+	$(RM) *.[oa] *.cm[itxoa] *.cmx[as] *.cmt[i] *.so *.opt *.byte
 
 clean_obj:
 	$(RM) *.o
