@@ -54,7 +54,8 @@ Sylvain Boilard made a lot of changes to update to the SFML versions 2.2 and
 You can get more details about the contributions in the file "Authors.txt",
 or browsing the history of the SCM.
 
-Laurent Gomila also helped for ocaml-sfml by answering several questions.
+Laurent Gomila also helped for ocaml-sfml by answering several questions,
+in particular read the file "./deps.txt".
 
 
 === Donate ===
