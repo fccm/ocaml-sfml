@@ -15,6 +15,9 @@ This is the same license than the SFML library, this is
 why this license was chosen.
 But for any reason if you prefer the MIT, the BSD, the ISC,
 the GPL or the LGPL license (or even CC), just switch to it!
+You can use any license that has been approved by the FSF or
+the Open Source Initiative:
+  https://opensource.org/licenses
 
 
 === Home-Page ===
